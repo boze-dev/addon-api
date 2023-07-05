@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "api",
+  "version": "${version}",
+  "name": "Boze API",
+  "description": "Boze Utility Mod API",
+  "authors": ["Boze Developers"],
+  "contact": {
+    "website": "https://boze.dev",
+    "repo": "https://github.com/boze-dev/addon-api"
+  },
+  "license": "GPL-3.0",
+  "environment": "*",
+  "entrypoints": {},
+  "mixins": [
+    "api.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "fabric": "*",
+    "minecraft": "1.18.2"
+  }
+}
