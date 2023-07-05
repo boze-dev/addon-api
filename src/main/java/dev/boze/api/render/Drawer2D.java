@@ -1,6 +1,6 @@
 package dev.boze.api.render;
 
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.gui.DrawContext;
 
 public interface Drawer2D {
 
@@ -12,9 +12,9 @@ public interface Drawer2D {
     /**
      * Stop drawing
      *
-     * @param matrices MatrixStack to use for rendering, can be null
+     * @param context DrawContext to use for rendering, can be null
      */
-    void stopDrawing(MatrixStack matrices);
+    void stopDrawing(DrawContext context);
 
     /**
      * Stop drawing
