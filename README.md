@@ -11,6 +11,8 @@ Boze API supports the following Minecraft versions:
 - 1.19.3
 - 1.19.4
 - 1.20.1
+- 1.20.2
+- 1.20.4
 
 Versions below 1.19.4 are no longer updated, see [tags](https://github.com/boze-dev/addon-api/tags) for the archived branches.
 
