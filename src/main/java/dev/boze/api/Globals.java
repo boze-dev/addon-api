@@ -2,9 +2,11 @@ package dev.boze.api;
 
 import dev.boze.api.client.ChatHelper;
 import dev.boze.api.client.FriendManager;
+import dev.boze.api.client.cape.CapesManager;
 import dev.boze.api.config.JsonTools;
 import dev.boze.api.input.InputNameProvider;
 import dev.boze.api.interaction.RotationHelper;
+import dev.boze.api.interaction.SlotHelper;
 import dev.boze.api.module.ModuleInfoProvider;
 import dev.boze.api.render.Drawer3D;
 import dev.boze.api.render.LinkedColorProvider;
@@ -19,11 +21,13 @@ public class Globals {
 
     private static ChatHelper chatHelper;
     private static RotationHelper rotationHelper;
+    private static SlotHelper slotHelper;
 
     private static ModuleInfoProvider moduleInfoProvider;
     private static InputNameProvider inputNameProvider;
     private static LinkedColorProvider linkedColorProvider;
 
+    private static CapesManager capesManager;
     private static FriendManager friendManager;
 
     private static JsonTools jsonTools;
@@ -40,6 +44,10 @@ public class Globals {
         return rotationHelper;
     }
 
+    public static SlotHelper getSlotHelper() {
+        return slotHelper;
+    }
+
     public static ModuleInfoProvider getModuleInfoProvider() {
         return moduleInfoProvider;
     }
@@ -50,6 +58,10 @@ public class Globals {
 
     public static LinkedColorProvider getLinkedColorProvider() {
         return linkedColorProvider;
+    }
+
+    public static CapesManager getCapesManager() {
+        return capesManager;
     }
 
     public static FriendManager getFriendManager() {
