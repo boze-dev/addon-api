@@ -6,12 +6,12 @@ import java.util.LinkedList;
 
 /**
  * EventPlayerUpdate
- *
+ * <p>
  * Event called when the player updates, once a tick
- *
+ * <p>
  * This event should be used for any interactions with the server
- *
- * Interactions outside this event may not work properly, and may cause issues
+ * <p>
+ * Interactions outside this event and EventGrim may not work properly, and may cause issues
  *
  * @see dev.boze.api.interaction.Interaction
  */
@@ -24,7 +24,7 @@ public class EventPlayerUpdate {
 
     /**
      * Addons that wish to have a lower priority than Boze should check this method
-     *
+     * <p>
      * If this method returns true, the addon should not interact with the server
      *
      * @return Weather Boze itself is interacting with the server
