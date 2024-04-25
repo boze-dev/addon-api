@@ -1,20 +1,23 @@
 package dev.boze.api.interaction;
 
+import dev.boze.api.internal.Instances;
 import net.minecraft.util.math.Vec3d;
 
 /**
  * RotationHelper
- *
+ * <p>
  * Provides methods to calculate rotations
  */
-public interface RotationHelper {
+public final class RotationHelper {
 
     /**
      * @param to the vector to calculate the angle to
      *
      * @return the angle between the player's eyes and the given vector
      */
-    Rotation calculateAngle(Vec3d to);
+    public static Rotation calculateAngle(Vec3d to) {
+        return Instances.getInteraction().calculateAngle(to);
+    }
 
     /**
      * @param from the vector to calculate the angle from
@@ -22,5 +25,7 @@ public interface RotationHelper {
      *
      * @return the angle between the given vectors
      */
-    Rotation calculateAngle(Vec3d from, Vec3d to);
+    public static Rotation calculateAngle(Vec3d from, Vec3d to) {
+        return Instances.getInteraction().calculateAngle(from, to);
+    }
 }

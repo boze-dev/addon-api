@@ -1,12 +1,38 @@
 package dev.boze.api.client.cape;
 
+import dev.boze.api.internal.Instances;
+
 /**
- * Capes manager interface
+ * Capes manager
+ * <p>
+ * Used to add and remove external cape sources
  */
-public interface CapesManager {
-    void addSource(CapeSource source);
+public final class CapesManager {
 
-    void removeSource(CapeSource source);
+    /**
+     * Add a cape source
+     *
+     * @param source Cape source
+     */
+    public static void addSource(CapeSource source) {
+        Instances.getCapes().addSource(source);
+    }
 
-    String[] getSources();
+    /**
+     * Remove a cape source
+     *
+     * @param source Cape source
+     */
+    public static void removeSource(CapeSource source) {
+        Instances.getCapes().removeSource(source);
+    }
+
+    /**
+     * Get all cape sources, from all addons
+     *
+     * @return Cape sources
+     */
+    public static String[] getSources() {
+        return Instances.getCapes().getSources();
+    }
 }

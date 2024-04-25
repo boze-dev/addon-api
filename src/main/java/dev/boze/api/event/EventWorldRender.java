@@ -7,7 +7,7 @@ import net.minecraft.client.util.math.MatrixStack;
 
 /**
  * EventWorldRender
- *
+ * <p>
  * Called on world render, used for 3D rendering
  */
 public class EventWorldRender {

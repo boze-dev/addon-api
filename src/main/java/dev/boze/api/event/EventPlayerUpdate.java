@@ -45,6 +45,11 @@ public class EventPlayerUpdate {
         return INSTANCE;
     }
 
+    /**
+     * Adds an interaction to the event interaction queue
+     *
+     * @param interaction The interaction to add
+     */
     public void addInteraction(Interaction interaction) {
         interactions.add(interaction);
     }

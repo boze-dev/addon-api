@@ -1,9 +1,6 @@
 package dev.boze.api.event;
 
-import dev.boze.api.interaction.Interaction;
 import dev.boze.api.interaction.PlaceInteraction;
-
-import java.util.LinkedList;
 
 /**
  * EventGrim
@@ -105,6 +102,9 @@ public class EventGrim {
          */
         public abstract void place(PlaceInteraction placeInteraction);
 
+        /**
+         * @return Whether Boze has already interacted with the server
+         */
         public boolean isDirty() {
             return dirty;
         }

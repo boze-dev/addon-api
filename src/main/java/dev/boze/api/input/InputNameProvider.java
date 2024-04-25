@@ -1,9 +1,11 @@
 package dev.boze.api.input;
 
+import dev.boze.api.internal.Instances;
+
 /**
  * Input Name Provider, used to get the name of a key or button
  */
-public interface InputNameProvider {
+public final class InputNameProvider {
 
     /**
      * Get the name of a bind
@@ -11,7 +13,7 @@ public interface InputNameProvider {
      * @param bind
      * @return the name of the bind
      */
-    default String getBindName(Bind bind) {
+    public static String getBindName(Bind bind) {
         return bind.isButton() ? getButtonName(bind.getBind()) : getKeyName(bind.getBind());
     }
 
@@ -21,7 +23,9 @@ public interface InputNameProvider {
      * @param key
      * @return the name of the key
      */
-    String getKeyName(int key);
+    public static String getKeyName(int key) {
+        return Instances.getInput().getKeyName(key);
+    }
 
     /**
      * Get the name of a (mouse) button
@@ -29,5 +33,7 @@ public interface InputNameProvider {
      * @param button
      * @return the name of the button
      */
-    String getButtonName(int button);
+    public static String getButtonName(int button) {
+        return Instances.getInput().getButtonName(button);
+    }
 }

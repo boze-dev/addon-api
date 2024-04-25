@@ -1,15 +1,25 @@
 package dev.boze.api.interaction;
 
-public interface SlotHelper {
+import dev.boze.api.internal.Instances;
+
+/**
+ * SlotHelper, for checking and syncing hotbar slot between client and server
+ */
+public final class SlotHelper {
 
     /**
      * Sync client-side hotbar slot with server
      */
-    void sync();
+    public static void sync() {
+        Instances.getInteraction().sync();
+    }
 
     /**
+     * Get current server-side hotbar slot
      *
      * @return Current server-side hotbar slot (0-9)
      */
-    int currentSlot();
+    public static int currentSlot() {
+        return Instances.getInteraction().currentSlot();
+    }
 }

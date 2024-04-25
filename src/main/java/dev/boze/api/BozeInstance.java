@@ -1,19 +1,16 @@
 package dev.boze.api;
 
-import dev.boze.api.addon.AddonMetadata;
 import dev.boze.api.addon.Addon;
 import dev.boze.api.addon.command.AddonDispatcher;
+import dev.boze.api.addon.module.ToggleableModule;
 import dev.boze.api.exception.AddonInitializationException;
-import dev.boze.api.addon.module.AddonModule;
 import meteordevelopment.orbit.EventBus;
 import meteordevelopment.orbit.IEventBus;
 import net.minecraft.client.MinecraftClient;
 
 import java.lang.invoke.MethodHandles;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -29,7 +26,7 @@ public final class BozeInstance {
      */
     public static final BozeInstance INSTANCE = new BozeInstance();
 
-    private final Map<AddonMetadata, Addon> addons = new HashMap<>();
+    private final ArrayList<Addon> addons = new ArrayList<>();
 
     private IEventBus EVENT_BUS = new EventBus();
 
@@ -48,7 +45,7 @@ public final class BozeInstance {
 
         try {
             if (addon.initialize()) {
-                addons.put(addon.getMetadata(), addon);
+                addons.add(addon);
             } else {
                 throw new AddonInitializationException("Error initialising addon");
             }
@@ -62,7 +59,7 @@ public final class BozeInstance {
      *
      * @return map of all registered addon metadata and addons
      */
-    public Map<AddonMetadata, Addon> getAddons() {
+    public ArrayList<Addon> getAddons() {
         return addons;
     }
 
@@ -71,9 +68,9 @@ public final class BozeInstance {
      *
      * @return A list of all modules registered by addons
      */
-    public List<AddonModule> getModules() {
-        return addons.values().stream()
-                .map(Addon::getModules)
+    public List<ToggleableModule> getModules() {
+        return addons.stream()
+                .map(addon -> addon.modules)
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
     }
@@ -84,8 +81,8 @@ public final class BozeInstance {
      * @return A list of all addon dispatchers
      */
     public List<AddonDispatcher> getDispatchers() {
-        return addons.values().stream()
-                .map(Addon::getDispatcher)
+        return addons.stream()
+                .map(addon -> addon.dispatcher)
                 .collect(Collectors.toList());
     }
 

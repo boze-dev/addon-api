@@ -2,20 +2,23 @@ package dev.boze.api.interaction;
 
 /**
  * Rotation
- *
+ * <p>
  * Represents a rotation
  */
-public interface Rotation {
+public class Rotation {
+
+    public Rotation(float yaw, float pitch) {
+        this.yaw = yaw;
+        this.pitch = pitch;
+    }
 
     /**
-     *
-     * @return Yaw to rotate to
+     * Yaw to rotate to
      */
-    float getYaw();
+    public final float yaw;
 
     /**
-     *
-     * @return Pitch to rotate to
+     * Pitch to rotate to
      */
-    float getPitch();
+    public final float pitch;
 }
