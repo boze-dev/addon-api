@@ -1,64 +1,45 @@
 package dev.boze.api.setting;
 
 import com.google.gson.JsonObject;
-import dev.boze.api.addon.gui.AddonSlider;
-import dev.boze.api.config.Serializable;
+import dev.boze.api.addon.module.ToggleableModule;
 import net.minecraft.util.math.MathHelper;
 
-public class SettingSlider implements AddonSlider, Serializable<SettingSlider> {
-
-    private final String name;
-    private final String description;
+public class SettingSlider extends SettingBase<Double> {
 
     private double value;
 
-    private final double min;
-    private final double max;
+    private final double defaultValue;
 
-    private final double step;
+    public final double min;
+    public final double max;
 
-    public SettingSlider(String name, String description, double value, double min, double max, double step) {
-        this.name = name;
-        this.description = description;
+    public final double step;
+
+    public SettingSlider(ToggleableModule owner, String name, String description, double value, double min, double max, double step) {
+       super(owner, name, description);
         this.value = value;
         this.min = min;
         this.max = max;
         this.step = step;
+
+        this.defaultValue = value;
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public String getDescription() {
-        return description;
-    }
-
-    @Override
-    public double getValue() {
+    public Double getValue() {
         return value;
     }
 
     @Override
-    public void setValue(double value) {
-        this.value = MathHelper.clamp(value, min, max);
+    public Double setValue(Double newValue) {
+        this.value = MathHelper.clamp(newValue, min, max);
+        return value;
     }
 
     @Override
-    public double getMin() {
-        return min;
-    }
-
-    @Override
-    public double getMax() {
-        return max;
-    }
-
-    @Override
-    public double getStep() {
-        return step;
+    public Double reset() {
+        value = defaultValue;
+        return value;
     }
 
     @Override
@@ -69,8 +50,8 @@ public class SettingSlider implements AddonSlider, Serializable<SettingSlider> {
     }
 
     @Override
-    public SettingSlider fromJson(JsonObject object) {
+    public Double fromJson(JsonObject object) {
         value = object.get("value").getAsDouble();
-        return this;
+        return value;
     }
 }

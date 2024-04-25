@@ -2,16 +2,14 @@ package dev.boze.api.addon.module;
 
 import com.google.gson.JsonObject;
 import dev.boze.api.BozeInstance;
-import dev.boze.api.addon.gui.AddonElement;
 import dev.boze.api.config.Serializable;
 import dev.boze.api.input.Bind;
-import dev.boze.api.module.ModuleInfo;
+import dev.boze.api.setting.SettingBase;
 import dev.boze.api.setting.SettingBind;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ToggleableModule implements AddonModule, ModuleInfo, Serializable<ToggleableModule> {
+public class ToggleableModule implements Serializable<ToggleableModule> {
 
     private final String name;
     private final String description;
@@ -20,9 +18,9 @@ public class ToggleableModule implements AddonModule, ModuleInfo, Serializable<T
 
     private boolean state;
 
-    private SettingBind bind;
+    private final SettingBind bind;
 
-    protected final ArrayList<AddonElement> elements = new ArrayList<>();
+    public final ArrayList<SettingBase<?>> settings = new ArrayList();
 
     protected ToggleableModule(String name, String description) {
         this.name = name;
@@ -32,20 +30,13 @@ public class ToggleableModule implements AddonModule, ModuleInfo, Serializable<T
 
         this.state = false;
 
-        this.bind = new SettingBind();
+        this.bind = new SettingBind(this, "Bind", "Keybind for " + name);
     }
 
-    @Override
-    public ModuleInfo getInfo() {
-        return this;
-    }
-
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public String getTitle() {
         return title;
     }
@@ -54,17 +45,14 @@ public class ToggleableModule implements AddonModule, ModuleInfo, Serializable<T
         this.title = newTitle;
     }
 
-    @Override
     public String getDescription() {
         return description;
     }
 
-    @Override
     public boolean getState() {
         return state;
     }
 
-    @Override
     public boolean setState(boolean newState) {
         if (newState == state) return false;
 
@@ -87,19 +75,12 @@ public class ToggleableModule implements AddonModule, ModuleInfo, Serializable<T
 
     }
 
-    @Override
     public Bind getBind() {
         return bind;
     }
 
-    @Override
     public void setBind(Bind newBind) {
         this.bind.setBind(newBind);
-    }
-
-    @Override
-    public List<AddonElement> getElements() {
-        return elements;
     }
 
     @Override
@@ -109,10 +90,8 @@ public class ToggleableModule implements AddonModule, ModuleInfo, Serializable<T
         object.addProperty("state", state);
         object.add("bind", bind.toJson());
 
-        for (AddonElement element : elements) {
-            if (element instanceof Serializable) {
-                object.add(element.getName(), ((Serializable<?>) element).toJson());
-            }
+        for (SettingBase<?> setting : settings) {
+            object.add(setting.name, setting.toJson());
         }
 
         return object;
@@ -121,13 +100,11 @@ public class ToggleableModule implements AddonModule, ModuleInfo, Serializable<T
     @Override
     public ToggleableModule fromJson(JsonObject object) {
         title = object.get("title").getAsString();
-        state = object.get("state").getAsBoolean();
-        bind = new SettingBind().fromJson(object.get("bind").getAsJsonObject());
+        setState(object.get("state").getAsBoolean());
+        bind.fromJson(object.get("bind").getAsJsonObject());
 
-        for (AddonElement element : elements) {
-            if (element instanceof Serializable) {
-                ((Serializable<?>) element).fromJson(object.get(element.getName()).getAsJsonObject());
-            }
+        for (SettingBase<?> setting : settings) {
+            setting.fromJson(object.get(setting.name).getAsJsonObject());
         }
 
         return this;

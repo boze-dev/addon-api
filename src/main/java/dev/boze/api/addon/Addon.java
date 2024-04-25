@@ -2,56 +2,49 @@ package dev.boze.api.addon;
 
 import dev.boze.api.Globals;
 import dev.boze.api.addon.command.AddonDispatcher;
-import dev.boze.api.addon.module.AddonModule;
-import meteordevelopment.orbit.EventBus;
-import meteordevelopment.orbit.IEventBus;
+import dev.boze.api.addon.command.DefaultDispatcher;
+import dev.boze.api.addon.module.ToggleableModule;
+import dev.boze.api.config.JsonTools;
+import dev.boze.api.config.Serializable;
 
 import java.io.File;
-import java.lang.invoke.MethodHandles;
-import java.util.List;
+import java.util.ArrayList;
 
-/**
- * Interface for addons
- *
- * All addons must implement this
- */
-public interface Addon {
+public abstract class Addon implements Serializable<Addon> {
+    public final String id;
+    public final String name;
 
-    /**
-     * @return The addon's metadata
-     * @see dev.boze.api.addon.AddonMetadata
-     */
-    AddonMetadata getMetadata();
+    public final String description;
 
-    /**
-     * Initialize the addon
-     *
-     * @return If the addon initialized successfully
-     */
-    boolean initialize();
+    public final String version;
 
-    /**
-     * Shutdown the addon, save configs, etc.
-     *
-     * Called when client gets closed
-     */
-    void shutdown();
+    public final ArrayList<ToggleableModule> modules = new ArrayList<>();
 
-    /**
-     * @return List of addon's modules
-     */
-    List<AddonModule> getModules();
+    public final AddonDispatcher dispatcher;
 
-    /**
-     * @return The addon's dispatcher
-     */
-    AddonDispatcher getDispatcher();
+    public Addon(String id, String name, String description, String version) {
+        this(id, name, description, version, new DefaultDispatcher(id));
+    }
 
-    /**
-     * @return The addon's directory
-     */
-    default File getDir() {
-        File dir = new File(Globals.getAddonDir(), getMetadata().id());
+    public Addon(String id, String name, String description, String version, AddonDispatcher dispatcher) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.version = version;
+        this.dispatcher = dispatcher;
+    }
+
+    public boolean initialize() {
+        JsonTools.loadObject(this, "config", this);
+        return true;
+    }
+
+    public void shutdown() {
+        JsonTools.saveObject(this, "config", this);
+    }
+
+    public File getDir() {
+        File dir = new File(Globals.getAddonDir(), id);
         if (!dir.exists()) dir.mkdir();
         return dir;
     }

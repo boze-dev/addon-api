@@ -1,47 +1,40 @@
 package dev.boze.api.setting;
 
 import com.google.gson.JsonObject;
-import dev.boze.api.addon.gui.AddonToggle;
-import dev.boze.api.config.Serializable;
+import dev.boze.api.addon.module.ToggleableModule;
 
-public class SettingToggle implements AddonToggle, Serializable<SettingToggle> {
-
-    private final String name;
-    private final String description;
+public class SettingToggle extends SettingBase<Boolean> {
 
     private boolean value;
 
-    public SettingToggle(String name, String description) {
-        this.name = name;
-        this.description = description;
+    private final boolean defaultValue;
 
-        this.value = false;
+    public SettingToggle(ToggleableModule owner, String name, String description) {
+       this(owner, name, description, false);
     }
 
-    public SettingToggle(String name, String description, boolean value) {
-        this.name = name;
-        this.description = description;
+    public SettingToggle(ToggleableModule owner, String name, String description, boolean value) {
+        super(owner, name, description);
         this.value = value;
+
+        this.defaultValue = value;
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public String getDescription() {
-        return description;
-    }
-
-    @Override
-    public boolean getValue() {
+    public Boolean getValue() {
         return value;
     }
 
     @Override
-    public void setValue(boolean value) {
-        this.value = value;
+    public Boolean setValue(Boolean newValue) {
+        this.value = newValue;
+        return value;
+    }
+
+    @Override
+    public Boolean reset() {
+        this.value = defaultValue;
+        return value;
     }
 
     @Override
@@ -52,8 +45,8 @@ public class SettingToggle implements AddonToggle, Serializable<SettingToggle> {
     }
 
     @Override
-    public SettingToggle fromJson(JsonObject object) {
+    public Boolean fromJson(JsonObject object) {
         value = object.get("value").getAsBoolean();
-        return this;
+        return value;
     }
 }

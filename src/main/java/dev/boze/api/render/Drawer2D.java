@@ -31,14 +31,14 @@ public interface Drawer2D {
      * @param bottomRight bottom right color
      * @param bottomLeft bottom left color
      */
-    void quad(double x, double y, double width, double height, LinkedColor topLeft, LinkedColor topRight, LinkedColor bottomRight, LinkedColor bottomLeft);
+    void quad(double x, double y, double width, double height, DrawColor topLeft, DrawColor topRight, DrawColor bottomRight, DrawColor bottomLeft);
 
     /**
      * Draw a quad
      *
      * @param color color
      */
-    default void quad(double x, double y, double width, double height, LinkedColor color) {
+    default void quad(double x, double y, double width, double height, DrawColor color) {
         quad(x, y, width, height, color, color, color, color);
     }
 }
