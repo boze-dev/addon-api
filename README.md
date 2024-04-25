@@ -4,17 +4,10 @@ Boze API is an addon api for developers looking to create custom addons for the 
 ## Compatibility
 Boze API supports the following Minecraft versions:
 
-- 1.18.2
-- 1.19
-- 1.19.1
-- 1.19.2
-- 1.19.3
-- 1.19.4
 - 1.20.1
-- 1.20.2
 - 1.20.4
 
-Versions below 1.19.4 are no longer updated, see [tags](https://github.com/boze-dev/addon-api/tags) for the archived branches.
+Older versions are no longer updated, see [tags](https://github.com/boze-dev/addon-api/tags) for the archived branches.
 
 ## Documentation
 All the information you need to get started with Boze API can be found in our comprehensive Javadocs. Visit [docs.boze.dev](https://docs.boze.dev/) to access the API documentation. The Javadocs provide detailed information about the API's classes, methods, and usage, making it easier for you to develop custom addons and utilities.
