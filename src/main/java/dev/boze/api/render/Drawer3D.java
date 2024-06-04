@@ -23,6 +23,8 @@ public interface Drawer3D {
 
     /**
      * Stop drawing
+     *<p></p>
+     * If you wish to render in the world, do not use this; instead, use the other stopDrawing method with matrices from EventWorldRender
      */
     default void stopDrawing() {
         stopDrawing(null);

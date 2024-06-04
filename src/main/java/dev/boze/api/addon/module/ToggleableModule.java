@@ -59,9 +59,11 @@ public class ToggleableModule implements Serializable<ToggleableModule> {
         state = newState;
 
         if (state) {
+            onEnable();
             BozeInstance.INSTANCE.subscribe(this);
         } else {
             BozeInstance.INSTANCE.unsubscribe(this);
+            onDisable();
         }
 
         return true;
