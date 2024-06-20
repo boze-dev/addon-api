@@ -2,6 +2,7 @@ package dev.boze.api.addon.module;
 
 import com.google.gson.JsonObject;
 import dev.boze.api.BozeInstance;
+import dev.boze.api.addon.event.EventToggleAddonModule;
 import dev.boze.api.config.Serializable;
 import dev.boze.api.input.Bind;
 import dev.boze.api.setting.SettingBase;
@@ -65,6 +66,9 @@ public class ToggleableModule implements Serializable<ToggleableModule> {
             BozeInstance.INSTANCE.unsubscribe(this);
             onDisable();
         }
+
+        EventToggleAddonModule event = EventToggleAddonModule.get(this, state);
+        BozeInstance.INSTANCE.post(event);
 
         return true;
     }
