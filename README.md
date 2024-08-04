@@ -4,6 +4,7 @@ Boze API is an addon api for developers looking to create custom addons for the 
 ## Compatibility
 Boze API supports the following Minecraft versions:
 
+- 1.21
 - 1.20.6
 - 1.20.4
 
