@@ -21,7 +21,7 @@ public class ToggleableModule implements Serializable<ToggleableModule> {
 
     private final SettingBind bind;
 
-    public final ArrayList<SettingBase<?>> settings = new ArrayList();
+    public final ArrayList<SettingBase<?>> settings = new ArrayList<>();
 
     protected ToggleableModule(String name, String description) {
         this.name = name;
