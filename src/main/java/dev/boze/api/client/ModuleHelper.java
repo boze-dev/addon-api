@@ -1,4 +1,4 @@
-package dev.boze.api.module;
+package dev.boze.api.client;
 
 import dev.boze.api.exception.ModuleNotFoundException;
 import dev.boze.api.internal.Instances;

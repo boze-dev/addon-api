@@ -2,9 +2,9 @@ package dev.boze.api.event;
 
 /**
  * EventTick
- * <p>
+ * <p></p>
  * Tick event
- * <p>
+ * <p></p>
  * This event should be used for features that need to be called at the start/end of ticks
  *
  */

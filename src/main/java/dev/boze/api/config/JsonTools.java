@@ -4,7 +4,7 @@ import dev.boze.api.addon.Addon;
 import dev.boze.api.internal.Instances;
 
 /**
- * Interface for saving and loading json objects
+ * Helper class for saving and loading json objects
  */
 public final class JsonTools {
 

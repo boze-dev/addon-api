@@ -8,10 +8,9 @@ public class Instances {
     private static IChat chat;
     private static IFriends friends;
     private static IInput input;
-    private static IInteraction interaction;
     private static IJson json;
     private static IModules modules;
-    private static IRender render;
+    private static IProfiles profiles;
 
     public static ICapes getCapes() {
         return capes;
@@ -29,10 +28,6 @@ public class Instances {
         return input;
     }
 
-    public static IInteraction getInteraction() {
-        return interaction;
-    }
-
     public static IJson getJson() {
         return json;
     }
@@ -41,7 +36,7 @@ public class Instances {
         return modules;
     }
 
-    public static IRender getRender() {
-        return render;
+    public static IProfiles getProfiles() {
+        return profiles;
     }
 }

@@ -1,8 +1,8 @@
 package dev.boze.api;
 
 import dev.boze.api.addon.Addon;
-import dev.boze.api.addon.command.AddonDispatcher;
-import dev.boze.api.addon.module.ToggleableModule;
+import dev.boze.api.addon.AddonDispatcher;
+import dev.boze.api.addon.AddonModule;
 import dev.boze.api.exception.AddonInitializationException;
 import meteordevelopment.orbit.EventBus;
 import meteordevelopment.orbit.IEventBus;
@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 
 /**
  * Boze (API) Instance
- *
- * This class keeps track of all the addons and modules registered by addons
+ * <p></p>
+ * This class keeps track of all the addons registered
  * It also provides addons a way to register packages and subscribe to events
  */
 public final class BozeInstance {
@@ -57,7 +57,7 @@ public final class BozeInstance {
     /**
      * Get all registered addons
      *
-     * @return map of all registered addon metadata and addons
+     * @return list of all registered addon metadata and addons
      */
     public ArrayList<Addon> getAddons() {
         return addons;
@@ -68,21 +68,10 @@ public final class BozeInstance {
      *
      * @return A list of all modules registered by addons
      */
-    public List<ToggleableModule> getModules() {
+    public List<AddonModule> getModules() {
         return addons.stream()
                 .map(addon -> addon.modules)
                 .flatMap(List::stream)
-                .collect(Collectors.toList());
-    }
-
-    /**
-     * Gets a list of all addon dispatchers
-     *
-     * @return A list of all addon dispatchers
-     */
-    public List<AddonDispatcher> getDispatchers() {
-        return addons.stream()
-                .map(addon -> addon.dispatcher)
                 .collect(Collectors.toList());
     }
 

@@ -1,16 +1,57 @@
 package dev.boze.api.input;
 
-public interface Bind {
+/**
+ * Represents a keyboard or mouse button binding
+ * <p></p>
+ * A bind can be either a keyboard key or a mouse button, identified by its GLFW code
+ * <p></p>
+ * This class is used throughout Boze to handle input bindings for modules and other features
+ */
+public class Bind {
+    /**
+     * Whether this bind is a mouse button (true) or keyboard key (false)
+     */
+    private boolean isButton;
 
     /**
-     *
-     * @return GLFW value of the bind
+     * The GLFW code for this bind
+     * <p></p>
+     * For keyboard keys, this is a GLFW_KEY_* constant
+     * <p></p>
+     * For mouse buttons, this is a GLFW_MOUSE_BUTTON_* constant
      */
-    int getBind();
+    private int bind;
 
     /**
+     * Creates a new bind
      *
-     * @return true if bind is a mouse button
+     * @param isButton Whether this bind is a mouse button (true) or keyboard key (false)
+     * @param bind The GLFW code for the key or button
      */
-    boolean isButton();
+    public Bind(boolean isButton, int bind) {
+        this.isButton = isButton;
+        this.bind = bind;
+    }
+
+    /**
+     * Gets the GLFW code for this bind
+     * <p></p>
+     * For keyboard keys, this returns a GLFW_KEY_* constant
+     * <p></p>
+     * For mouse buttons, this returns a GLFW_MOUSE_BUTTON_* constant
+     *
+     * @return The GLFW code for this bind
+     */
+    public int getBind() {
+        return bind;
+    }
+
+    /**
+     * Checks if this bind is a mouse button
+     *
+     * @return true if this bind is a mouse button, false if it's a keyboard key
+     */
+    public boolean isButton() {
+        return isButton;
+    }
 }

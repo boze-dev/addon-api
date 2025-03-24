@@ -4,7 +4,7 @@ import dev.boze.api.internal.Instances;
 
 /**
  * A helper for sending messages to the client chat
- * <p>
+ * <p></p>
  * This only sends messages client-side, it does not send messages to the server!
  */
 public final class ChatHelper {
