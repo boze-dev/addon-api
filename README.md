@@ -1,12 +1,8 @@
-# Boze Addon API Readme
+# Boze Addon API
 Boze API is an addon api for developers looking to create custom addons for the [Boze Utility Mod](https://boze.dev/), a versatile Minecraft anarchy utility mod. This API lets you to seamlessly integrate your own features (modules, commands, etc.) into the Boze Utility Mod.
 
 ## Compatibility
-Boze API supports the following Minecraft versions:
-
-- 1.21.1
-- 1.20.6
-- 1.20.4
+Boze API supports the following Minecraft version: 1.21.4
 
 Older versions are no longer updated, see [tags](https://github.com/boze-dev/addon-api/tags) for the archived branches.
 
