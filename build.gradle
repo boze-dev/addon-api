@@ -54,7 +54,7 @@ tasks.withType(JavaCompile).configureEach {
 
 
 tasks.withType(Javadoc).configureEach {
-    title = "Boze $project.name $version"
+    title = "addon-api $version"
     it.options.encoding = "UTF-8"
 }
 
