@@ -4,7 +4,7 @@ name: javadocs-deploy
 
 trigger:
   branch:
-    - "${DRONE_REPO_BRANCH}"
+    - 1.21.4
   event:
     - push
     - custom
