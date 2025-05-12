@@ -52,6 +52,12 @@ tasks.withType(JavaCompile).configureEach {
     }
 }
 
+
+tasks.withType(Javadoc).configureEach {
+    title = "Boze $project.name $version"
+    it.options.encoding = "UTF-8"
+}
+
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     if (JavaVersion.current() < javaVersion) {
