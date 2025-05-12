@@ -18,7 +18,7 @@ steps:
   - name: deploy
     image: drillster/drone-rsync
     settings:
-      source: build/docs/javadoc
+      source: build/docs/javadoc/
       target:
         from_secret: deploy_target
       hosts:
