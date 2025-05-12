@@ -3,8 +3,6 @@ type: docker
 name: javadocs-deploy
 
 trigger:
-  branch:
-    - 1.21.4
   event:
     - push
     - custom
@@ -14,6 +12,9 @@ steps:
     image: gradle:jdk21
     commands:
       - gradle javadoc
+    when:
+      branch:
+        - ${DRONE_REPO_BRANCH}
 
   - name: deploy
     image: drillster/drone-rsync
@@ -29,3 +30,6 @@ steps:
       port: 22
       delete: true
       recursive: true
+    when:
+      branch:
+        - ${DRONE_REPO_BRANCH}
