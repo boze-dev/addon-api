@@ -1,7 +1,6 @@
 package dev.boze.api;
 
 import dev.boze.api.addon.Addon;
-import dev.boze.api.addon.AddonDispatcher;
 import dev.boze.api.addon.AddonModule;
 import dev.boze.api.exception.AddonInitializationException;
 import meteordevelopment.orbit.EventBus;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Boze (API) Instance
+ * Boze API Instance
  * <p></p>
  * This class keeps track of all the addons registered
  * It also provides addons a way to register packages and subscribe to events
@@ -47,7 +46,7 @@ public final class BozeInstance {
             if (addon.initialize()) {
                 addons.add(addon);
             } else {
-                throw new AddonInitializationException("Error initialising addon");
+                throw new AddonInitializationException("Failed to initialize addon");
             }
         } catch (Exception e) {
             throw new AddonInitializationException("Error initializing addon", e);
@@ -122,6 +121,8 @@ public final class BozeInstance {
 
     /**
      * Post an event
+     * <p></p>
+     * Use this to post custom events
      *
      * @param event The event to post
      */

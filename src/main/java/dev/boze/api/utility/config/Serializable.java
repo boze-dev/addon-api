@@ -1,4 +1,4 @@
-package dev.boze.api.config;
+package dev.boze.api.utility.config;
 
 import com.google.gson.JsonObject;
 

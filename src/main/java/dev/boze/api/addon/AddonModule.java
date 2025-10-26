@@ -2,12 +2,15 @@ package dev.boze.api.addon;
 
 import com.google.gson.JsonObject;
 import dev.boze.api.BozeInstance;
-import dev.boze.api.config.Serializable;
-import dev.boze.api.input.Bind;
+import dev.boze.api.utility.config.Serializable;
+import dev.boze.api.event.EventModuleToggle;
+import dev.boze.api.utility.input.Bind;
+import dev.boze.api.client.module.BaseModule;
 import dev.boze.api.option.Option;
 import dev.boze.api.option.BindOption;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Base class for all addon modules
@@ -18,7 +21,7 @@ import java.util.ArrayList;
  * <p></p>
  * Modules can have settings which are automatically serialized and deserialized
  */
-public abstract class AddonModule implements Serializable<AddonModule> {
+public abstract class AddonModule implements Serializable<AddonModule>, BaseModule {
 
     /**
      * Internal name of this module (cannot be changed)
@@ -28,7 +31,7 @@ public abstract class AddonModule implements Serializable<AddonModule> {
     /**
      * Description of what this module does
      */
-    private final String description;
+    private String description;
 
     /**
      * Display title of this module (can be changed)
@@ -41,14 +44,29 @@ public abstract class AddonModule implements Serializable<AddonModule> {
     private boolean state;
 
     /**
-     * Keybind for toggling this module
+     * Bind for toggling this module
      */
     private final BindOption bind;
 
     /**
      * List of settings for this module
      */
-    public final ArrayList<Option<?>> settings = new ArrayList<>();
+    public final ArrayList<Option<?>> options = new ArrayList<>();
+
+    /**
+     * Whether this module is visible in the GUI
+     */
+    private boolean visible = true;
+
+    /**
+     * Whether to show notifications when this module is toggled
+     */
+    private boolean notify = false;
+
+    /**
+     * Whether this module should only be active while the bind key is held
+     */
+    private boolean onlyWhileHolding = false;
 
     /**
      * Creates a new module
@@ -70,6 +88,7 @@ public abstract class AddonModule implements Serializable<AddonModule> {
      *
      * @return The module's name
      */
+    @Override
     public String getName() {
         return name;
     }
@@ -79,6 +98,7 @@ public abstract class AddonModule implements Serializable<AddonModule> {
      *
      * @return The module's title
      */
+    @Override
     public String getTitle() {
         return title;
     }
@@ -88,6 +108,7 @@ public abstract class AddonModule implements Serializable<AddonModule> {
      *
      * @param newTitle The new title
      */
+    @Override
     public void setTitle(String newTitle) {
         this.title = newTitle;
     }
@@ -97,8 +118,24 @@ public abstract class AddonModule implements Serializable<AddonModule> {
      *
      * @return The module's description
      */
+    @Override
     public String getDescription() {
         return description;
+    }
+
+
+    /**
+     * Modify the description of the module
+     * <p></p>
+     * This resets when you re-launch
+     * <p></p>
+     * Supports newline escape sequence
+     *
+     * @param description Description to set
+     */
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**
@@ -106,6 +143,7 @@ public abstract class AddonModule implements Serializable<AddonModule> {
      *
      * @return true if the module is enabled, false otherwise
      */
+    @Override
     public boolean getState() {
         return state;
     }
@@ -118,6 +156,7 @@ public abstract class AddonModule implements Serializable<AddonModule> {
      * @param newState The new state
      * @return true if the state changed, false if it was already in that state
      */
+    @Override
     public boolean setState(boolean newState) {
         if (newState == state) return false;
 
@@ -131,6 +170,7 @@ public abstract class AddonModule implements Serializable<AddonModule> {
             onDisable();
         }
 
+        BozeInstance.INSTANCE.post(EventModuleToggle.get(this));
         return true;
     }
 
@@ -139,7 +179,8 @@ public abstract class AddonModule implements Serializable<AddonModule> {
      * <p></p>
      * Override this to add custom enable behavior
      */
-    protected void onEnable() {
+    @Override
+    public void onEnable() {
     }
 
     /**
@@ -147,7 +188,8 @@ public abstract class AddonModule implements Serializable<AddonModule> {
      * <p></p>
      * Override this to add custom disable behavior
      */
-    protected void onDisable() {
+    @Override
+    public void onDisable() {
     }
 
     /**
@@ -155,17 +197,9 @@ public abstract class AddonModule implements Serializable<AddonModule> {
      *
      * @return The module's keybind
      */
+    @Override
     public Bind getBind() {
         return bind.getValue();
-    }
-
-    /**
-     * Gets the keybind option
-     *
-     * @return The module's keybind option
-     */
-    public BindOption getBindOption() {
-        return bind;
     }
 
     /**
@@ -173,8 +207,98 @@ public abstract class AddonModule implements Serializable<AddonModule> {
      *
      * @param newBind The new keybind
      */
+    @Override
     public void setBind(Bind newBind) {
         this.bind.setBind(newBind);
+    }
+
+    /**
+     * Method called by ArrayList to get info
+     *
+     * @return Info to show in ArrayList brackets
+     */
+    @Override
+    public String getArrayListInfo() {
+        return "";
+    }
+
+    /**
+     * Gets whether this module is visible in the ArrayList
+     *
+     * @return true if the module is visible in ArrayList, false otherwise
+     */
+    @Override
+    public boolean isVisible() {
+        return visible;
+    }
+
+    /**
+     * Sets whether this module is visible in the ArrayList
+     *
+     * @param visible true to make the module visible in ArrayList, false to hide it
+     */
+    @Override
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+
+    /**
+     * Gets whether notifications should be shown when this module is toggled
+     *
+     * @return true if notifications should be shown, false otherwise
+     */
+    @Override
+    public boolean shouldNotify() {
+        return notify;
+    }
+
+    /**
+     * Sets whether notifications should be shown when this module is toggled
+     *
+     * @param notify true to show notifications, false to hide them
+     */
+    @Override
+    public void setNotify(boolean notify) {
+        this.notify = notify;
+    }
+
+    /**
+     * Gets whether this module should only be active while the bind key is held
+     *
+     * @return true if the module only activates while holding the key, false for toggle behavior
+     */
+    @Override
+    public boolean isOnlyWhileHolding() {
+        return onlyWhileHolding;
+    }
+
+    /**
+     * Sets whether this module should only be active while the bind key is held
+     *
+     * @param onlyWhileHolding true for hold-to-activate, false for toggle behavior
+     */
+    @Override
+    public void setOnlyWhileHolding(boolean onlyWhileHolding) {
+        this.onlyWhileHolding = onlyWhileHolding;
+    }
+
+    /**
+     * Gets a list of this module's options
+     *
+     * @return the list of this module's options
+     */
+    @Override
+    public List<Option<?>> getOptions() {
+        return options;
+    }
+
+    /**
+     * Gets the keybind option
+     *
+     * @return The module's bind option
+     */
+    public BindOption getBindOption() {
+        return bind;
     }
 
     @Override
@@ -182,8 +306,11 @@ public abstract class AddonModule implements Serializable<AddonModule> {
         JsonObject object = new JsonObject();
         object.addProperty("title", title);
         object.addProperty("state", state);
+        object.addProperty("visible", visible);
+        object.addProperty("notify", notify);
+        object.addProperty("onlyWhileHolding", onlyWhileHolding);
 
-        for (Option<?> setting : settings) {
+        for (Option<?> setting : options) {
             object.add(setting.name, setting.toJson());
         }
 
@@ -194,8 +321,11 @@ public abstract class AddonModule implements Serializable<AddonModule> {
     public AddonModule fromJson(JsonObject object) {
         title = object.get("title").getAsString();
         setState(object.get("state").getAsBoolean());
+        visible = object.get("visible").getAsBoolean();
+        notify = object.get("notify").getAsBoolean();
+        onlyWhileHolding = object.get("onlyWhileHolding").getAsBoolean();
 
-        for (Option<?> setting : settings) {
+        for (Option<?> setting : options) {
             setting.fromJson(object.get(setting.name).getAsJsonObject());
         }
 

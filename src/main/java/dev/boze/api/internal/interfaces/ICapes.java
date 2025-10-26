@@ -1,6 +1,6 @@
 package dev.boze.api.internal.interfaces;
 
-import dev.boze.api.client.cape.CapeSource;
+import dev.boze.api.utility.cape.CapeSource;
 
 public interface ICapes {
     void addSource(CapeSource source);

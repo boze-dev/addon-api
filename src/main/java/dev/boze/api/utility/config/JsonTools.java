@@ -1,4 +1,4 @@
-package dev.boze.api.config;
+package dev.boze.api.utility.config;
 
 import dev.boze.api.addon.Addon;
 import dev.boze.api.internal.Instances;

@@ -1,13 +1,13 @@
 package dev.boze.api.addon;
 
 import dev.boze.api.Globals;
-import dev.boze.api.config.JsonTools;
-import dev.boze.api.config.Serializable;
+import dev.boze.api.client.module.ClientModuleExtension;
+import dev.boze.api.utility.config.JsonTools;
+import dev.boze.api.utility.config.Serializable;
 
 import java.io.File;
 import java.util.ArrayList;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 /**
@@ -46,6 +46,11 @@ public abstract class Addon implements Serializable<Addon> {
     public final ArrayList<AddonModule> modules = new ArrayList<>();
 
     /**
+     * List of client module extensions provided by this addon
+     */
+    public final ArrayList<ClientModuleExtension> extensions = new ArrayList<>();
+
+    /**
      * Command dispatcher for this addon
      */
     public final AddonDispatcher dispatcher;
@@ -82,14 +87,27 @@ public abstract class Addon implements Serializable<Addon> {
     /**
      * Initializes this addon
      * <p></p>
-     * This is called when the addon is loaded. The default implementation loads the addon's
-     * configuration from disk.
+     * Register your modules, extensions, and commands here
      *
      * @return true if initialization was successful, false otherwise
      */
-    public boolean initialize() {
+    public abstract boolean initialize();
+
+    /**
+     * Loads the addon config
+     * <p></p>
+     * This is called when the client config is loaded.
+     */
+    public void load() {
         JsonTools.loadObject(this, "config", this);
-        return true;
+    }
+
+    /**
+     * Called after {@link #load()} once all addons have been created.
+     * <p></p>
+     * Addons may override this to perform post-load initialization that relies on config data.
+     */
+    public void postInitialize() {
     }
 
     /**
@@ -119,13 +137,11 @@ public abstract class Addon implements Serializable<Addon> {
     public JsonObject toJson() {
         JsonObject object = new JsonObject();
         
-        // Add basic properties
         object.addProperty("id", id);
         object.addProperty("name", name);
         object.addProperty("description", description);
         object.addProperty("version", version);
         
-        // Add modules as an object of JsonObjects with module names as keys
         if (!modules.isEmpty()) {
             JsonObject modulesObject = new JsonObject();
             for (AddonModule module : modules) {
@@ -133,16 +149,23 @@ public abstract class Addon implements Serializable<Addon> {
             }
             object.add("modules", modulesObject);
         }
-        
+
+        if (!extensions.isEmpty()) {
+            JsonObject extensionsObject = new JsonObject();
+            for (ClientModuleExtension extension : extensions) {
+                extensionsObject.add(extension.parent.getName(), extension.toJson());
+            }
+            object.add("extensions", extensionsObject);
+        }
+
         return object;
     }
 
     @Override
     public Addon fromJson(JsonObject object) {
-        // Modules (id, name, description, version are final and set in constructor)
         if (object.has("modules") && object.get("modules").isJsonObject()) {
             JsonObject modulesObject = object.getAsJsonObject("modules");
-            
+
             for (AddonModule module : modules) {
                 String moduleName = module.getName();
                 if (modulesObject.has(moduleName)) {
@@ -150,7 +173,18 @@ public abstract class Addon implements Serializable<Addon> {
                 }
             }
         }
-        
+
+        if (object.has("extensions") && object.get("extensions").isJsonObject()) {
+            JsonObject extensionsObject = object.getAsJsonObject("extensions");
+
+            for (ClientModuleExtension extension : extensions) {
+                String moduleName = extension.parent.getName();
+                if (extensionsObject.has(moduleName)) {
+                    extension.fromJson(extensionsObject.getAsJsonObject(moduleName));
+                }
+            }
+        }
+
         return this;
     }
 }

@@ -1,11 +1,11 @@
-package dev.boze.api.client;
+package dev.boze.api.utility;
 
 import dev.boze.api.internal.Instances;
 
 /**
  * ProfileHelper provides a way to interact with Boze profiles
  */
-public class ProfileHelper {
+public final class ProfileHelper {
 
     /**
      * Enum representing the four categories of profiles

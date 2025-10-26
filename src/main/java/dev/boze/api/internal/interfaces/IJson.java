@@ -1,7 +1,7 @@
 package dev.boze.api.internal.interfaces;
 
 import dev.boze.api.addon.Addon;
-import dev.boze.api.config.Serializable;
+import dev.boze.api.utility.config.Serializable;
 
 public interface IJson {
     boolean saveObject(Addon addon, String fileName, Serializable<?> object);

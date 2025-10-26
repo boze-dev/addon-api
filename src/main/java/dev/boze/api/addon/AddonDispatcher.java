@@ -50,7 +50,7 @@ public class AddonDispatcher {
      * @throws CommandSyntaxException If the command has a syntax error
      */
     public void dispatch(String command) throws CommandSyntaxException {
-        dispatch(command, new ClientCommandSource(null, MinecraftClient.getInstance()));
+        dispatch(command, new ClientCommandSource(null, MinecraftClient.getInstance(), true));
     }
 
     /**

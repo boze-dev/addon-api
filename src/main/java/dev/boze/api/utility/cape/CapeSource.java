@@ -1,4 +1,4 @@
-package dev.boze.api.client.cape;
+package dev.boze.api.utility.cape;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.util.Identifier;

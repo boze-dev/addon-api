@@ -1,7 +1,7 @@
 package dev.boze.api.option;
 
 import com.google.gson.JsonObject;
-import dev.boze.api.addon.AddonModule;
+import dev.boze.api.client.module.BaseModule;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,8 +29,21 @@ public class ModeOption<T extends Enum<T>> extends Option<T> {
      * @param description The description of this option
      * @param defaultValue The initial value and default value
      */
-    public ModeOption(AddonModule owner, String name, String description, T defaultValue) {
-        super(owner, name, description);
+    public ModeOption(BaseModule owner, String name, String description, T defaultValue) {
+        this(owner, name, description, defaultValue, null);
+    }
+
+    /**
+     * Creates a new mode option with a parent
+     *
+     * @param owner The module that owns this option
+     * @param name The name of this option
+     * @param description The description of this option
+     * @param defaultValue The initial value and default value
+     * @param parent The parent option, or null if this is a root option
+     */
+    public ModeOption(BaseModule owner, String name, String description, T defaultValue, Option<?> parent) {
+        super(owner, name, description, parent);
         this.value = defaultValue;
         this.defaultValue = defaultValue;
     }
@@ -62,6 +75,15 @@ public class ModeOption<T extends Enum<T>> extends Option<T> {
      * @return The current mode name
      */
     public String getModeName() {
+        return value.name();
+    }
+
+    /**
+     * Gets the name of the current value
+     *
+     * @return The current value name
+     */
+    public String getValueName() {
         return value.name();
     }
 

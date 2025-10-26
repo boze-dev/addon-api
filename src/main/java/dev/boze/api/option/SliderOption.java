@@ -1,7 +1,7 @@
 package dev.boze.api.option;
 
 import com.google.gson.JsonObject;
-import dev.boze.api.addon.AddonModule;
+import dev.boze.api.client.module.BaseModule;
 import net.minecraft.util.math.MathHelper;
 
 /**
@@ -43,8 +43,30 @@ public class SliderOption extends Option<Double> {
      * @param max The maximum allowed value
      * @param step The increment between values
      */
-    public SliderOption(AddonModule owner, String name, String description, double value, double min, double max, double step) {
+    public SliderOption(BaseModule owner, String name, String description, double value, double min, double max, double step) {
        super(owner, name, description);
+        this.value = value;
+        this.min = min;
+        this.max = max;
+        this.step = step;
+
+        this.defaultValue = value;
+    }
+
+    /**
+     * Creates a new slider option with a parent
+     *
+     * @param owner The module that owns this option
+     * @param name The name of this option
+     * @param description The description of this option
+     * @param value The initial value
+     * @param min The minimum allowed value
+     * @param max The maximum allowed value
+     * @param step The increment between values
+     * @param parent The parent option, or null if this is a root option
+     */
+    public SliderOption(BaseModule owner, String name, String description, double value, double min, double max, double step, Option<?> parent) {
+       super(owner, name, description, parent);
         this.value = value;
         this.min = min;
         this.max = max;

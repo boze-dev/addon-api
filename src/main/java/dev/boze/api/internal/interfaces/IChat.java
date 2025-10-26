@@ -12,4 +12,6 @@ public interface IChat {
     void sendError(String error);
 
     void sendError(String title, String error);
+
+    String getCommandPrefix();
 }

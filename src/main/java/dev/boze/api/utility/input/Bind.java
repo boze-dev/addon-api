@@ -1,4 +1,4 @@
-package dev.boze.api.input;
+package dev.boze.api.utility.input;
 
 /**
  * Represents a keyboard or mouse button binding

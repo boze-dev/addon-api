@@ -1,6 +1,6 @@
 package dev.boze.api.internal.interfaces;
 
-import dev.boze.api.client.ProfileHelper.ProfileCategory;
+import dev.boze.api.utility.ProfileHelper.ProfileCategory;
 
 public interface IProfiles {
   

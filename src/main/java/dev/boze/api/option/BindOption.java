@@ -1,8 +1,8 @@
 package dev.boze.api.option;
 
 import com.google.gson.JsonObject;
-import dev.boze.api.addon.AddonModule;
-import dev.boze.api.input.Bind;
+import dev.boze.api.utility.input.Bind;
+import dev.boze.api.client.module.BaseModule;
 
 /**
  * An option for keyboard/mouse bindings
@@ -23,7 +23,7 @@ public class BindOption extends Option<Bind> {
      * @param name The name of this option
      * @param description The description of this option
      */
-    public BindOption(AddonModule owner, String name, String description) {
+    public BindOption(BaseModule owner, String name, String description) {
         this(owner, name, description, -1, false);
     }
 
@@ -36,8 +36,24 @@ public class BindOption extends Option<Bind> {
      * @param bind The key/button code to bind to
      * @param isButton Whether this is a mouse button (true) or keyboard key (false)
      */
-    public BindOption(AddonModule owner, String name, String description, int bind, boolean isButton) {
+    public BindOption(BaseModule owner, String name, String description, int bind, boolean isButton) {
         super(owner, name, description);
+        this.bindInstance = new Bind(isButton, bind);
+        this.defaultBindInstance = new Bind(isButton, bind);
+    }
+
+    /**
+     * Creates a new bind option with a specified default binding and parent
+     *
+     * @param owner The module that owns this option
+     * @param name The name of this option
+     * @param description The description of this option
+     * @param bind The key/button code to bind to
+     * @param isButton Whether this is a mouse button (true) or keyboard key (false)
+     * @param parent The parent option, or null if this is a root option
+     */
+    public BindOption(BaseModule owner, String name, String description, int bind, boolean isButton, Option<?> parent) {
+        super(owner, name, description, parent);
         this.bindInstance = new Bind(isButton, bind);
         this.defaultBindInstance = new Bind(isButton, bind);
     }

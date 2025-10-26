@@ -1,7 +1,7 @@
 package dev.boze.api.option;
 
 import com.google.gson.JsonObject;
-import dev.boze.api.addon.AddonModule;
+import dev.boze.api.client.module.BaseModule;
 
 /**
  * A boolean option that can be toggled on or off
@@ -23,7 +23,7 @@ public class ToggleOption extends Option<Boolean> {
      * @param name The name of this option
      * @param description The description of this option
      */
-    public ToggleOption(AddonModule owner, String name, String description) {
+    public ToggleOption(BaseModule owner, String name, String description) {
        this(owner, name, description, false);
     }
 
@@ -35,8 +35,24 @@ public class ToggleOption extends Option<Boolean> {
      * @param description The description of this option
      * @param value The initial value
      */
-    public ToggleOption(AddonModule owner, String name, String description, boolean value) {
+    public ToggleOption(BaseModule owner, String name, String description, boolean value) {
         super(owner, name, description);
+        this.value = value;
+
+        this.defaultValue = value;
+    }
+
+    /**
+     * Creates a new toggle option with a specified default value and parent
+     *
+     * @param owner The module that owns this option
+     * @param name The name of this option
+     * @param description The description of this option
+     * @param value The initial value
+     * @param parent The parent option, or null if this is a root option
+     */
+    public ToggleOption(BaseModule owner, String name, String description, boolean value, Option<?> parent) {
+        super(owner, name, description, parent);
         this.value = value;
 
         this.defaultValue = value;
@@ -62,13 +78,12 @@ public class ToggleOption extends Option<Boolean> {
     @Override
     public JsonObject toJson() {
         JsonObject object = new JsonObject();
-        object.addProperty("value", value);
+        object.addProperty("value", getValue());
         return object;
     }
 
     @Override
     public Boolean fromJson(JsonObject object) {
-        value = object.get("value").getAsBoolean();
-        return value;
+        return setValue(object.get("value").getAsBoolean());
     }
 }

@@ -1,0 +1,67 @@
+package dev.boze.api.internal.interfaces;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+
+public interface IWorld {
+    boolean isHole(BlockPos pos);
+
+    boolean isHole(BlockPos pos, boolean doubles);
+
+    boolean isSafeHole(BlockPos pos, boolean doubles);
+
+    boolean isUnsafeHole(BlockPos pos, boolean doubles);
+
+    BlockPos findDoubleHole(BlockPos pos);
+
+    BlockPos findSafeDoubleHole(BlockPos pos);
+
+    BlockPos findUnsafeDoubleHole(BlockPos pos);
+
+    boolean isAir(BlockPos pos);
+
+    boolean isReplaceable(BlockPos pos);
+
+    boolean blocksMovement(BlockPos pos);
+
+    boolean isSolidBlock(BlockPos pos);
+
+    BlockState getBlockState(BlockPos pos);
+
+    Block getBlock(BlockPos pos);
+
+    double getBlastResistance(BlockPos pos);
+
+    boolean isUnbreakable(BlockPos pos);
+
+    boolean canBreak(BlockPos pos);
+
+    boolean canPlaceAt(BlockPos pos);
+
+    boolean isValidPlacement(BlockPos pos, Block block);
+
+    boolean isInWorldBounds(BlockPos pos);
+
+    boolean isRegionLoaded(BlockPos pos);
+
+    int getRenderDistance();
+
+    boolean isInRenderDistance(BlockPos pos);
+
+    boolean canMine(BlockPos pos);
+
+    float getHardness(BlockPos pos);
+
+    boolean isBeingMined(BlockPos pos, boolean predicted);
+
+    boolean hasBlockEntity(BlockPos pos);
+
+    BlockEntity getBlockEntity(BlockPos pos);
+
+    Iterable<BlockEntity> getBlockEntities();
+
+    Vec3d findVisiblePointOnBlock(BlockPos pos, Vec3d eyePos);
+}

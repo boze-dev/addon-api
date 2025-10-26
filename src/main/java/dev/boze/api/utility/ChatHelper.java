@@ -1,4 +1,4 @@
-package dev.boze.api.client;
+package dev.boze.api.utility;
 
 import dev.boze.api.internal.Instances;
 
@@ -10,7 +10,7 @@ import dev.boze.api.internal.Instances;
 public final class ChatHelper {
 
     /**
-     * Send a message to the chat
+     * Sends a message to the chat
      *
      * @param message The message
      */
@@ -19,11 +19,11 @@ public final class ChatHelper {
     }
 
     /**
-     * Send a message to the chat with a title
-     * <p>
-     * It's recommended to use this method when sending messages from a module
+     * Sends a message to the chat with a title
+     * <p></p>
+     * It's recommended to use this method when sending messages from a command/module
      *
-     * @param title The title of the message/the module name
+     * @param title The title of the message/the command/module name
      * @param message The message
      */
     public static void sendMsg(String title, String message) {
@@ -31,7 +31,7 @@ public final class ChatHelper {
     }
 
     /**
-     * Send a warning to the chat
+     * Sends a warning to the chat
      *
      * @param warning The warning
      */
@@ -40,11 +40,11 @@ public final class ChatHelper {
     }
 
     /**
-     * Send a warning to the chat with a title
-     * <p>
-     * It's recommended to use this method when sending warnings from a module
+     * Sends a warning to the chat with a title
+     * <p></p>
+     * It's recommended to use this method when sending warnings from a command/module
      *
-     * @param title The title of the warning/the module name
+     * @param title The title of the warning/the command/module name
      * @param warning The warning
      */
     public static void sendWarning(String title, String warning) {
@@ -52,7 +52,7 @@ public final class ChatHelper {
     }
 
     /**
-     * Send an error to the chat
+     * Sends an error to the chat
      *
      * @param error The error
      */
@@ -61,14 +61,22 @@ public final class ChatHelper {
     }
 
     /**
-     * Send an error to the chat with a title
-     * <p>
-     * It's recommended to use this method when sending errors from a module
+     * Sends an error to the chat with a title
+     * <p></p>
+     * It's recommended to use this method when sending errors from a command/module
      *
-     * @param title The title of the error/the module name
+     * @param title The title of the error/the command/module name
      * @param error The error
      */
     public static void sendError(String title, String error) {
         Instances.getChat().sendError(title, error);
+    }
+
+    /**
+     * Gets the client command prefix
+     * @return command prefix string
+     */
+    public static String getCommandPrefix() {
+        return Instances.getChat().getCommandPrefix();
     }
 }
