@@ -37,20 +37,11 @@ public final class BozeInstance {
      * Register an addon
      *
      * @param addon The addon to register
-     * @throws AddonInitializationException If the addon fails to initialize
      */
-    public void registerAddon(Addon addon) throws AddonInitializationException {
+    public void registerAddon(Addon addon) {
         assert MinecraftClient.getInstance().isOnThread();
 
-        try {
-            if (addon.initialize()) {
-                addons.add(addon);
-            } else {
-                throw new AddonInitializationException("Failed to initialize addon");
-            }
-        } catch (Exception e) {
-            throw new AddonInitializationException("Error initializing addon", e);
-        }
+        addons.add(addon);
     }
 
     /**

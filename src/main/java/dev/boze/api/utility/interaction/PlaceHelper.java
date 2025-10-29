@@ -75,4 +75,16 @@ public class PlaceHelper {
     public static boolean place(InteractionMode mode, BlockHitResult hitResult, Hand hand) {
         return Instances.getInteraction().place(mode, hitResult, hand);
     }
+
+    /**
+     * Check if a position is free from non-replaceable blocks, entities, and pending placements
+     * <p></p>
+     * It's recommended to check this before casting
+     *
+     * @param pos The block pos to check
+     * @return true if pos is empty
+     */
+    public static boolean isEmpty(BlockPos pos) {
+        return Instances.getInteraction().isEmpty(pos);
+    }
 }

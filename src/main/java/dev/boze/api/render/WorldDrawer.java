@@ -15,6 +15,8 @@ import net.minecraft.util.math.Box;
  * All drawing operations must be wrapped between {@link #start()} and {@link #draw(MatrixStack, Framebuffer)} calls
  * <p></p>
  * You can, of course, draw more than one box per start/draw call
+ * <p></p>
+ * See {@link dev.boze.api.event.EventShader} before using shader renders
  */
 public class WorldDrawer {
     

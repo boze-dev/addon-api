@@ -1,5 +1,6 @@
 package dev.boze.api.exception;
 
+@Deprecated
 public class AddonInitializationException extends Exception {
     public AddonInitializationException(String message) {
         super(message);
