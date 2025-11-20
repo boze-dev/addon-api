@@ -5,6 +5,7 @@ import dev.boze.api.utility.config.Serializable;
 import dev.boze.api.client.module.BaseModule;
 
 import java.util.ArrayList;
+import java.util.function.BooleanSupplier;
 
 /**
  * Base class for all module options
@@ -35,6 +36,13 @@ public abstract class Option<T> implements Serializable<T> {
     public final String description;
 
     /**
+     * The visibility supplier for this option
+     * <p></p>
+     * Determines whether this option should be visible in the GUI
+     */
+    private BooleanSupplier visibility = () -> true;
+
+    /**
      * The parent option, if this option is a child of another option
      */
     private Option<?> parent;
@@ -53,7 +61,7 @@ public abstract class Option<T> implements Serializable<T> {
      * @param description The description of this option
      */
     public Option(BaseModule owner, String name, String description) {
-        this(owner, name, description, null);
+        this(owner, name, description, () -> true, null);
     }
 
     /**
@@ -65,9 +73,35 @@ public abstract class Option<T> implements Serializable<T> {
      * @param parent The parent option, or null if this is a root option
      */
     public Option(BaseModule owner, String name, String description, Option<?> parent) {
+        this(owner, name, description, () -> true, parent);
+    }
+
+    /**
+     * Creates a new option with visibility
+     *
+     * @param owner The module that owns this option
+     * @param name The name of this option
+     * @param description The description of this option
+     * @param visibility The visibility supplier for this option
+     */
+    public Option(BaseModule owner, String name, String description, BooleanSupplier visibility) {
+        this(owner, name, description, visibility, null);
+    }
+
+    /**
+     * Creates a new option with visibility and parent
+     *
+     * @param owner The module that owns this option
+     * @param name The name of this option
+     * @param description The description of this option
+     * @param visibility The visibility supplier for this option
+     * @param parent The parent option, or null if this is a root option
+     */
+    public Option(BaseModule owner, String name, String description, BooleanSupplier visibility, Option<?> parent) {
         this.owner = owner;
         this.name = name;
         this.description = description;
+        this.visibility = visibility;
         this.parent = parent;
 
         if (parent != null) {
@@ -139,5 +173,25 @@ public abstract class Option<T> implements Serializable<T> {
      */
     public boolean isParent() {
         return !children.isEmpty();
+    }
+
+    /**
+     * Sets the visibility supplier for this option
+     *
+     * @param visibility The visibility supplier
+     */
+    public void setVisibility(BooleanSupplier visibility) {
+        this.visibility = visibility;
+    }
+
+    /**
+     * Checks if this option is visible
+     * <p></p>
+     * An option is visible if its visibility supplier returns true
+     *
+     * @return true if this option should be visible, false otherwise
+     */
+    public boolean isVisible() {
+        return visibility.getAsBoolean();
     }
 }

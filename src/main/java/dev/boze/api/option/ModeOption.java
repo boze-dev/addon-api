@@ -5,6 +5,7 @@ import dev.boze.api.client.module.BaseModule;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BooleanSupplier;
 import java.util.stream.Collectors;
 
 /**
@@ -30,7 +31,7 @@ public class ModeOption<T extends Enum<T>> extends Option<T> {
      * @param defaultValue The initial value and default value
      */
     public ModeOption(BaseModule owner, String name, String description, T defaultValue) {
-        this(owner, name, description, defaultValue, null);
+        this(owner, name, description, defaultValue, () -> true, null);
     }
 
     /**
@@ -44,6 +45,35 @@ public class ModeOption<T extends Enum<T>> extends Option<T> {
      */
     public ModeOption(BaseModule owner, String name, String description, T defaultValue, Option<?> parent) {
         super(owner, name, description, parent);
+        this.value = defaultValue;
+        this.defaultValue = defaultValue;
+    }
+
+    /**
+     * Creates a new mode option with visibility
+     *
+     * @param owner The module that owns this option
+     * @param name The name of this option
+     * @param description The description of this option
+     * @param defaultValue The initial value and default value
+     * @param visibility The visibility supplier for this option
+     */
+    public ModeOption(BaseModule owner, String name, String description, T defaultValue, BooleanSupplier visibility) {
+        this(owner, name, description, defaultValue, visibility, null);
+    }
+
+    /**
+     * Creates a new mode option with visibility and parent
+     *
+     * @param owner The module that owns this option
+     * @param name The name of this option
+     * @param description The description of this option
+     * @param defaultValue The initial value and default value
+     * @param visibility The visibility supplier for this option
+     * @param parent The parent option, or null if this is a root option
+     */
+    public ModeOption(BaseModule owner, String name, String description, T defaultValue, BooleanSupplier visibility, Option<?> parent) {
+        super(owner, name, description, visibility, parent);
         this.value = defaultValue;
         this.defaultValue = defaultValue;
     }

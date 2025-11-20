@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 import dev.boze.api.utility.input.Bind;
 import dev.boze.api.client.module.BaseModule;
 
+import java.util.function.BooleanSupplier;
+
 /**
  * An option for keyboard/mouse bindings
  * <p></p>
@@ -54,6 +56,37 @@ public class BindOption extends Option<Bind> {
      */
     public BindOption(BaseModule owner, String name, String description, int bind, boolean isButton, Option<?> parent) {
         super(owner, name, description, parent);
+        this.bindInstance = new Bind(isButton, bind);
+        this.defaultBindInstance = new Bind(isButton, bind);
+    }
+
+    /**
+     * Creates a new bind option with visibility
+     *
+     * @param owner The module that owns this option
+     * @param name The name of this option
+     * @param description The description of this option
+     * @param bind The key/button code to bind to
+     * @param isButton Whether this is a mouse button (true) or keyboard key (false)
+     * @param visibility The visibility supplier for this option
+     */
+    public BindOption(BaseModule owner, String name, String description, int bind, boolean isButton, BooleanSupplier visibility) {
+        this(owner, name, description, bind, isButton, visibility, null);
+    }
+
+    /**
+     * Creates a new bind option with visibility and parent
+     *
+     * @param owner The module that owns this option
+     * @param name The name of this option
+     * @param description The description of this option
+     * @param bind The key/button code to bind to
+     * @param isButton Whether this is a mouse button (true) or keyboard key (false)
+     * @param visibility The visibility supplier for this option
+     * @param parent The parent option, or null if this is a root option
+     */
+    public BindOption(BaseModule owner, String name, String description, int bind, boolean isButton, BooleanSupplier visibility, Option<?> parent) {
+        super(owner, name, description, visibility, parent);
         this.bindInstance = new Bind(isButton, bind);
         this.defaultBindInstance = new Bind(isButton, bind);
     }

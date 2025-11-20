@@ -1,6 +1,7 @@
 package dev.boze.api.utility;
 
 import dev.boze.api.internal.Instances;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 
@@ -13,7 +14,22 @@ import net.minecraft.util.math.Vec3d;
  */
 public class MathHelper {
 
+    public static final float[] EMPTY_ROTATION = {0, 0};
+
     // Rotation & Angles
+
+    /**
+     * Calculates the yaw and pitch rotation needed to face a target position.
+     * <p></p>
+     * Returns yaw and pitch angles in degrees required to point from eyes position
+     * to target position. Yaw is normalized to -180 to 180 range.
+     *
+     * @param target The target position to face
+     * @return float array containing [yaw, pitch] in degrees
+     */
+    public static float[] calculateRotation(Vec3d target) {
+        return Instances.getMath().calculateRotation(MinecraftClient.getInstance().player.getEyePos(), target);
+    }
 
     /**
      * Calculates the yaw and pitch rotation needed to face a target position.
@@ -27,6 +43,37 @@ public class MathHelper {
      */
     public static float[] calculateRotation(Vec3d eyes, Vec3d target) {
         return Instances.getMath().calculateRotation(eyes, target);
+    }
+
+    /**
+     * Calculates the yaw and pitch rotation needed to face a target position, or returns empty rotation.
+     * <p></p>
+     * Returns yaw and pitch angles in degrees required to point from eyes position
+     * to target position if rotate is true. Returns EMPTY_ROTATION if rotate is false.
+     * Yaw is normalized to -180 to 180 range.
+     *
+     * @param target The target position to face
+     * @param rotate Whether to calculate rotation or return empty rotation
+     * @return float array containing [yaw, pitch] in degrees, or EMPTY_ROTATION
+     */
+    public static float[] calculateRotation(Vec3d target, boolean rotate) {
+        return rotate ? Instances.getMath().calculateRotation(MinecraftClient.getInstance().player.getEyePos(), target) : EMPTY_ROTATION;
+    }
+
+    /**
+     * Calculates the yaw and pitch rotation needed to face a target position, or returns empty rotation.
+     * <p></p>
+     * Returns yaw and pitch angles in degrees required to point from eyes position
+     * to target position if rotate is true. Returns EMPTY_ROTATION if rotate is false.
+     * Yaw is normalized to -180 to 180 range.
+     *
+     * @param eyes The eye position to calculate from
+     * @param target The target position to face
+     * @param rotate Whether to calculate rotation or return empty rotation
+     * @return float array containing [yaw, pitch] in degrees, or EMPTY_ROTATION
+     */
+    public static float[] calculateRotation(Vec3d eyes, Vec3d target, boolean rotate) {
+        return rotate ? Instances.getMath().calculateRotation(eyes, target) : EMPTY_ROTATION;
     }
 
     /**

@@ -6,7 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 public interface IRayCasting {
-    BlockHitResult cast(BlockPos pos, InteractionMode mode, double range, double wallsRange, boolean strictDirection);
+    BlockHitResult cast(BlockPos pos, InteractionMode mode, double range, double wallsRange, boolean strictDirection, boolean airPlace);
 
     BlockHitResult raycast(Vec3d start, Vec3d end);
 }

@@ -11,6 +11,12 @@ public abstract class CapeSource {
 
     public final String name;
 
+    /**
+     * Creates a new cape source with the specified name.
+     *
+     * @param name The name of this cape source (used for identification and texture registration).
+     *            Must not contain spaces/uppercase letters, can only contain characters [a-z0-9/._-].
+     */
     public CapeSource(String name) {
         this.name = name;
     }

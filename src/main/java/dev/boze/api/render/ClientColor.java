@@ -40,4 +40,32 @@ public abstract class ClientColor {
      * the same semantics as the client color system.
      */
     public abstract void delete();
+
+    /**
+     * Gets the red component of this color (0-255).
+     *
+     * @return The red component value
+     */
+    public abstract int getRed();
+
+    /**
+     * Gets the green component of this color (0-255).
+     *
+     * @return The green component value
+     */
+    public abstract int getGreen();
+
+    /**
+     * Gets the blue component of this color (0-255).
+     *
+     * @return The blue component value
+     */
+    public abstract int getBlue();
+
+    /**
+     * Gets the packed RGB value of this color (0xRRGGBB).
+     *
+     * @return The packed RGB value
+     */
+    public abstract int getPacked();
 }

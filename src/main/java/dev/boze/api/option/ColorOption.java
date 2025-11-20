@@ -7,6 +7,7 @@ import dev.boze.api.render.ClientColorBinding;
 import dev.boze.api.render.ColorMaker;
 
 import java.util.Objects;
+import java.util.function.BooleanSupplier;
 
 /**
  * An option for selecting and configuring colors
@@ -29,7 +30,7 @@ public class ColorOption extends Option<ColorOption.Value> implements ClientColo
      * @param fillOpacity The opacity value used
      */
     public ColorOption(BaseModule owner, String name, String description, ClientColor defaultColor, float fillOpacity) {
-        this(owner, name, description, defaultColor, fillOpacity, fillOpacity, true, null);
+        this(owner, name, description, defaultColor, fillOpacity, fillOpacity, true, () -> true, null);
     }
 
     /**
@@ -43,7 +44,7 @@ public class ColorOption extends Option<ColorOption.Value> implements ClientColo
      * @param parent The parent option, or null if this is a root option
      */
     public ColorOption(BaseModule owner, String name, String description, ClientColor defaultColor, float fillOpacity, Option<?> parent) {
-        this(owner, name, description, defaultColor, fillOpacity, fillOpacity, true, parent);
+        this(owner, name, description, defaultColor, fillOpacity, fillOpacity, true, () -> true, parent);
     }
 
     /**
@@ -57,7 +58,7 @@ public class ColorOption extends Option<ColorOption.Value> implements ClientColo
      * @param outlineOpacity The opacity value for outline
      */
     public ColorOption(BaseModule owner, String name, String description, ClientColor defaultColor, float fillOpacity, float outlineOpacity) {
-        this(owner, name, description, defaultColor, fillOpacity, outlineOpacity, false, null);
+        this(owner, name, description, defaultColor, fillOpacity, outlineOpacity, false, () -> true, null);
     }
 
     /**
@@ -72,15 +73,75 @@ public class ColorOption extends Option<ColorOption.Value> implements ClientColo
      * @param parent The parent option, or null if this is a root option
      */
     public ColorOption(BaseModule owner, String name, String description, ClientColor defaultColor, float fillOpacity, float outlineOpacity, Option<?> parent) {
-        this(owner, name, description, defaultColor, fillOpacity, outlineOpacity, false, parent);
+        this(owner, name, description, defaultColor, fillOpacity, outlineOpacity, false, () -> true, parent);
+    }
+
+    /**
+     * Creates a new color option with single opacity and visibility
+     *
+     * @param owner The module that owns this option
+     * @param name The name of this option
+     * @param description The description of this option
+     * @param defaultColor The default color
+     * @param fillOpacity The opacity value used
+     * @param visibility The visibility supplier for this option
+     */
+    public ColorOption(BaseModule owner, String name, String description, ClientColor defaultColor, float fillOpacity, BooleanSupplier visibility) {
+        this(owner, name, description, defaultColor, fillOpacity, fillOpacity, true, visibility, null);
+    }
+
+    /**
+     * Creates a new color option with single opacity, visibility and parent
+     *
+     * @param owner The module that owns this option
+     * @param name The name of this option
+     * @param description The description of this option
+     * @param defaultColor The default color
+     * @param fillOpacity The opacity value used
+     * @param visibility The visibility supplier for this option
+     * @param parent The parent option, or null if this is a root option
+     */
+    public ColorOption(BaseModule owner, String name, String description, ClientColor defaultColor, float fillOpacity, BooleanSupplier visibility, Option<?> parent) {
+        this(owner, name, description, defaultColor, fillOpacity, fillOpacity, true, visibility, parent);
+    }
+
+    /**
+     * Creates a new color option with separate fill and outline opacity and visibility
+     *
+     * @param owner The module that owns this option
+     * @param name The name of this option
+     * @param description The description of this option
+     * @param defaultColor The default color
+     * @param fillOpacity The opacity value for fill
+     * @param outlineOpacity The opacity value for outline
+     * @param visibility The visibility supplier for this option
+     */
+    public ColorOption(BaseModule owner, String name, String description, ClientColor defaultColor, float fillOpacity, float outlineOpacity, BooleanSupplier visibility) {
+        this(owner, name, description, defaultColor, fillOpacity, outlineOpacity, false, visibility, null);
+    }
+
+    /**
+     * Creates a new color option with separate fill and outline opacity, visibility and parent
+     *
+     * @param owner The module that owns this option
+     * @param name The name of this option
+     * @param description The description of this option
+     * @param defaultColor The default color
+     * @param fillOpacity The opacity value for fill
+     * @param outlineOpacity The opacity value for outline
+     * @param visibility The visibility supplier for this option
+     * @param parent The parent option, or null if this is a root option
+     */
+    public ColorOption(BaseModule owner, String name, String description, ClientColor defaultColor, float fillOpacity, float outlineOpacity, BooleanSupplier visibility, Option<?> parent) {
+        this(owner, name, description, defaultColor, fillOpacity, outlineOpacity, false, visibility, parent);
     }
 
     protected ColorOption(BaseModule owner, String name, String description, ClientColor defaultColor, float fillOpacity, float outlineOpacity, boolean singleOpacity) {
-        this(owner, name, description, defaultColor, fillOpacity, outlineOpacity, singleOpacity, null);
+        this(owner, name, description, defaultColor, fillOpacity, outlineOpacity, singleOpacity, () -> true, null);
     }
 
-    private ColorOption(BaseModule owner, String name, String description, ClientColor defaultColor, float fillOpacity, float outlineOpacity, boolean singleOpacity, Option<?> parent) {
-        super(owner, name, description, parent);
+    private ColorOption(BaseModule owner, String name, String description, ClientColor defaultColor, float fillOpacity, float outlineOpacity, boolean singleOpacity, BooleanSupplier visibility, Option<?> parent) {
+        super(owner, name, description, visibility, parent);
         Objects.requireNonNull(defaultColor, "Default color cannot be null");
         this.singleOpacity = singleOpacity;
         this.defaultValue = new Value("_default", defaultColor.copy(), fillOpacity, outlineOpacity, singleOpacity);

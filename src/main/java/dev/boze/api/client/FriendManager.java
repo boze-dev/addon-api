@@ -2,6 +2,8 @@ package dev.boze.api.client;
 
 import dev.boze.api.internal.Instances;
 
+import java.util.List;
+
 /**
  * Friend manager
  */
@@ -28,5 +30,14 @@ public final class FriendManager {
      */
     public static void delFriend(String friend) {
         Instances.getFriends().delFriend(friend);
+    }
+
+    /**
+     * Gets a list of all friend names
+     *
+     * @return List of friend names as strings
+     */
+    public static List<String> getFriends() {
+        return Instances.getFriends().getFriends();
     }
 }

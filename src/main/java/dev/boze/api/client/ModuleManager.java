@@ -3,7 +3,6 @@ package dev.boze.api.client;
 import dev.boze.api.BozeInstance;
 import dev.boze.api.addon.AddonModule;
 import dev.boze.api.client.module.ClientModule;
-import dev.boze.api.exception.ClientModuleNotFoundException;
 import dev.boze.api.internal.Instances;
 import dev.boze.api.client.module.BaseModule;
 
@@ -23,9 +22,9 @@ public final class ModuleManager {
      *
      * @param name The name of the module to get the state of
      * @return The state of the module
-     * @throws ClientModuleNotFoundException If the module is not found
+     * @throws IllegalArgumentException If the module is not found
      */
-    public static boolean getState(String name) throws ClientModuleNotFoundException {
+    public static boolean getState(String name) throws IllegalArgumentException {
         return Instances.getModules().getState(name);
     }
 
@@ -34,10 +33,10 @@ public final class ModuleManager {
      *
      * @param name The name of the module to set the state of
      * @param state The state to set the module to
-     * @throws ClientModuleNotFoundException If the module is not found
+     * @throws IllegalArgumentException If the module is not found
      */
-    public static void setState(String name, boolean state) throws ClientModuleNotFoundException {
-        Instances.getModules().setState(name, state);
+    public static boolean setState(String name, boolean state) throws IllegalArgumentException {
+        return Instances.getModules().setState(name, state);
     }
 
     /**

@@ -14,5 +14,5 @@ public enum InteractionMode {
     /**
      * GrimAC-compatible rotation mode
      */
-    GRIM
+    Grim
 }

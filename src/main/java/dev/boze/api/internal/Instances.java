@@ -20,6 +20,8 @@ public class Instances {
     private static IJson json;
     private static IModules modules;
     private static IRayCasting rayCasting;
+    private static IAutoMine autoMine;
+    private static IAutoCrystal autoCrystal;
     private static IProfiles profiles;
     private static IColors colors;
 
@@ -85,6 +87,14 @@ public class Instances {
 
     public static IRayCasting getRayCasting() {
         return rayCasting;
+    }
+
+    public static IAutoMine getAutoMine() {
+        return autoMine;
+    }
+
+    public static IAutoCrystal getAutoCrystal() {
+        return autoCrystal;
     }
 
     public static IProfiles getProfiles() {

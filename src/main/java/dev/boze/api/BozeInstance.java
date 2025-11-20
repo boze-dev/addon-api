@@ -2,7 +2,6 @@ package dev.boze.api;
 
 import dev.boze.api.addon.Addon;
 import dev.boze.api.addon.AddonModule;
-import dev.boze.api.exception.AddonInitializationException;
 import meteordevelopment.orbit.EventBus;
 import meteordevelopment.orbit.IEventBus;
 import net.minecraft.client.MinecraftClient;

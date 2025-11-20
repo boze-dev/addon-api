@@ -36,6 +36,22 @@ public class Interaction {
     }
 
     /**
+     * Creates an interaction that requires specific rotation
+     *
+     * @param action The action to run
+     * @param rotate Whether to rotate or not
+     * @param yaw The yaw rotation required
+     * @param pitch The pitch rotation required
+     */
+    public Interaction(Runnable action, boolean rotate, float yaw, float pitch) {
+        this.action = action;
+        this.rotate = rotate;
+        this.yaw = yaw;
+        this.pitch = pitch;
+    }
+
+
+    /**
      * Returns whether this interaction requires rotation
      *
      * @return true if rotation is required, false otherwise

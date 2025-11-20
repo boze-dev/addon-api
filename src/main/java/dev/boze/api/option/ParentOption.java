@@ -3,6 +3,8 @@ package dev.boze.api.option;
 import com.google.gson.JsonObject;
 import dev.boze.api.client.module.BaseModule;
 
+import java.util.function.BooleanSupplier;
+
 /**
  * An option that serves as a parent container for other options
  * <p></p>
@@ -20,19 +22,19 @@ public class ParentOption extends Option<Boolean> {
      * @param description The description of this option
      */
     public ParentOption(BaseModule owner, String name, String description) {
-        super(owner, name, description);
+        super(owner, name, description, () -> true, null);
     }
 
     /**
-     * Creates a new parent option with a parent
+     * Creates a new parent option with visibility
      *
      * @param owner The module that owns this option
      * @param name The name of this option
      * @param description The description of this option
-     * @param parent The parent option
+     * @param visibility The visibility supplier for this option
      */
-    public ParentOption(BaseModule owner, String name, String description, Option<?> parent) {
-        super(owner, name, description, parent);
+    public ParentOption(BaseModule owner, String name, String description, BooleanSupplier visibility) {
+        super(owner, name, description, visibility, null);
     }
 
     @Override

@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 import dev.boze.api.client.module.BaseModule;
 import net.minecraft.util.math.MathHelper;
 
+import java.util.function.BooleanSupplier;
+
 /**
  * A numeric option that can be adjusted using a slider
  * <p></p>
@@ -66,7 +68,45 @@ public class SliderOption extends Option<Double> {
      * @param parent The parent option, or null if this is a root option
      */
     public SliderOption(BaseModule owner, String name, String description, double value, double min, double max, double step, Option<?> parent) {
-       super(owner, name, description, parent);
+        super(owner, name, description, parent);
+        this.value = value;
+        this.min = min;
+        this.max = max;
+        this.step = step;
+        this.defaultValue = value;
+    }
+
+    /**
+     * Creates a new slider option with visibility
+     *
+     * @param owner The module that owns this option
+     * @param name The name of this option
+     * @param description The description of this option
+     * @param value The initial value
+     * @param min The minimum allowed value
+     * @param max The maximum allowed value
+     * @param step The increment between values
+     * @param visibility The visibility supplier for this option
+     */
+    public SliderOption(BaseModule owner, String name, String description, double value, double min, double max, double step, BooleanSupplier visibility) {
+        this(owner, name, description, value, min, max, step, visibility, null);
+    }
+
+    /**
+     * Creates a new slider option with visibility and parent
+     *
+     * @param owner The module that owns this option
+     * @param name The name of this option
+     * @param description The description of this option
+     * @param value The initial value
+     * @param min The minimum allowed value
+     * @param max The maximum allowed value
+     * @param step The increment between values
+     * @param visibility The visibility supplier for this option
+     * @param parent The parent option, or null if this is a root option
+     */
+    public SliderOption(BaseModule owner, String name, String description, double value, double min, double max, double step, BooleanSupplier visibility, Option<?> parent) {
+        super(owner, name, description, visibility, parent);
         this.value = value;
         this.min = min;
         this.max = max;

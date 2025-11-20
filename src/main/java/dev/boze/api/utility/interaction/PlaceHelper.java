@@ -18,7 +18,7 @@ public class PlaceHelper {
      * @return The block hit result, or null if no valid placement found
      */
     public static BlockHitResult cast(BlockPos pos, InteractionMode mode) {
-        return Instances.getRayCasting().cast(pos, mode, 4.5, 0.0, true);
+        return Instances.getRayCasting().cast(pos, mode, 4.5, 0.0, true, false);
     }
 
     /**
@@ -33,7 +33,7 @@ public class PlaceHelper {
      * @return The block hit result, or null if no valid placement found
      */
     public static BlockHitResult cast(BlockPos pos, InteractionMode mode, double range, double wallsRange) {
-        return Instances.getRayCasting().cast(pos, mode, range, wallsRange, true);
+        return Instances.getRayCasting().cast(pos, mode, range, wallsRange, true, false);
     }
 
     /**
@@ -45,7 +45,7 @@ public class PlaceHelper {
      * @return The block hit result, or null if no valid placement found
      */
     public static BlockHitResult cast(BlockPos pos, InteractionMode mode, boolean strictDirection) {
-        return Instances.getRayCasting().cast(pos, mode, 4.5, 0.0, strictDirection);
+        return Instances.getRayCasting().cast(pos, mode, 4.5, 0.0, strictDirection, false);
     }
 
     /**
@@ -61,7 +61,65 @@ public class PlaceHelper {
      * @return The block hit result, or null if no valid placement found
      */
     public static BlockHitResult cast(BlockPos pos, InteractionMode mode, double range, double wallsRange, boolean strictDirection) {
-        return Instances.getRayCasting().cast(pos, mode, range, wallsRange, strictDirection);
+        return Instances.getRayCasting().cast(pos, mode, range, wallsRange, strictDirection, false);
+    }
+
+    /**
+     * Cast a block placement interaction at the specified position with air place support
+     *
+     * @param pos The position to cast at
+     * @param airPlace Whether to allow placement against air blocks
+     * @param mode The interaction mode to use
+     * @return The block hit result, or null if no valid placement found
+     */
+    public static BlockHitResult cast(BlockPos pos, boolean airPlace, InteractionMode mode) {
+        return Instances.getRayCasting().cast(pos, mode, 4.5, 0.0, true, airPlace);
+    }
+
+    /**
+     * Cast a block placement interaction at the specified position with custom range and air place support
+     * <p>
+     * Note: range/wallsRange won't apply if interactionMode is GRIM
+     *
+     * @param pos The position to cast at
+     * @param airPlace Whether to allow placement against air blocks
+     * @param mode The interaction mode to use
+     * @param range The reach range to use
+     * @param wallsRange The walls reach range to use (only applies if mode is NCP)
+     * @return The block hit result, or null if no valid placement found
+     */
+    public static BlockHitResult cast(BlockPos pos, boolean airPlace, InteractionMode mode, double range, double wallsRange) {
+        return Instances.getRayCasting().cast(pos, mode, range, wallsRange, true, airPlace);
+    }
+
+    /**
+     * Cast a block placement interaction at the specified position with strict direction and air place support
+     *
+     * @param pos The position to cast at
+     * @param airPlace Whether to allow placement against air blocks
+     * @param mode The interaction mode to use
+     * @param strictDirection Whether to use strict direction checking
+     * @return The block hit result, or null if no valid placement found
+     */
+    public static BlockHitResult cast(BlockPos pos, boolean airPlace, InteractionMode mode, boolean strictDirection) {
+        return Instances.getRayCasting().cast(pos, mode, 4.5, 0.0, strictDirection, airPlace);
+    }
+
+    /**
+     * Cast a block placement interaction at the specified position with custom range, strict direction, and air place support
+     * <p>
+     * Note: range/wallsRange won't apply if interactionMode is GRIM
+     *
+     * @param pos The position to cast at
+     * @param airPlace Whether to allow placement against air blocks
+     * @param mode The interaction mode to use
+     * @param range The reach range to use
+     * @param wallsRange The walls reach range to use (only applies if mode is NCP)
+     * @param strictDirection Whether to use strict direction checking
+     * @return The block hit result, or null if no valid placement found
+     */
+    public static BlockHitResult cast(BlockPos pos, boolean airPlace, InteractionMode mode, double range, double wallsRange, boolean strictDirection) {
+        return Instances.getRayCasting().cast(pos, mode, range, wallsRange, strictDirection, airPlace);
     }
 
     /**
