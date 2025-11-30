@@ -17,6 +17,10 @@ import net.minecraft.util.math.Box;
  * You can, of course, draw more than one box per start/draw call
  * <p></p>
  * See {@link dev.boze.api.event.EventShader} before using shader renders
+ * <p></p
+ * Shader renders have their own fill/outline opacity, defined in Shader module.
+ * Outline opacity is used as a scale factor for the shader fill/outline opacity.
+ * This lets you change the opacity of individual shader renders
  */
 public class WorldDrawer {
     
@@ -74,8 +78,29 @@ public class WorldDrawer {
      * @param z2 Maximum Z coordinate
      */
     public static void box(ClientColor color, float fillOpacity, float outlineOpacity, double x1, double y1, double z1, double x2, double y2, double z2) {
-        Instances.getWorldRender().boxSides(color, fillOpacity, x1, y1, z1, x2, y2, z2);
-        Instances.getWorldRender().boxLines(color, outlineOpacity, x1, y1, z1, x2, y2, z2);
+        Instances.getWorldRender().boxSides(color, fillOpacity, x1, y1, z1, x2, y2, z2, 0);
+        Instances.getWorldRender().boxLines(color, outlineOpacity, x1, y1, z1, x2, y2, z2, 0);
+    }
+
+    /**
+     * Renders a full box with both sides and outline
+     * <p></p>
+     * Throws RuntimeException if start() was not called first
+     *
+     * @param color The color to use
+     * @param fillOpacity The opacity for filled sides
+     * @param outlineOpacity The opacity for outline lines
+     * @param x1 Minimum X coordinate
+     * @param y1 Minimum Y coordinate
+     * @param z1 Minimum Z coordinate
+     * @param x2 Maximum X coordinate
+     * @param y2 Maximum Y coordinate
+     * @param z2 Maximum Z coordinate
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void box(ClientColor color, float fillOpacity, float outlineOpacity, double x1, double y1, double z1, double x2, double y2, double z2, float fade) {
+        Instances.getWorldRender().boxSides(color, fillOpacity, x1, y1, z1, x2, y2, z2, fade);
+        Instances.getWorldRender().boxLines(color, outlineOpacity, x1, y1, z1, x2, y2, z2, fade);
     }
 
     /**
@@ -93,6 +118,21 @@ public class WorldDrawer {
     }
 
     /**
+     * Renders a full box with both sides and outline
+     * <p></p>
+     * Throws RuntimeException if start() was not called first
+     *
+     * @param color The color to use
+     * @param fillOpacity The opacity for filled sides
+     * @param outlineOpacity The opacity for outline lines
+     * @param box The box to render
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void box(ClientColor color, float fillOpacity, float outlineOpacity, Box box, float fade) {
+        box(color, fillOpacity, outlineOpacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, fade);
+    }
+
+    /**
      * Renders box outline lines
      * <p></p>
      * Throws RuntimeException if start() was not called first
@@ -107,7 +147,26 @@ public class WorldDrawer {
      * @param z2 Maximum Z coordinate
      */
     public static void boxLines(ClientColor color, float opacity, double x1, double y1, double z1, double x2, double y2, double z2) {
-        Instances.getWorldRender().boxLines(color, opacity, x1, y1, z1, x2, y2, z2);
+        Instances.getWorldRender().boxLines(color, opacity, x1, y1, z1, x2, y2, z2, 0);
+    }
+
+    /**
+     * Renders box outline lines
+     * <p></p>
+     * Throws RuntimeException if start() was not called first
+     *
+     * @param color The color to use
+     * @param opacity The opacity value
+     * @param x1 Minimum X coordinate
+     * @param y1 Minimum Y coordinate
+     * @param z1 Minimum Z coordinate
+     * @param x2 Maximum X coordinate
+     * @param y2 Maximum Y coordinate
+     * @param z2 Maximum Z coordinate
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void boxLines(ClientColor color, float opacity, double x1, double y1, double z1, double x2, double y2, double z2, float fade) {
+        Instances.getWorldRender().boxLines(color, opacity, x1, y1, z1, x2, y2, z2, fade);
     }
 
     /**
@@ -120,7 +179,21 @@ public class WorldDrawer {
      * @param box The box to render lines for
      */
     public static void boxLines(ClientColor color, float opacity, Box box) {
-        Instances.getWorldRender().boxLines(color, opacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ);
+        Instances.getWorldRender().boxLines(color, opacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, 0);
+    }
+
+    /**
+     * Renders box outline lines
+     * <p></p>
+     * Throws RuntimeException if start() was not called first
+     *
+     * @param color The color to use
+     * @param opacity The opacity value
+     * @param box The box to render lines for
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void boxLines(ClientColor color, float opacity, Box box, float fade) {
+        Instances.getWorldRender().boxLines(color, opacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, fade);
     }
 
     /**
@@ -138,7 +211,26 @@ public class WorldDrawer {
      * @param z2 Maximum Z coordinate
      */
     public static void boxSides(ClientColor color, float opacity, double x1, double y1, double z1, double x2, double y2, double z2) {
-        Instances.getWorldRender().boxSides(color, opacity, x1, y1, z1, x2, y2, z2);
+        Instances.getWorldRender().boxSides(color, opacity, x1, y1, z1, x2, y2, z2, 0);
+    }
+
+    /**
+     * Renders box sides/faces
+     * <p></p>
+     * Throws RuntimeException if start() was not called first
+     *
+     * @param color The color to use
+     * @param opacity The opacity value
+     * @param x1 Minimum X coordinate
+     * @param y1 Minimum Y coordinate
+     * @param z1 Minimum Z coordinate
+     * @param x2 Maximum X coordinate
+     * @param y2 Maximum Y coordinate
+     * @param z2 Maximum Z coordinate
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void boxSides(ClientColor color, float opacity, double x1, double y1, double z1, double x2, double y2, double z2, float fade) {
+        Instances.getWorldRender().boxSides(color, opacity, x1, y1, z1, x2, y2, z2, fade);
     }
 
     /**
@@ -151,7 +243,21 @@ public class WorldDrawer {
      * @param box The box to render sides for
      */
     public static void boxSides(ClientColor color, float opacity, Box box) {
-        Instances.getWorldRender().boxSides(color, opacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ);
+        Instances.getWorldRender().boxSides(color, opacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, 0);
+    }
+
+    /**
+     * Renders box sides/faces
+     * <p></p>
+     * Throws RuntimeException if start() was not called first
+     *
+     * @param color The color to use
+     * @param opacity The opacity value
+     * @param box The box to render sides for
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void boxSides(ClientColor color, float opacity, Box box, float fade) {
+        Instances.getWorldRender().boxSides(color, opacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, fade);
     }
 
     /**
@@ -200,6 +306,28 @@ public class WorldDrawer {
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
+     * @param x1 Minimum X coordinate
+     * @param y1 Minimum Y coordinate
+     * @param z1 Minimum Z coordinate
+     * @param x2 Maximum X coordinate
+     * @param y2 Maximum Y coordinate
+     * @param z2 Maximum Z coordinate
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void box(ColorOption.Value colorOption, double x1, double y1, double z1, double x2, double y2, double z2, float fade) {
+        if (colorOption.singleOpacity) {
+            box(colorOption.color, colorOption.fillOpacity, colorOption.fillOpacity, x1, y1, z1, x2, y2, z2, fade);
+        } else {
+            box(colorOption.color, colorOption.fillOpacity, colorOption.outlineOpacity, x1, y1, z1, x2, y2, z2, fade);
+        }
+    }
+
+    /**
+     * Renders a full box with both sides and outline using ColorOption.Value
+     * <p></p>
+     * Throws RuntimeException if start() was not called first
+     *
+     * @param colorOption The color option value containing color and opacity settings
      * @param box The box to render
      */
     public static void box(ColorOption.Value colorOption, Box box) {
@@ -207,6 +335,23 @@ public class WorldDrawer {
             box(colorOption.color, colorOption.fillOpacity, colorOption.fillOpacity, box);
         } else {
             box(colorOption.color, colorOption.fillOpacity, colorOption.outlineOpacity, box);
+        }
+    }
+
+    /**
+     * Renders a full box with both sides and outline using ColorOption.Value
+     * <p></p>
+     * Throws RuntimeException if start() was not called first
+     *
+     * @param colorOption The color option value containing color and opacity settings
+     * @param box The box to render
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void box(ColorOption.Value colorOption, Box box, float fade) {
+        if (colorOption.singleOpacity) {
+            box(colorOption.color, colorOption.fillOpacity, colorOption.fillOpacity, box, fade);
+        } else {
+            box(colorOption.color, colorOption.fillOpacity, colorOption.outlineOpacity, box, fade);
         }
     }
 
@@ -234,11 +379,44 @@ public class WorldDrawer {
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
+     * @param x1 Minimum X coordinate
+     * @param y1 Minimum Y coordinate
+     * @param z1 Minimum Z coordinate
+     * @param x2 Maximum X coordinate
+     * @param y2 Maximum Y coordinate
+     * @param z2 Maximum Z coordinate
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void boxLines(ColorOption.Value colorOption, double x1, double y1, double z1, double x2, double y2, double z2, float fade) {
+        float opacity = colorOption.singleOpacity ? colorOption.fillOpacity : colorOption.outlineOpacity;
+        boxLines(colorOption.color, opacity, x1, y1, z1, x2, y2, z2, fade);
+    }
+
+    /**
+     * Renders box outline lines using ColorOption.Value
+     * <p></p>
+     * Throws RuntimeException if start() was not called first
+     *
+     * @param colorOption The color option value containing color and opacity settings
      * @param box The box to render lines for
      */
     public static void boxLines(ColorOption.Value colorOption, Box box) {
         float opacity = colorOption.singleOpacity ? colorOption.fillOpacity : colorOption.outlineOpacity;
         boxLines(colorOption.color, opacity, box);
+    }
+
+    /**
+     * Renders box outline lines using ColorOption.Value
+     * <p></p>
+     * Throws RuntimeException if start() was not called first
+     *
+     * @param colorOption The color option value containing color and opacity settings
+     * @param box The box to render lines for
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void boxLines(ColorOption.Value colorOption, Box box, float fade) {
+        float opacity = colorOption.singleOpacity ? colorOption.fillOpacity : colorOption.outlineOpacity;
+        boxLines(colorOption.color, opacity, box, fade);
     }
 
     /**
@@ -264,10 +442,41 @@ public class WorldDrawer {
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
+     * @param x1 Minimum X coordinate
+     * @param y1 Minimum Y coordinate
+     * @param z1 Minimum Z coordinate
+     * @param x2 Maximum X coordinate
+     * @param y2 Maximum Y coordinate
+     * @param z2 Maximum Z coordinate
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void boxSides(ColorOption.Value colorOption, double x1, double y1, double z1, double x2, double y2, double z2, float fade) {
+        boxSides(colorOption.color, colorOption.fillOpacity, x1, y1, z1, x2, y2, z2, fade);
+    }
+
+    /**
+     * Renders box sides/faces using ColorOption.Value
+     * <p></p>
+     * Throws RuntimeException if start() was not called first
+     *
+     * @param colorOption The color option value containing color and opacity settings
      * @param box The box to render sides for
      */
     public static void boxSides(ColorOption.Value colorOption, Box box) {
         boxSides(colorOption.color, colorOption.fillOpacity, box);
+    }
+
+    /**
+     * Renders box sides/faces using ColorOption.Value
+     * <p></p>
+     * Throws RuntimeException if start() was not called first
+     *
+     * @param colorOption The color option value containing color and opacity settings
+     * @param box The box to render sides for
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void boxSides(ColorOption.Value colorOption, Box box, float fade) {
+        boxSides(colorOption.color, colorOption.fillOpacity, box, fade);
     }
 
     /**
@@ -291,7 +500,7 @@ public class WorldDrawer {
     /**
      * Renders box sides/faces using shader
      * <p></p>
-     * Does not require start/draw calls. Uses opacity 1F for shader rendering
+     * Does not require start/draw calls
      *
      * @param color The color to use
      * @param x1 Minimum X coordinate
@@ -301,26 +510,57 @@ public class WorldDrawer {
      * @param y2 Maximum Y coordinate
      * @param z2 Maximum Z coordinate
      */
-    public static void shaderBoxSides(ClientColor color, double x1, double y1, double z1, double x2, double y2, double z2) {
-        Instances.getWorldRender().shaderBoxSides(color, x1, y1, z1, x2, y2, z2);
+    public static void shaderBoxSides(ClientColor color, float opacity, double x1, double y1, double z1, double x2, double y2, double z2) {
+        Instances.getWorldRender().shaderBoxSides(color, opacity, x1, y1, z1, x2, y2, z2, 0);
     }
 
     /**
      * Renders box sides/faces using shader
      * <p></p>
-     * Does not require start/draw calls. Uses opacity 1F for shader rendering
+     * Does not require start/draw calls
+     *
+     * @param color The color to use
+     * @param x1 Minimum X coordinate
+     * @param y1 Minimum Y coordinate
+     * @param z1 Minimum Z coordinate
+     * @param x2 Maximum X coordinate
+     * @param y2 Maximum Y coordinate
+     * @param z2 Maximum Z coordinate
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void shaderBoxSides(ClientColor color, float opacity, double x1, double y1, double z1, double x2, double y2, double z2, float fade) {
+        Instances.getWorldRender().shaderBoxSides(color, opacity, x1, y1, z1, x2, y2, z2, fade);
+    }
+
+    /**
+     * Renders box sides/faces using shader
+     * <p></p>
+     * Does not require start/draw calls
      *
      * @param color The color to use
      * @param box The box to render sides for
      */
-    public static void shaderBoxSides(ClientColor color, Box box) {
-        Instances.getWorldRender().shaderBoxSides(color, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ);
+    public static void shaderBoxSides(ClientColor color, float opacity, Box box) {
+        Instances.getWorldRender().shaderBoxSides(color, opacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, 0);
+    }
+
+    /**
+     * Renders box sides/faces using shader
+     * <p></p>
+     * Does not require start/draw calls
+     *
+     * @param color The color to use
+     * @param box The box to render sides for
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void shaderBoxSides(ClientColor color, float opacity, Box box, float fade) {
+        Instances.getWorldRender().shaderBoxSides(color, opacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, fade);
     }
 
     /**
      * Renders a single box side/face using shader
      * <p></p>
-     * Does not require start/draw calls. Uses opacity 1F for shader rendering
+     * Does not require start/draw calls
      *
      * @param color The color to use
      * @param direction The direction of the side to render (use Dir constants)
@@ -331,14 +571,33 @@ public class WorldDrawer {
      * @param y2 Maximum Y coordinate
      * @param z2 Maximum Z coordinate
      */
-    public static void shaderSide(ClientColor color, byte direction, double x1, double y1, double z1, double x2, double y2, double z2) {
-        Instances.getWorldRender().shaderSide(color, direction, x1, y1, z1, x2, y2, z2);
+    public static void shaderSide(ClientColor color, float opacity, byte direction, double x1, double y1, double z1, double x2, double y2, double z2) {
+        Instances.getWorldRender().shaderSide(color, opacity, direction, x1, y1, z1, x2, y2, z2, 0);
+    }
+
+    /**
+     * Renders a single box side/face using shader
+     * <p></p>
+     * Does not require start/draw calls
+     *
+     * @param color The color to use
+     * @param direction The direction of the side to render (use Dir constants)
+     * @param x1 Minimum X coordinate
+     * @param y1 Minimum Y coordinate
+     * @param z1 Minimum Z coordinate
+     * @param x2 Maximum X coordinate
+     * @param y2 Maximum Y coordinate
+     * @param z2 Maximum Z coordinate
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void shaderSide(ClientColor color, float opacity, byte direction, double x1, double y1, double z1, double x2, double y2, double z2, float fade) {
+        Instances.getWorldRender().shaderSide(color, opacity, direction, x1, y1, z1, x2, y2, z2, fade);
     }
 
     /**
      * Renders box sides/faces using shader with ColorOption.Value
      * <p></p>
-     * Does not require start/draw calls. Uses opacity 1F for shader rendering
+     * Does not require start/draw calls. Uses outline opacity for shader rendering
      *
      * @param colorOption The color option value containing color settings
      * @param x1 Minimum X coordinate
@@ -349,25 +608,56 @@ public class WorldDrawer {
      * @param z2 Maximum Z coordinate
      */
     public static void shaderBoxSides(ColorOption.Value colorOption, double x1, double y1, double z1, double x2, double y2, double z2) {
-        Instances.getWorldRender().shaderBoxSides(colorOption.color, x1, y1, z1, x2, y2, z2);
+        Instances.getWorldRender().shaderBoxSides(colorOption.color, colorOption.outlineOpacity, x1, y1, z1, x2, y2, z2, 0);
     }
 
     /**
      * Renders box sides/faces using shader with ColorOption.Value
      * <p></p>
-     * Does not require start/draw calls. Uses opacity 1F for shader rendering
+     * Does not require start/draw calls. Uses outline opacity for shader rendering
+     *
+     * @param colorOption The color option value containing color settings
+     * @param x1 Minimum X coordinate
+     * @param y1 Minimum Y coordinate
+     * @param z1 Minimum Z coordinate
+     * @param x2 Maximum X coordinate
+     * @param y2 Maximum Y coordinate
+     * @param z2 Maximum Z coordinate
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void shaderBoxSides(ColorOption.Value colorOption, double x1, double y1, double z1, double x2, double y2, double z2, float fade) {
+        Instances.getWorldRender().shaderBoxSides(colorOption.color, colorOption.outlineOpacity, x1, y1, z1, x2, y2, z2, fade);
+    }
+
+    /**
+     * Renders box sides/faces using shader with ColorOption.Value
+     * <p></p>
+     * Does not require start/draw calls. Uses outline opacity for shader rendering
      *
      * @param colorOption The color option value containing color settings
      * @param box The box to render sides for
      */
     public static void shaderBoxSides(ColorOption.Value colorOption, Box box) {
-        Instances.getWorldRender().shaderBoxSides(colorOption.color, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ);
+        Instances.getWorldRender().shaderBoxSides(colorOption.color, colorOption.outlineOpacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, 0);
+    }
+
+    /**
+     * Renders box sides/faces using shader with ColorOption.Value
+     * <p></p>
+     * Does not require start/draw calls. Uses outline opacity for shader rendering
+     *
+     * @param colorOption The color option value containing color settings
+     * @param box The box to render sides for
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void shaderBoxSides(ColorOption.Value colorOption, Box box, float fade) {
+        Instances.getWorldRender().shaderBoxSides(colorOption.color, colorOption.outlineOpacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, fade);
     }
 
     /**
      * Renders a single box side/face using shader with ColorOption.Value
      * <p></p>
-     * Does not require start/draw calls. Uses opacity 1F for shader rendering
+     * Does not require start/draw calls. Uses outline opacity for shader rendering
      *
      * @param colorOption The color option value containing color settings
      * @param direction The direction of the side to render (use Dir constants)
@@ -379,7 +669,26 @@ public class WorldDrawer {
      * @param z2 Maximum Z coordinate
      */
     public static void shaderSide(ColorOption.Value colorOption, byte direction, double x1, double y1, double z1, double x2, double y2, double z2) {
-        Instances.getWorldRender().shaderSide(colorOption.color, direction, x1, y1, z1, x2, y2, z2);
+        Instances.getWorldRender().shaderSide(colorOption.color, colorOption.outlineOpacity, direction, x1, y1, z1, x2, y2, z2, 0);
+    }
+
+    /**
+     * Renders a single box side/face using shader with ColorOption.Value
+     * <p></p>
+     * Does not require start/draw calls. Uses outline opacity for shader rendering
+     *
+     * @param colorOption The color option value containing color settings
+     * @param direction The direction of the side to render (use Dir constants)
+     * @param x1 Minimum X coordinate
+     * @param y1 Minimum Y coordinate
+     * @param z1 Minimum Z coordinate
+     * @param x2 Maximum X coordinate
+     * @param y2 Maximum Y coordinate
+     * @param z2 Maximum Z coordinate
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void shaderSide(ColorOption.Value colorOption, byte direction, double x1, double y1, double z1, double x2, double y2, double z2, float fade) {
+        Instances.getWorldRender().shaderSide(colorOption.color, colorOption.outlineOpacity, direction, x1, y1, z1, x2, y2, z2, fade);
     }
 
     /**
@@ -391,7 +700,7 @@ public class WorldDrawer {
      *
      * @param color The color to use
      * @param fillOpacity The opacity for filled sides
-     * @param outlineOpacity The opacity for outline lines (ignored if useShader is true)
+     * @param outlineOpacity The opacity for outline lines (used as factor for both if useShader is true)
      * @param useShader Whether to use shader rendering
      * @param x1 Minimum X coordinate
      * @param y1 Minimum Y coordinate
@@ -402,9 +711,9 @@ public class WorldDrawer {
      */
     public static void dynamicBox(ClientColor color, float fillOpacity, float outlineOpacity, boolean useShader, double x1, double y1, double z1, double x2, double y2, double z2) {
         if (useShader) {
-            shaderBoxSides(color, x1, y1, z1, x2, y2, z2);
+            shaderBoxSides(color, outlineOpacity, x1, y1, z1, x2, y2, z2, 0);
         } else {
-            box(color, fillOpacity, outlineOpacity, x1, y1, z1, x2, y2, z2);
+            box(color, fillOpacity, outlineOpacity, x1, y1, z1, x2, y2, z2, 0);
         }
     }
 
@@ -417,15 +726,64 @@ public class WorldDrawer {
      *
      * @param color The color to use
      * @param fillOpacity The opacity for filled sides
-     * @param outlineOpacity The opacity for outline lines (ignored if useShader is true)
+     * @param outlineOpacity The opacity for outline lines (used as factor for both if useShader is true)
+     * @param useShader Whether to use shader rendering
+     * @param x1 Minimum X coordinate
+     * @param y1 Minimum Y coordinate
+     * @param z1 Minimum Z coordinate
+     * @param x2 Maximum X coordinate
+     * @param y2 Maximum Y coordinate
+     * @param z2 Maximum Z coordinate
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void dynamicBox(ClientColor color, float fillOpacity, float outlineOpacity, boolean useShader, double x1, double y1, double z1, double x2, double y2, double z2, float fade) {
+        if (useShader) {
+            shaderBoxSides(color, outlineOpacity, x1, y1, z1, x2, y2, z2, fade);
+        } else {
+            box(color, fillOpacity, outlineOpacity, x1, y1, z1, x2, y2, z2, fade);
+        }
+    }
+
+    /**
+     * Renders a full box dynamically based on shader setting
+     * <p></p>
+     * If useShader is true, renders only sides using shader (no lines).
+     * If useShader is false, renders full box with sides and lines.
+     * Throws RuntimeException if start() was not called first and useShader is false
+     *
+     * @param color The color to use
+     * @param fillOpacity The opacity for filled sides
+     * @param outlineOpacity The opacity for outline lines (used as factor for both if useShader is true)
      * @param useShader Whether to use shader rendering
      * @param box The box to render
      */
     public static void dynamicBox(ClientColor color, float fillOpacity, float outlineOpacity, boolean useShader, Box box) {
         if (useShader) {
-            shaderBoxSides(color, box);
+            shaderBoxSides(color, outlineOpacity, box, 0);
         } else {
-            box(color, fillOpacity, outlineOpacity, box);
+            box(color, fillOpacity, outlineOpacity, box, 0);
+        }
+    }
+
+    /**
+     * Renders a full box dynamically based on shader setting
+     * <p></p>
+     * If useShader is true, renders only sides using shader (no lines).
+     * If useShader is false, renders full box with sides and lines.
+     * Throws RuntimeException if start() was not called first and useShader is false
+     *
+     * @param color The color to use
+     * @param fillOpacity The opacity for filled sides
+     * @param outlineOpacity The opacity for outline lines (used as factor for both if useShader is true)
+     * @param useShader Whether to use shader rendering
+     * @param box The box to render
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void dynamicBox(ClientColor color, float fillOpacity, float outlineOpacity, boolean useShader, Box box, float fade) {
+        if (useShader) {
+            shaderBoxSides(color, outlineOpacity, box, fade);
+        } else {
+            box(color, fillOpacity, outlineOpacity, box, fade);
         }
     }
 
@@ -448,9 +806,35 @@ public class WorldDrawer {
      */
     public static void dynamicBoxSides(ClientColor color, float opacity, boolean useShader, double x1, double y1, double z1, double x2, double y2, double z2) {
         if (useShader) {
-            shaderBoxSides(color, x1, y1, z1, x2, y2, z2);
+            shaderBoxSides(color, opacity, x1, y1, z1, x2, y2, z2, 0);
         } else {
-            boxSides(color, opacity, x1, y1, z1, x2, y2, z2);
+            boxSides(color, opacity, x1, y1, z1, x2, y2, z2, 0);
+        }
+    }
+
+    /**
+     * Renders box sides dynamically based on shader setting
+     * <p></p>
+     * If useShader is true, uses shader rendering.
+     * If useShader is false, uses regular rendering.
+     * Throws RuntimeException if start() was not called first and useShader is false
+     *
+     * @param color The color to use
+     * @param opacity The opacity value
+     * @param useShader Whether to use shader rendering
+     * @param x1 Minimum X coordinate
+     * @param y1 Minimum Y coordinate
+     * @param z1 Minimum Z coordinate
+     * @param x2 Maximum X coordinate
+     * @param y2 Maximum Y coordinate
+     * @param z2 Maximum Z coordinate
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void dynamicBoxSides(ClientColor color, float opacity, boolean useShader, double x1, double y1, double z1, double x2, double y2, double z2, float fade) {
+        if (useShader) {
+            shaderBoxSides(color, opacity, x1, y1, z1, x2, y2, z2, fade);
+        } else {
+            boxSides(color, opacity, x1, y1, z1, x2, y2, z2, fade);
         }
     }
 
@@ -468,9 +852,30 @@ public class WorldDrawer {
      */
     public static void dynamicBoxSides(ClientColor color, float opacity, boolean useShader, Box box) {
         if (useShader) {
-            shaderBoxSides(color, box);
+            shaderBoxSides(color, opacity, box, 0);
         } else {
-            boxSides(color, opacity, box);
+            boxSides(color, opacity, box, 0);
+        }
+    }
+
+    /**
+     * Renders box sides dynamically based on shader setting
+     * <p></p>
+     * If useShader is true, uses shader rendering.
+     * If useShader is false, uses regular rendering.
+     * Throws RuntimeException if start() was not called first and useShader is false
+     *
+     * @param color The color to use
+     * @param opacity The opacity value
+     * @param useShader Whether to use shader rendering
+     * @param box The box to render sides for
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void dynamicBoxSides(ClientColor color, float opacity, boolean useShader, Box box, float fade) {
+        if (useShader) {
+            shaderBoxSides(color, opacity, box, fade);
+        } else {
+            boxSides(color, opacity, box, fade);
         }
     }
 
@@ -492,9 +897,34 @@ public class WorldDrawer {
      */
     public static void dynamicBox(ColorOption.Value colorOption, boolean useShader, double x1, double y1, double z1, double x2, double y2, double z2) {
         if (useShader) {
-            shaderBoxSides(colorOption, x1, y1, z1, x2, y2, z2);
+            shaderBoxSides(colorOption, x1, y1, z1, x2, y2, z2, 0);
         } else {
-            box(colorOption, x1, y1, z1, x2, y2, z2);
+            box(colorOption, x1, y1, z1, x2, y2, z2, 0);
+        }
+    }
+
+    /**
+     * Renders a full box dynamically based on shader setting using ColorOption.Value
+     * <p></p>
+     * If useShader is true, renders only sides using shader (no lines).
+     * If useShader is false, renders full box with sides and lines.
+     * Throws RuntimeException if start() was not called first and useShader is false
+     *
+     * @param colorOption The color option value containing color and opacity settings
+     * @param useShader Whether to use shader rendering
+     * @param x1 Minimum X coordinate
+     * @param y1 Minimum Y coordinate
+     * @param z1 Minimum Z coordinate
+     * @param x2 Maximum X coordinate
+     * @param y2 Maximum Y coordinate
+     * @param z2 Maximum Z coordinate
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void dynamicBox(ColorOption.Value colorOption, boolean useShader, double x1, double y1, double z1, double x2, double y2, double z2, float fade) {
+        if (useShader) {
+            shaderBoxSides(colorOption, x1, y1, z1, x2, y2, z2, fade);
+        } else {
+            box(colorOption, x1, y1, z1, x2, y2, z2, fade);
         }
     }
 
@@ -511,9 +941,29 @@ public class WorldDrawer {
      */
     public static void dynamicBox(ColorOption.Value colorOption, boolean useShader, Box box) {
         if (useShader) {
-            shaderBoxSides(colorOption, box);
+            shaderBoxSides(colorOption, box, 0);
         } else {
-            box(colorOption, box);
+            box(colorOption, box, 0);
+        }
+    }
+
+    /**
+     * Renders a full box dynamically based on shader setting using ColorOption.Value
+     * <p></p>
+     * If useShader is true, renders only sides using shader (no lines).
+     * If useShader is false, renders full box with sides and lines.
+     * Throws RuntimeException if start() was not called first and useShader is false
+     *
+     * @param colorOption The color option value containing color and opacity settings
+     * @param useShader Whether to use shader rendering
+     * @param box The box to render
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void dynamicBox(ColorOption.Value colorOption, boolean useShader, Box box, float fade) {
+        if (useShader) {
+            shaderBoxSides(colorOption, box, fade);
+        } else {
+            box(colorOption, box, fade);
         }
     }
 
@@ -535,9 +985,34 @@ public class WorldDrawer {
      */
     public static void dynamicBoxSides(ColorOption.Value colorOption, boolean useShader, double x1, double y1, double z1, double x2, double y2, double z2) {
         if (useShader) {
-            shaderBoxSides(colorOption, x1, y1, z1, x2, y2, z2);
+            shaderBoxSides(colorOption, x1, y1, z1, x2, y2, z2, 0);
         } else {
-            boxSides(colorOption, x1, y1, z1, x2, y2, z2);
+            boxSides(colorOption, x1, y1, z1, x2, y2, z2, 0);
+        }
+    }
+
+    /**
+     * Renders box sides dynamically based on shader setting using ColorOption.Value
+     * <p></p>
+     * If useShader is true, uses shader rendering.
+     * If useShader is false, uses regular rendering.
+     * Throws RuntimeException if start() was not called first and useShader is false
+     *
+     * @param colorOption The color option value containing color and opacity settings
+     * @param useShader Whether to use shader rendering
+     * @param x1 Minimum X coordinate
+     * @param y1 Minimum Y coordinate
+     * @param z1 Minimum Z coordinate
+     * @param x2 Maximum X coordinate
+     * @param y2 Maximum Y coordinate
+     * @param z2 Maximum Z coordinate
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void dynamicBoxSides(ColorOption.Value colorOption, boolean useShader, double x1, double y1, double z1, double x2, double y2, double z2, float fade) {
+        if (useShader) {
+            shaderBoxSides(colorOption, x1, y1, z1, x2, y2, z2, fade);
+        } else {
+            boxSides(colorOption, x1, y1, z1, x2, y2, z2, fade);
         }
     }
 
@@ -554,9 +1029,29 @@ public class WorldDrawer {
      */
     public static void dynamicBoxSides(ColorOption.Value colorOption, boolean useShader, Box box) {
         if (useShader) {
-            shaderBoxSides(colorOption, box);
+            shaderBoxSides(colorOption, box, 0);
         } else {
-            boxSides(colorOption, box);
+            boxSides(colorOption, box, 0);
+        }
+    }
+
+    /**
+     * Renders box sides dynamically based on shader setting using ColorOption.Value
+     * <p></p>
+     * If useShader is true, uses shader rendering.
+     * If useShader is false, uses regular rendering.
+     * Throws RuntimeException if start() was not called first and useShader is false
+     *
+     * @param colorOption The color option value containing color and opacity settings
+     * @param useShader Whether to use shader rendering
+     * @param box The box to render sides for
+     * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
+     */
+    public static void dynamicBoxSides(ColorOption.Value colorOption, boolean useShader, Box box, float fade) {
+        if (useShader) {
+            shaderBoxSides(colorOption, box, fade);
+        } else {
+            boxSides(colorOption, box, fade);
         }
     }
 
@@ -580,7 +1075,7 @@ public class WorldDrawer {
      */
     public static void dynamicSide(ClientColor color, float opacity, boolean useShader, byte direction, double x1, double y1, double z1, double x2, double y2, double z2) {
         if (useShader) {
-            shaderSide(color, direction, x1, y1, z1, x2, y2, z2);
+            shaderSide(color, opacity, direction, x1, y1, z1, x2, y2, z2);
         } else {
             side(color, opacity, direction, x1, y1, z1, x2, y2, z2);
         }

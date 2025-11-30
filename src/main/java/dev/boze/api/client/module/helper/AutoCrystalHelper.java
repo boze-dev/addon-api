@@ -2,8 +2,18 @@ package dev.boze.api.client.module.helper;
 
 import dev.boze.api.internal.Instances;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.util.math.BlockPos;
 
 public class AutoCrystalHelper {
+
+    /**
+     * Gets the current position that AutoCrystal is placing at.
+     *
+     * @return The current place position, or null if no place
+     */
+    public static BlockPos getPos() {
+        return Instances.getAutoCrystal().getPos();
+    }
 
     /**
      * Gets the current target that AutoCrystal is attacking.

@@ -26,10 +26,10 @@ public final class FriendManager {
     }
 
     /**
-     * @param friend Friend to delete
+     * @param name Name of friend to delete
      */
-    public static void delFriend(String friend) {
-        Instances.getFriends().delFriend(friend);
+    public static void delFriend(String name) {
+        Instances.getFriends().delFriend(name);
     }
 
     /**

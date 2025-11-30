@@ -7,7 +7,7 @@ public interface IFriends {
 
     boolean addFriend(String name);
 
-    void delFriend(String friend);
+    void delFriend(String name);
 
     List<String> getFriends();
 }
