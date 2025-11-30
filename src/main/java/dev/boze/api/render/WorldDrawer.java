@@ -17,7 +17,7 @@ import net.minecraft.util.math.Box;
  * You can, of course, draw more than one box per start/draw call
  * <p></p>
  * See {@link dev.boze.api.event.EventShader} before using shader renders
- * <p></p
+ * <p></p>
  * Shader renders have their own fill/outline opacity, defined in Shader module.
  * Outline opacity is used as a scale factor for the shader fill/outline opacity.
  * This lets you change the opacity of individual shader renders
