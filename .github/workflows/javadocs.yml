@@ -22,7 +22,7 @@ jobs:
       - name: Generate Javadoc
         run: |
           chmod +x gradlew
-          ./gradlew javadoc
+          ./gradlew javadoc --no-daemon
 
       - name: Deploy via Rsync
         env:
