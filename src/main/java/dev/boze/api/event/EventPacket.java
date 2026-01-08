@@ -4,7 +4,7 @@ import net.minecraft.network.packet.Packet;
 
 /**
  * EventPacket
- * <p></p>
+ * <br>
  * Packet send/receive events
  */
 public abstract class EventPacket extends CancellableEvent {

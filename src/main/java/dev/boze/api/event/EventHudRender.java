@@ -4,7 +4,7 @@ import net.minecraft.client.gui.DrawContext;
 
 /**
  * Event called when the HUD is being rendered
- * <p></p>
+ * <br>
  * Used for 2D rendering
  */
 public class EventHudRender {

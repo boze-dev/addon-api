@@ -2,9 +2,9 @@ package dev.boze.api.event;
 
 /**
  * EventBind
- * <p></p>
+ * <br>
  * Event fired when a key or mouse button is pressed, repeated, or released
- * <p></p>
+ * <br>
  * This event allows addons to intercept and modify input binding behavior
  */
 public class EventBind extends CancellableEvent {
@@ -17,7 +17,7 @@ public class EventBind extends CancellableEvent {
 
     /**
      * The action that occurred
-     * <p></p>
+     * <br>
      * GLFW_RELEASE = 0 (The key or button was released)<br>
      * GLFW_PRESS = 1 (The key or button was pressed)<br>
      * GLFW_REPEAT = 2 (The key was held down until it repeated)

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 /**
  * Boze API Instance
- * <p></p>
+ * <br>
  * This class keeps track of all the addons registered
  * It also provides addons a way to register packages and subscribe to events
  */
@@ -111,7 +111,7 @@ public final class BozeInstance {
 
     /**
      * Post an event
-     * <p></p>
+     * <br>
      * Use this to post custom events
      *
      * @param event The event to post

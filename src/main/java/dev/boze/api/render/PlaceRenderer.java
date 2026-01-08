@@ -14,7 +14,7 @@ import java.util.Set;
 
 /**
  * PlaceRenderer handles rendering of block placement visualizations in the world.
- * <p></p>
+ * <br>
  * Manages a collection of placement records and renders them with optional animations.
  * Automatically handles shader preparation and world rendering events.
  */
@@ -151,7 +151,7 @@ public class PlaceRenderer {
 
     /**
      * Gets the correct render position for a block placement based on the hit result.
-     * <p></p>
+     * <br>
      * This method determines whether the placement was an air placement or a normal placement
      * and returns the appropriate position for rendering the placement visualization.
      *

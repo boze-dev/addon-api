@@ -2,7 +2,7 @@ package dev.boze.api.event;
 
 /**
  * EventPlayerUpdate
- * <p></p>
+ * <br>
  * Event called when the player updates, once a tick
  */
 public class EventPlayerUpdate {

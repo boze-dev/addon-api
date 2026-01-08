@@ -5,16 +5,16 @@ import dev.boze.api.option.ColorOption;
 
 /**
  * HUD rendering API for drawing 2D shapes on the screen
- * <p></p>
+ * <br>
  * Provides methods for rendering lines and quads in 2D screen space
- * <p></p>
+ * <br>
  * All drawing operations must be wrapped between {@link #start()} and {@link #draw()} calls
  */
 public class HudDrawer {
     
     /**
      * Starts a new HUD drawing session
-     * <p></p>
+     * <br>
      * Must be called before any drawing operations. Throws RuntimeException if already started
      */
     public static void start() {
@@ -23,7 +23,7 @@ public class HudDrawer {
 
     /**
      * Renders the current drawing session to the screen
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      */
     public static void draw() {
@@ -32,7 +32,7 @@ public class HudDrawer {
 
     /**
      * Renders a line
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use
@@ -48,7 +48,7 @@ public class HudDrawer {
 
     /**
      * Renders a quad/filled rectangle
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use
@@ -64,7 +64,7 @@ public class HudDrawer {
 
     /**
      * Renders a line using ColorOption.Value
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
@@ -80,7 +80,7 @@ public class HudDrawer {
 
     /**
      * Renders a quad/filled rectangle using ColorOption.Value
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings

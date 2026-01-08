@@ -8,10 +8,10 @@ import net.minecraft.world.GameMode;
 
 /**
  * EntityHelper provides entity utility methods.
- * <p></p>
+ * <br>
  * This class offers a comprehensive set of utilities for working with Minecraft entities,
  * including distance calculations, health checks, entity type validation, and status queries.
- * <p></p>
+ * <br>
  * All methods handle null entities gracefully and provide safe defaults.
  */
 public class EntityHelper {
@@ -20,7 +20,7 @@ public class EntityHelper {
 
     /**
      * Checks if an entity is within range of the player.
-     * <p></p>
+     * <br>
      * This method calculates the distance from the player to the specified entity
      * and returns true if the entity is within the given range.
      *
@@ -34,7 +34,7 @@ public class EntityHelper {
 
     /**
      * Checks if an entity is within range of another entity.
-     * <p></p>
+     * <br>
      * This method calculates the distance between the two entities
      * and returns true if the target entity is within the given range.
      *
@@ -49,7 +49,7 @@ public class EntityHelper {
 
     /**
      * Gets the distance between two entities.
-     * <p></p>
+     * <br>
      * Calculates the Euclidean distance between the positions of two entities.
      * Returns Double.MAX_VALUE if either entity is null.
      *
@@ -63,7 +63,7 @@ public class EntityHelper {
 
     /**
      * Gets the eye position of an entity.
-     * <p></p>
+     * <br>
      * Returns the position of the entity's eyes, which is typically used for
      * line-of-sight calculations and targeting. Returns Vec3d.ZERO if the entity is null.
      *
@@ -76,7 +76,7 @@ public class EntityHelper {
 
     /**
      * Checks if one entity can see another entity.
-     * <p></p>
+     * <br>
      * Performs a line-of-sight check between two entities by casting a ray
      * from the first entity's eyes to the second entity's eyes.
      * Returns false if either entity is null.
@@ -91,7 +91,7 @@ public class EntityHelper {
 
     /**
      * Gets the interpolated position of an entity for smooth rendering.
-     * <p></p>
+     * <br>
      * Calculates the interpolated position between the entity's previous position
      * and current position using the specified delta value. A delta of 0.0F returns
      * the previous frame position, while 1.0F returns the current position.
@@ -110,7 +110,7 @@ public class EntityHelper {
 
     /**
      * Gets the total health of an entity.
-     * <p></p>
+     * <br>
      * Returns the entity's current health plus any absorption amount.
      * For non-living entities, returns 0.0F.
      *
@@ -123,7 +123,7 @@ public class EntityHelper {
 
     /**
      * Gets the maximum health of an entity.
-     * <p></p>
+     * <br>
      * Returns the entity's maximum health capacity.
      * For non-living entities, returns 0.0F.
      *
@@ -136,7 +136,7 @@ public class EntityHelper {
 
     /**
      * Gets the total durability of all armor items worn by an entity.
-     * <p></p>
+     * <br>
      * Calculates the sum of remaining durability (max damage - current damage)
      * for all armor pieces (helmet, chestplate, leggings, boots).
      * Only counts humanoid armor slots, not horse armor.
@@ -151,7 +151,7 @@ public class EntityHelper {
 
     /**
      * Checks if an entity has a Totem of Undying in their offhand.
-     * <p></p>
+     * <br>
      * Returns true if the entity is holding a Totem of Undying in their offhand slot.
      * For non-living entities, returns false.
      *
@@ -164,7 +164,7 @@ public class EntityHelper {
 
     /**
      * Gets the ping (latency) of a player in milliseconds.
-     * <p></p>
+     * <br>
      * Retrieves the player's network latency from the tab list.
      * Returns 0 if the player is not found in the tab list.
      *
@@ -179,7 +179,7 @@ public class EntityHelper {
 
     /**
      * Checks if an entity is hostile.
-     * <p></p>
+     * <br>
      * Returns true if the entity belongs to the MONSTER spawn group
      * (e.g., zombies, skeletons, creepers, etc.).
      *
@@ -192,7 +192,7 @@ public class EntityHelper {
 
     /**
      * Checks if an entity is passive/animal.
-     * <p></p>
+     * <br>
      * Returns true if the entity belongs to passive spawn groups
      * (CREATURE, WATER_AMBIENT, WATER_CREATURE, UNDERGROUND_WATER_CREATURE, AXOLOTLS, AMBIENT)
      * or is a special case like villagers.
@@ -206,7 +206,7 @@ public class EntityHelper {
 
     /**
      * Checks if an entity is friended.
-     * <p></p>
+     * <br>
      * Returns true if the entity is a player that has been added to the friends list.
      * For non-player entities, always returns false.
      *
@@ -219,7 +219,7 @@ public class EntityHelper {
 
     /**
      * Checks if an entity is currently targeted.
-     * <p></p>
+     * <br>
      * Returns true if the entity is in the current target list,
      * meaning it has been attacked recently and is being tracked.
      *
@@ -232,7 +232,7 @@ public class EntityHelper {
 
     /**
      * Checks if an entity is in a hole (surrounded by blocks).
-     * <p></p>
+     * <br>
      * A hole is defined as being surrounded by solid blocks on all horizontal sides
      * and having a solid block below. When doubles is false, checks for single-layer holes only.
      * When doubles is true, checks for double-layer hole patterns.
@@ -247,7 +247,7 @@ public class EntityHelper {
 
     /**
      * Checks if an entity is burrowed (inside a block).
-     * <p></p>
+     * <br>
      * Returns true if the entity's position is inside a solid block
      * like obsidian, ender chests, or bedrock.
      *
@@ -262,7 +262,7 @@ public class EntityHelper {
 
     /**
      * Checks if an entity is alive.
-     * <p></p>
+     * <br>
      * Returns true if the entity exists and is not dead.
      * This is a safer check than just calling isAlive() on potentially null entities.
      *
@@ -275,7 +275,7 @@ public class EntityHelper {
 
     /**
      * Checks if an entity is invisible.
-     * <p></p>
+     * <br>
      * Returns true if the entity has the invisibility effect or is otherwise invisible.
      * For null entities, returns false.
      *
@@ -288,7 +288,7 @@ public class EntityHelper {
 
     /**
      * Checks if an entity is currently moving.
-     * <p></p>
+     * <br>
      * Determines movement by checking if the entity's position has changed
      * significantly (> 0.001 blocks) from its previous position.
      * For null entities, returns false.
@@ -302,7 +302,7 @@ public class EntityHelper {
 
     /**
      * Gets the game mode of a player.
-     * <p></p>
+     * <br>
      * Retrieves the player's current game mode from the tab list.
      * Returns null if the player is not found in the tab list or
      * if the player list hasn't loaded yet.

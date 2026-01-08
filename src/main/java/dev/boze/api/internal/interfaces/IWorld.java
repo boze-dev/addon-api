@@ -7,7 +7,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 public interface IWorld {
-    boolean isHole(BlockPos pos);
 
     boolean isHole(BlockPos pos, boolean doubles);
 
@@ -22,6 +21,8 @@ public interface IWorld {
     BlockPos findUnsafeDoubleHole(BlockPos pos);
 
     boolean isAir(BlockPos pos);
+
+    boolean isClear(BlockPos pos, int height);
 
     boolean isReplaceable(BlockPos pos);
 

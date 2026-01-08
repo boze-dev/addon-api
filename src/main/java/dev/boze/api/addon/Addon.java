@@ -12,11 +12,11 @@ import com.google.gson.JsonObject;
 
 /**
  * Base class for all Boze addons
- * <p></p>
+ * <br>
  * An addon is a self-contained extension that can add new functionality to Boze
- * <p></p>
+ * <br>
  * Each addon has a unique identifier, name, description, and version
- * <p></p>
+ * <br>
  * Addons can contain multiple modules and commands, which are managed through the addon's dispatcher
  */
 public abstract class Addon implements Serializable<Addon> {
@@ -86,7 +86,7 @@ public abstract class Addon implements Serializable<Addon> {
 
     /**
      * Initializes this addon
-     * <p></p>
+     * <br>
      * Register your modules, extensions, and commands here
      *
      * @return true if initialization was successful, false otherwise
@@ -95,7 +95,7 @@ public abstract class Addon implements Serializable<Addon> {
 
     /**
      * Loads the addon config
-     * <p></p>
+     * <br>
      * This is called when the client config is loaded.
      */
     public void load() {
@@ -104,7 +104,7 @@ public abstract class Addon implements Serializable<Addon> {
 
     /**
      * Called after {@link #load()} once all addons have been created.
-     * <p></p>
+     * <br>
      * Addons may override this to perform post-load initialization that relies on config data.
      */
     public void postInitialize() {
@@ -112,7 +112,7 @@ public abstract class Addon implements Serializable<Addon> {
 
     /**
      * Shuts down this addon
-     * <p></p>
+     * <br>
      * This is called when the addon is unloaded. The default implementation saves the addon's
      * configuration to disk.
      */
@@ -122,7 +122,7 @@ public abstract class Addon implements Serializable<Addon> {
 
     /**
      * Gets the addon's directory
-     * <p></p>
+     * <br>
      * Creates the directory if it doesn't exist
      *
      * @return The addon's directory

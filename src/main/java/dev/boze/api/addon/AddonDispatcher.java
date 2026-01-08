@@ -11,11 +11,11 @@ import java.util.List;
 
 /**
  * Container class for addon command dispatching
- * <p></p>
+ * <br>
  * Each addon has its own dispatcher that manages its commands
- * <p></p>
+ * <br>
  * The dispatcher handles command registration, execution, and provides access to all registered commands
- * <p></p>
+ * <br>
  * All addons must use this to register and handle commands
  */
 public class AddonDispatcher {
@@ -32,7 +32,7 @@ public class AddonDispatcher {
 
     /**
      * Gets the underlying command dispatcher
-     * <p></p>
+     * <br>
      * This can be used for advanced command handling
      *
      * @return The command dispatcher
@@ -43,7 +43,7 @@ public class AddonDispatcher {
 
     /**
      * Dispatches a command using the default client command source
-     * <p></p>
+     * <br>
      * This is the most common way to execute commands
      *
      * @param command The command to dispatch
@@ -55,7 +55,7 @@ public class AddonDispatcher {
 
     /**
      * Dispatches a command with a specific command source
-     * <p></p>
+     * <br>
      * This allows for custom command execution contexts
      *
      * @param command The command to dispatch
@@ -68,7 +68,7 @@ public class AddonDispatcher {
 
     /**
      * Registers a single command
-     * <p></p>
+     * <br>
      * The command will be added to the list of commands and registered with the dispatcher
      *
      * @param command The command to register
@@ -80,7 +80,7 @@ public class AddonDispatcher {
 
     /**
      * Registers multiple commands at once
-     * <p></p>
+     * <br>
      * Each command will be added to the list of commands and registered with the dispatcher
      *
      * @param commands The commands to register
@@ -93,7 +93,7 @@ public class AddonDispatcher {
 
     /**
      * Gets all registered commands
-     * <p></p>
+     * <br>
      * This can be used to get information about available commands
      *
      * @return List of all registered commands

@@ -4,7 +4,7 @@ import dev.boze.api.internal.Instances;
 
 /**
  * Capes manager
- * <p></p>
+ * <br>
  * Used to add and remove external cape sources
  */
 public final class CapesManager {

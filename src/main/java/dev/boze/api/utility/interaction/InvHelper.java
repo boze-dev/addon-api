@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 
 /**
  * InvHelper provides utilities for finding items in the player's inventory
- * <p></p>
+ * <br>
  * <strong>WARNING:</strong> Always swap back after swapping with silent/alt mode
  */
 public class InvHelper {

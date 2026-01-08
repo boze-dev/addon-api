@@ -8,9 +8,9 @@ import java.util.function.BooleanSupplier;
 
 /**
  * An option for keyboard/mouse bindings
- * <p></p>
+ * <br>
  * BindOption provides a way to store and modify key or mouse button bindings
- * <p></p>
+ * <br>
  * Can be bound to either a keyboard key or mouse button
  */
 public class BindOption extends Option<Bind> {

@@ -6,7 +6,7 @@ import net.minecraft.util.math.Vec3d;
 
 /**
  * Billboard rendering API for displaying 2D HUD elements at 3D world positions
- * <p></p>
+ * <br>
  * Provides methods to render 2D graphics (lines, quads, text) that always face the camera
  * at specified 3D world positions. Use with HudDrawer and TextDrawer for rendering content.
  */
@@ -14,13 +14,13 @@ public class Billboard {
 
     /**
      * Starts billboard rendering at a 3D world position with distance-based scaling
-     * <p></p>
+     * <br>
      * The scale factor is calculated based on distance from camera using:
      * scale = clamp(1.0 / distance, minScale, maxScale) * factor * 3.0
-     * <p></p>
+     * <br>
      * This mode scales elements based on their distance from the camera,
      * making closer elements appear larger and farther elements appear smaller.
-     * <p></p>
+     * <br>
      * Returns false if the position is not visible on screen
      *
      * @param worldPosition The 3D world position to render at
@@ -36,13 +36,13 @@ public class Billboard {
 
     /**
      * Starts billboard rendering at a 3D world position with constant scaling
-     * <p></p>
+     * <br>
      * The scale factor is constant regardless of distance from camera using:
      * scale = clamp(1 - distance * 0.01, 0.5, MAX_VALUE) * scale
-     * <p></p>
+     * <br>
      * This mode maintains consistent element sizes regardless of distance,
      * with a slight fade-out effect for very distant elements.
-     * <p></p>
+     * <br>
      * Returns false if the position is not visible on screen
      *
      * @param worldPosition The 3D world position to render at
@@ -56,7 +56,7 @@ public class Billboard {
 
     /**
      * Ends billboard rendering and restores matrix state
-     * <p></p>
+     * <br>
      * Must be called after start() to clean up rendering state
      *
      * @param drawContext The draw context to restore matrix state for

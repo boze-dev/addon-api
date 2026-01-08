@@ -7,13 +7,13 @@ import net.minecraft.util.math.Vec3d;
 
 /**
  * EventRotate
- * <p></p>
+ * <br>
  * Event fired when the client is about to rotate the player.
  * This event allows addons to modify rotation values.
- * <p></p>
+ * <br>
  * <strong>WARNING:</strong> If another feature already rotated, changing {@link #yaw} or {@link #pitch}
  * will likely break that feature.
- * <p></p>
+ * <br>
  * To remain safe, only modify rotation values when {@link #isFree()} returns true.
  */
 public class EventRotate extends CancellableEvent {

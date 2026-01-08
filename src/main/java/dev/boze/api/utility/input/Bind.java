@@ -2,9 +2,9 @@ package dev.boze.api.utility.input;
 
 /**
  * Represents a keyboard or mouse button binding
- * <p></p>
+ * <br>
  * A bind can be either a keyboard key or a mouse button, identified by its GLFW code
- * <p></p>
+ * <br>
  * This class is used throughout Boze to handle input bindings for modules and other features
  */
 public class Bind {
@@ -15,9 +15,9 @@ public class Bind {
 
     /**
      * The GLFW code for this bind
-     * <p></p>
+     * <br>
      * For keyboard keys, this is a GLFW_KEY_* constant
-     * <p></p>
+     * <br>
      * For mouse buttons, this is a GLFW_MOUSE_BUTTON_* constant
      */
     private int bind;
@@ -35,9 +35,9 @@ public class Bind {
 
     /**
      * Gets the GLFW code for this bind
-     * <p></p>
+     * <br>
      * For keyboard keys, this returns a GLFW_KEY_* constant
-     * <p></p>
+     * <br>
      * For mouse buttons, this returns a GLFW_MOUSE_BUTTON_* constant
      *
      * @return The GLFW code for this bind

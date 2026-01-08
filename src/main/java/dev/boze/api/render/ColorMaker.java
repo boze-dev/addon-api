@@ -5,9 +5,9 @@ import dev.boze.api.internal.interfaces.IColors;
 
 /**
  * Helper class to initialize colors, and register colors in the user's colors
- * <p></p>
+ * <br>
  * Use the name-less methods when you need a default color for an option.
- * <p></p>
+ * <br>
  * Use the name-full methods when you want to register a color in the user's colors
  */
 public final class ColorMaker {
@@ -27,7 +27,7 @@ public final class ColorMaker {
 
     /**
      * Creates a static color.
-     * <p></p>
+     * <br>
      * Pass the registry name you intend to register with {@link #register(String, ClientColor)}. For setting defaults,
      * use {@link #staticColor(int, int, int)} which automatically uses {@code _default}.
      */
@@ -58,7 +58,7 @@ public final class ColorMaker {
 
     /**
      * Creates a changing color bound to a named entry.
-     * <p></p>
+     * <br>
      * Pass the registry name you intend to register with {@link #register(String, ClientColor)}. For setting defaults,
      * use {@link #changingColor(boolean, boolean, float, int...)} which automatically uses {@code _default}.
      */
@@ -103,7 +103,7 @@ public final class ColorMaker {
 
     /**
      * Creates a gradient color.
-     * <p></p>
+     * <br>
      * Gradient defaults require a unique identifier. Use a name that starts with {@code _default_}
      * followed by a suffix of your choosing (for example {@code _default_exampleGradient}).
      * There is no name-less overload because gradients require unique names.
@@ -128,11 +128,11 @@ public final class ColorMaker {
 
     /**
      * Registers the provided color under the supplied name so it appears inside the user color list.
-     * <p></p>
+     * <br>
      * Existing colors using the same name are replaced. Use this after creating a color with a name when you
      * want users to edit it inside the color manager. Option defaults created through the name-less helpers should not
      * be registered.
-     * <p></p>
+     * <br>
      * This shouldn't be spammed.
      */
     public static ClientColor register(String name, ClientColor color) {

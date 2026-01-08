@@ -20,11 +20,11 @@ import java.util.stream.Collectors;
 
 /**
  * Base interface for all modules
- * <p></p>
+ * <br>
  * A module is a self-contained piece of functionality that can be enabled or disabled
- * <p></p>
+ * <br>
  * Each module has a name, description, title (which can be changed), and a keybind
- * <p></p>
+ * <br>
  * Modules can have settings which are automatically serialized and deserialized
  */
 public interface BaseModule {
@@ -45,9 +45,9 @@ public interface BaseModule {
 
     /**
      * Modify the description of the module
-     * <p></p>
+     * <br>
      * This resets when you re-launch
-     * <p></p>
+     * <br>
      * Supports newline escape sequence
      *
      * @param description Description to set
@@ -77,7 +77,7 @@ public interface BaseModule {
 
     /**
      * Sets whether this module is enabled
-     * <p></p>
+     * <br>
      * This will call onEnable() or onDisable() as appropriate
      *
      * @param newState The new state
@@ -87,20 +87,20 @@ public interface BaseModule {
 
     /**
      * Called when this module is enabled
-     * <p></p>
+     * <br>
      * For many client modules, sets initial state
-     * <p></p>
+     * <br>
      * Call instead of setState to not affect the state
      */
     void onEnable();
 
     /**
      * Called when this module is disabled
-     * <p></p>
+     * <br>
      * For many client modules, clears data
-     * <p></p>
+     * <br>
      * In some, restores changes, i.e. Timer
-     * <p></p>
+     * <br>
      * Call instead of setState to not affect the state
      */
     void onDisable();

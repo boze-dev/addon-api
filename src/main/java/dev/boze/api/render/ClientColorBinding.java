@@ -2,7 +2,7 @@ package dev.boze.api.render;
 
 /**
  * Binding between a client color and a consumer.
- * <p></p>
+ * <br>
  * Implementations are notified when the underlying color becomes unavailable
  * (for example, if it is removed from the global color store).
  */

@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 /**
  * EventShader
- * <p></p>
+ * <br>
  * Fired before shader preparation each frame
  */
 public class EventShader {
@@ -23,9 +23,9 @@ public class EventShader {
 
     /**
      * Prepare a color for shader rendering
-     * <p></p>
+     * <br>
      * You must call this each frame you use the color for shader renders
-     * <p></p>
+     * <br>
      * The shader may not render properly if this isn't called
      *
      * @param color Color to prepare

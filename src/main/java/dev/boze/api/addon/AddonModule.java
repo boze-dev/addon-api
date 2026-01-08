@@ -14,11 +14,11 @@ import java.util.List;
 
 /**
  * Base class for all addon modules
- * <p></p>
+ * <br>
  * A module is a self-contained piece of functionality that can be enabled or disabled
- * <p></p>
+ * <br>
  * Each module has a name, description, title (which can be changed), and a keybind
- * <p></p>
+ * <br>
  * Modules can have settings which are automatically serialized and deserialized
  */
 public abstract class AddonModule implements Serializable<AddonModule>, BaseModule {
@@ -126,9 +126,9 @@ public abstract class AddonModule implements Serializable<AddonModule>, BaseModu
 
     /**
      * Modify the description of the module
-     * <p></p>
+     * <br>
      * This resets when you re-launch
-     * <p></p>
+     * <br>
      * Supports newline escape sequence
      *
      * @param description Description to set
@@ -150,7 +150,7 @@ public abstract class AddonModule implements Serializable<AddonModule>, BaseModu
 
     /**
      * Sets whether this module is enabled
-     * <p></p>
+     * <br>
      * This will call onEnable() or onDisable() as appropriate
      *
      * @param newState The new state
@@ -176,7 +176,7 @@ public abstract class AddonModule implements Serializable<AddonModule>, BaseModu
 
     /**
      * Called when this module is enabled
-     * <p></p>
+     * <br>
      * Override this to add custom enable behavior
      */
     @Override
@@ -185,7 +185,7 @@ public abstract class AddonModule implements Serializable<AddonModule>, BaseModu
 
     /**
      * Called when this module is disabled
-     * <p></p>
+     * <br>
      * Override this to add custom disable behavior
      */
     @Override

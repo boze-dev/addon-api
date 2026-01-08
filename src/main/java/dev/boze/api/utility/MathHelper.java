@@ -7,7 +7,7 @@ import net.minecraft.util.math.Vec3d;
 
 /**
  * MathHelper provides comprehensive mathematical utilities.
- * <p></p>
+ * <br>
  * This class consolidates useful mathematical operations,
  * including rotation calculations, vector operations, interpolation, and collision math.
  * All methods are optimized for performance and handle edge cases gracefully.
@@ -20,7 +20,7 @@ public class MathHelper {
 
     /**
      * Calculates the yaw and pitch rotation needed to face a target position.
-     * <p></p>
+     * <br>
      * Returns yaw and pitch angles in degrees required to point from eyes position
      * to target position. Yaw is normalized to -180 to 180 range.
      *
@@ -33,7 +33,7 @@ public class MathHelper {
 
     /**
      * Calculates the yaw and pitch rotation needed to face a target position.
-     * <p></p>
+     * <br>
      * Returns yaw and pitch angles in degrees required to point from eyes position
      * to target position. Yaw is normalized to -180 to 180 range.
      *
@@ -47,7 +47,7 @@ public class MathHelper {
 
     /**
      * Calculates the yaw and pitch rotation needed to face a target position, or returns empty rotation.
-     * <p></p>
+     * <br>
      * Returns yaw and pitch angles in degrees required to point from eyes position
      * to target position if rotate is true. Returns EMPTY_ROTATION if rotate is false.
      * Yaw is normalized to -180 to 180 range.
@@ -62,7 +62,7 @@ public class MathHelper {
 
     /**
      * Calculates the yaw and pitch rotation needed to face a target position, or returns empty rotation.
-     * <p></p>
+     * <br>
      * Returns yaw and pitch angles in degrees required to point from eyes position
      * to target position if rotate is true. Returns EMPTY_ROTATION if rotate is false.
      * Yaw is normalized to -180 to 180 range.
@@ -78,7 +78,7 @@ public class MathHelper {
 
     /**
      * Converts yaw and pitch angles to a normalized direction vector.
-     * <p></p>
+     * <br>
      * Creates a unit vector pointing in the direction specified by the yaw and pitch angles.
      *
      * @param yaw Yaw angle in degrees
@@ -91,7 +91,7 @@ public class MathHelper {
 
     /**
      * Normalizes an angle to the range -180 to 180 degrees.
-     * <p></p>
+     * <br>
      * Ensures angle values stay within the standard Minecraft rotation range.
      *
      * @param angle Angle in degrees
@@ -103,7 +103,7 @@ public class MathHelper {
 
     /**
      * Converts yaw angle and speed to a movement vector.
-     * <p></p>
+     * <br>
      * Calculates the X and Z components of movement based on yaw direction and speed.
      * This is commonly used for directional movement in speed/packetfly modules.
      *
@@ -117,7 +117,7 @@ public class MathHelper {
 
     /**
      * Calculates directional speed from player input.
-     * <p></p>
+     * <br>
      * Takes the player's current input (WASD keys) and converts it to a movement vector
      * based on the player's facing direction.
      *
@@ -132,7 +132,7 @@ public class MathHelper {
 
     /**
      * Linear interpolation between two double values.
-     * <p></p>
+     * <br>
      * @param delta Interpolation factor (0.0 = start, 1.0 = end)
      * @param start Starting value
      * @param end Ending value
@@ -144,7 +144,7 @@ public class MathHelper {
 
     /**
      * Linear interpolation between two float values.
-     * <p></p>
+     * <br>
      * @param delta Interpolation factor (0.0 = start, 1.0 = end)
      * @param start Starting value
      * @param end Ending value
@@ -156,7 +156,7 @@ public class MathHelper {
 
     /**
      * Linear interpolation between two vectors.
-     * <p></p>
+     * <br>
      * @param delta Interpolation factor (0.0 = start, 1.0 = end)
      * @param start Starting vector
      * @param end Ending vector
@@ -168,7 +168,7 @@ public class MathHelper {
 
     /**
      * Gradually brings a value closer to a goal by a specified increment.
-     * <p></p>
+     * <br>
      * This is useful for smooth transitions and animations where you want
      * to approach a target value incrementally.
      *
@@ -185,7 +185,7 @@ public class MathHelper {
 
     /**
      * Clamps a double value to a specified range.
-     * <p></p>
+     * <br>
      * @param value Value to clamp
      * @param min Minimum allowed value
      * @param max Maximum allowed value
@@ -197,7 +197,7 @@ public class MathHelper {
 
     /**
      * Clamps an integer value to a specified range.
-     * <p></p>
+     * <br>
      * @param value Value to clamp
      * @param min Minimum allowed value
      * @param max Maximum allowed value
@@ -209,7 +209,7 @@ public class MathHelper {
 
     /**
      * Clamps a point to stay within a box's boundaries.
-     * <p></p>
+     * <br>
      * @param point Point to clamp
      * @param box Bounding box
      * @return Point clamped to box boundaries
@@ -220,7 +220,7 @@ public class MathHelper {
 
     /**
      * Finds the closest point on a box's surface to a given point.
-     * <p></p>
+     * <br>
      * @param point Reference point
      * @param box Target box
      * @return Closest point on the box surface
@@ -233,7 +233,7 @@ public class MathHelper {
 
     /**
      * Normalizes a vector to unit length.
-     * <p></p>
+     * <br>
      * @param vector Vector to normalize
      * @return Normalized vector, or zero vector if input is zero-length
      */
@@ -243,7 +243,7 @@ public class MathHelper {
 
     /**
      * Calculates the dot product of two vectors.
-     * <p></p>
+     * <br>
      * @param a First vector
      * @param b Second vector
      * @return Dot product result
@@ -254,7 +254,7 @@ public class MathHelper {
 
     /**
      * Calculates the cross product of two vectors.
-     * <p></p>
+     * <br>
      * @param a First vector
      * @param b Second vector
      * @return Cross product result vector
@@ -265,7 +265,7 @@ public class MathHelper {
 
     /**
      * Calculates the distance between two points.
-     * <p></p>
+     * <br>
      * @param a First point
      * @param b Second point
      * @return Euclidean distance
@@ -278,7 +278,7 @@ public class MathHelper {
 
     /**
      * Converts degrees to radians.
-     * <p></p>
+     * <br>
      * @param degrees Angle in degrees
      * @return Angle in radians
      */
@@ -288,7 +288,7 @@ public class MathHelper {
 
     /**
      * Converts radians to degrees.
-     * <p></p>
+     * <br>
      * @param radians Angle in radians
      * @return Angle in degrees
      */
@@ -298,7 +298,7 @@ public class MathHelper {
 
     /**
      * Calculates the smallest angle difference between two angles.
-     * <p></p>
+     * <br>
      * Returns a value between -180 and 180 degrees representing the
      * shortest rotation needed to go from angle1 to angle2.
      *
@@ -314,7 +314,7 @@ public class MathHelper {
 
     /**
      * Finds the closest point on a box's surface to a given point.
-     * <p></p>
+     * <br>
      * @param box Target box
      * @param point Reference point
      * @return Closest point on the box surface
@@ -325,7 +325,7 @@ public class MathHelper {
 
     /**
      * Calculates the optimal aim point for a box.
-     * <p></p>
+     * <br>
      * Finds the best point to aim at on a box, considering the player's
      * current position and line of sight.
      *
@@ -338,7 +338,7 @@ public class MathHelper {
 
     /**
      * Checks if a point is inside a box.
-     * <p></p>
+     * <br>
      * @param point Point to test
      * @param box Box to test against
      * @return true if point is inside the box
@@ -351,7 +351,7 @@ public class MathHelper {
 
     /**
      * Fast sine calculation optimized for x86 processors.
-     * <p></p>
+     * <br>
      * Uses angle reduction to keep values within the safe range for
      * better performance and precision on x86 architecture.
      *
@@ -364,7 +364,7 @@ public class MathHelper {
 
     /**
      * Fast cosine calculation optimized for x86 processors.
-     * <p></p>
+     * <br>
      * Uses angle reduction to keep values within the safe range for
      * better performance and precision on x86 architecture.
      *

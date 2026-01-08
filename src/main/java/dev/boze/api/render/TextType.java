@@ -2,7 +2,7 @@ package dev.boze.api.render;
 
 /**
  * Text rendering type
- * <p></p>
+ * <br>
  * Defines different contexts for text rendering with appropriate font settings
  */
 public enum TextType {

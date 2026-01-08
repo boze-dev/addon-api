@@ -11,7 +11,7 @@ import java.util.function.BooleanSupplier;
 
 /**
  * An option for selecting and configuring colors
- * <p></p>
+ * <br>
  * ColorOption provides a way to store and modify color values with associated opacity settings
  */
 public class ColorOption extends Option<ColorOption.Value> implements ClientColorBinding {

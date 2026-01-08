@@ -10,10 +10,11 @@ import net.minecraft.util.math.Vec3d;
 
 /**
  * WorldHelper provides world and block-related utilities.
- * <p></p>
+ * <p>
  * This class offers comprehensive utilities for interacting with the Minecraft world,
  * including hole detection, block state queries, placement validation, and mining operations.
  * All methods handle null positions and world safety appropriately.
+ * </p>
  */
 public class WorldHelper {
 
@@ -21,22 +22,24 @@ public class WorldHelper {
 
     /**
      * Checks if a position is a hole.
-     * <p></p>
+     * <p>
      * A hole is surrounded by solid blocks on all horizontal sides and below,
      * with air blocks at the hole position and above it.
+     * </p>
+     *
      *
      * @param pos The position to check
      * @return true if the position is a hole
      */
     public static boolean isHole(BlockPos pos) {
-        return Instances.getWorld().isHole(pos);
+        return Instances.getWorld().isHole(pos, false);
     }
 
     /**
-     * Checks if a position is a hole, with option for double holes.
-     * <p></p>
+     * Checks if a position is a hole, with support for double holes.
+     *
      * @param pos The position to check
-     * @param doubles Whether to check for double holes
+     * @param doubles Whether to include checks for 2x1 double holes
      * @return true if the position is a hole
      */
     public static boolean isHole(BlockPos pos, boolean doubles) {
@@ -44,54 +47,58 @@ public class WorldHelper {
     }
 
     /**
-     * Checks if a position is a safe (bedrock) hole.
-     * <p></p>
-     * A safe hole is surrounded by bedrock blocks on all sides.
-     * This provides maximum protection from crystal damage.
+     * Checks if a position is a safe hole.
+     * <p>
+     * A safe hole is surrounded by <b>unbreakable blocks</b> (e.g., Bedrock, End Portal Frames)
+     * on all relevant sides. This provides maximum protection from crystal damage as the
+     * walls cannot be broken or exploded.
+     * </p>
+     *
      *
      * @param pos The position to check
-     * @return true if the position is a safe bedrock hole
+     * @return true if the position is a safe hole
      */
     public static boolean isSafeHole(BlockPos pos) {
         return Instances.getWorld().isSafeHole(pos, false);
     }
 
     /**
-     * Checks if a position is an unsafe (obsidian) hole.
-     * <p></p>
-     * An unsafe hole is surrounded by obsidian/crying obsidian blocks.
-     * This provides less protection than bedrock but is still commonly used.
+     * Checks if a position is a safe hole, with support for double holes.
+     * <p>
+     * A safe hole is surrounded by <b>unbreakable blocks</b> on all sides.
+     * </p>
      *
      * @param pos The position to check
-     * @return true if the position is an unsafe obsidian hole
-     */
-    public static boolean isUnsafeHole(BlockPos pos) {
-        return Instances.getWorld().isUnsafeHole(pos, false);
-    }
-
-    /**
-     * Checks if a position is a safe (bedrock) hole, with option for double holes.
-     * <p></p>
-     * A safe hole is surrounded by bedrock blocks on all sides.
-     * When doubles is true, checks for 3-block-high holes instead of 2-block-high.
-     *
-     * @param pos The position to check
-     * @param doubles Whether to check for double holes
-     * @return true if the position is a safe bedrock hole
+     * @param doubles Whether to include checks for 2x1 double holes
+     * @return true if the position is a safe hole
      */
     public static boolean isSafeHole(BlockPos pos, boolean doubles) {
         return Instances.getWorld().isSafeHole(pos, doubles);
     }
 
     /**
-     * Checks if a position is an unsafe (obsidian) hole, with option for double holes.
-     * <p></p>
-     * An unsafe hole is surrounded by obsidian/crying obsidian blocks.
-     * When doubles is true, checks for 3-block-high holes instead of 2-block-high.
+     * Checks if a position is an unsafe hole.
+     * <p>
+     * An unsafe hole is surrounded by blast-resistant blocks (like Obsidian) that can eventually be broken.
+     * This provides blast protection but is less secure than a safe hole.
+     * </p>
      *
      * @param pos The position to check
-     * @param doubles Whether to check for double holes
-     * @return true if the position is an unsafe obsidian hole
+     * @return true if the position is an unsafe hole
+     */
+    public static boolean isUnsafeHole(BlockPos pos) {
+        return Instances.getWorld().isUnsafeHole(pos, false);
+    }
+
+    /**
+     * Checks if a position is an unsafe hole, with support for double holes.
+     * <p>
+     * An unsafe hole is surrounded by blast-resistant blocks (like Obsidian).
+     * </p>
+     *
+     * @param pos The position to check
+     * @param doubles Whether to include checks for 2x1 double holes
+     * @return true if the position is an unsafe hole
      */
     public static boolean isUnsafeHole(BlockPos pos, boolean doubles) {
         return Instances.getWorld().isUnsafeHole(pos, doubles);
@@ -99,9 +106,11 @@ public class WorldHelper {
 
     /**
      * Finds a connected double hole adjacent to the given position.
-     * <p></p>
+     * <p>
      * Searches west, east, north, and south positions for a connected hole
      * that forms a double hole pattern with the given position.
+     * </p>
+     *
      *
      * @param pos The reference position
      * @return The position of the connected hole, or null if none found
@@ -112,9 +121,9 @@ public class WorldHelper {
 
     /**
      * Finds a connected safe double hole adjacent to the given position.
-     * <p></p>
-     * Searches adjacent positions (west, east, north, south) for a safe hole
-     * that forms a double hole pattern with the reference position.
+     * <p>
+     * Requires the entire perimeter to be composed of <b>unbreakable blocks</b>.
+     * </p>
      *
      * @param pos The reference position
      * @return The position of the connected safe hole, or null if none found
@@ -125,9 +134,9 @@ public class WorldHelper {
 
     /**
      * Finds a connected unsafe double hole adjacent to the given position.
-     * <p></p>
-     * Searches adjacent positions (west, east, north, south) for an unsafe hole
-     * that forms a double hole pattern with the reference position.
+     * <p>
+     * Requires the entire perimeter to be composed of blast-resistant blocks.
+     * </p>
      *
      * @param pos The reference position
      * @return The position of the connected unsafe hole, or null if none found
@@ -149,6 +158,20 @@ public class WorldHelper {
     }
 
     /**
+     * Checks if a position and the vertical space above it are composed entirely of Air.
+     * <p>
+     * This checks the block at {@code pos} and the blocks above it up to {@code height}.
+     * </p>
+     *
+     * @param pos    The base position (floor level of the column).
+     * @param height The total height of the column to check.
+     * @return true if the block at {@code pos} and the blocks above it are Air.
+     */
+    public static boolean isClear(BlockPos pos, int height) {
+        return Instances.getWorld().isClear(pos, height);
+    }
+
+    /**
      * Checks if a block can be replaced (is air or fluid).
      *
      * @param pos The position to check
@@ -159,7 +182,7 @@ public class WorldHelper {
     }
 
     /**
-     * Checks if a block blocks movement (solid blocks).
+     * Checks if a block blocks movement (has a collision box).
      *
      * @param pos The position to check
      * @return true if the block blocks movement
@@ -200,9 +223,10 @@ public class WorldHelper {
 
     /**
      * Gets the blast resistance of a block.
-     * <p></p>
+     * <p>
      * Higher values indicate more explosion-resistant blocks.
-     * Bedrock has resistance 3600000.0F, obsidian has 1200.0F.
+     * Bedrock has resistance 3,600,000.0F, obsidian has 1,200.0F.
+     * </p>
      *
      * @param pos The position to check
      * @return The blast resistance value
@@ -215,8 +239,9 @@ public class WorldHelper {
 
     /**
      * Checks if a block is unbreakable.
-     * <p></p>
+     * <p>
      * Unbreakable blocks include bedrock, command blocks, barriers, etc.
+     * </p>
      *
      * @param pos The position to check
      * @return true if the block cannot be broken
@@ -227,8 +252,9 @@ public class WorldHelper {
 
     /**
      * Checks if a block can be broken.
-     * <p></p>
+     * <p>
      * Takes into account block hardness and game rules.
+     * </p>
      *
      * @param pos The position to check
      * @return true if the block can be broken
@@ -239,8 +265,9 @@ public class WorldHelper {
 
     /**
      * Checks if a block can be placed at the given position.
-     * <p></p>
+     * <p>
      * Takes into account block state and surrounding blocks.
+     * </p>
      *
      * @param pos The position to check for placement
      * @return true if a block can be placed at this position
@@ -251,8 +278,9 @@ public class WorldHelper {
 
     /**
      * Checks if a specific block can be placed at the given position.
-     * <p></p>
+     * <p>
      * Validates that the block placement follows Minecraft's placement rules.
+     * </p>
      *
      * @param pos The position to check
      * @param block The block to place
@@ -307,8 +335,9 @@ public class WorldHelper {
 
     /**
      * Checks if a block can be mined.
-     * <p></p>
+     * <p>
      * Takes into account block hardness, tools available, and game rules.
+     * </p>
      *
      * @param pos The position to check
      * @return true if the block can be mined
@@ -319,8 +348,9 @@ public class WorldHelper {
 
     /**
      * Gets the hardness of a block.
-     * <p></p>
+     * <p>
      * Hardness determines how long it takes to break the block.
+     * </p>
      *
      * @param pos The position to check
      * @return The block hardness value
@@ -330,7 +360,7 @@ public class WorldHelper {
     }
 
     /**
-     * Checks if a block is currently being mined.
+     * Checks if a block is currently being mined by the mining system.
      *
      * @param pos The position to check
      * @return true if the block is being broken
@@ -343,7 +373,7 @@ public class WorldHelper {
      * Checks if a block is currently being mined, with option for predicted mining.
      *
      * @param pos The position to check
-     * @param predicted Whether to include predicted mining data
+     * @param predicted Whether to include predicted mining data (client-side packets)
      * @return true if the block is being broken
      */
     public static boolean isBeingMined(BlockPos pos, boolean predicted) {
@@ -396,9 +426,10 @@ public class WorldHelper {
 
     /**
      * Finds a visible point on a block's surface from the given eye position.
-     * <p></p>
+     * <p>
      * Calculates the closest visible point on the block's surface
      * that would be visible from the eye position.
+     * </p>
      *
      * @param pos The block position
      * @param eyePos The eye position to check visibility from

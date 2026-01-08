@@ -4,7 +4,7 @@ import dev.boze.api.client.module.BaseModule;
 
 /**
  * EventModuleToggle
- * <p></p>
+ * <br>
  * Event fired when a module is toggled on or off
  */
 public class EventModuleToggle {
