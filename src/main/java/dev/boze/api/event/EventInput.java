@@ -2,9 +2,9 @@ package dev.boze.api.event;
 
 /**
  * EventInput
- * <p></p>
+ * <br>
  * Event called once a tick
- * <p></p>
+ * <br>
  * Use this event to modify player movement input
  */
 public class EventInput {

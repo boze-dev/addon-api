@@ -8,9 +8,9 @@ import java.util.function.BooleanSupplier;
 
 /**
  * A numeric option that can be adjusted using a slider
- * <p></p>
+ * <br>
  * SliderOption provides a way to store and modify numeric values within a specified range
- * <p></p>
+ * <br>
  * The value is always clamped between min and max, and can only be set in increments of step
  */
 public class SliderOption extends Option<Double> {

@@ -136,7 +136,7 @@ public class PlaceHelper {
 
     /**
      * Check if a position is free from non-replaceable blocks, entities, and pending placements
-     * <p></p>
+     * <br>
      * It's recommended to check this before casting
      *
      * @param pos The block pos to check

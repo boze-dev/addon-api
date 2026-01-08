@@ -8,10 +8,10 @@ import java.util.List;
 
 /**
  * EventInteract
- * <p></p>
+ * <br>
  * Event fired when the client is fetching interactions.
  * This event allows addons to add custom interactions that may require rotation.
- * <p></p>
+ * <br>
  * Interactions added to this event will be executed by the client
  */
 public class EventInteract {

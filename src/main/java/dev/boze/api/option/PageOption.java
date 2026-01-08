@@ -5,9 +5,9 @@ import dev.boze.api.client.module.BaseModule;
 
 /**
  * A page option that serves as a container for organizing options into pages
- * <p></p>
+ * <br>
  * PageOption extends ParentOption and provides page-based navigation
- * <p></p>
+ * <br>
  * When a page is selected, only options belonging to that page are shown
  */
 public class PageOption extends ParentOption {

@@ -2,7 +2,7 @@ package dev.boze.api.event;
 
 /**
  * Base class for cancellable events
- * <p></p>
+ * <br>
  * Cancellable events can be cancelled by addons to prevent the default behavior.
  * Other addons can check if an event is cancelled to modify their behavior accordingly.
  */

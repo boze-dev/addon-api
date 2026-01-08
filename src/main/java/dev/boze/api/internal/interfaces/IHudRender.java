@@ -4,28 +4,28 @@ import dev.boze.api.render.ClientColor;
 
 /**
  * Internal HUD rendering interface
- * <p></p>
+ * <br>
  * Provides low-level HUD rendering functionality
  */
 public interface IHudRender {
 
     /**
      * Starts a new drawing session
-     * <p></p>
+     * <br>
      * Must be called before any drawing operations. Throws RuntimeException if already started
      */
     void start();
 
     /**
      * Renders the current drawing session
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      */
     void draw();
 
     /**
      * Renders a line
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use
@@ -39,7 +39,7 @@ public interface IHudRender {
 
     /**
      * Renders a quad/filled rectangle
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use

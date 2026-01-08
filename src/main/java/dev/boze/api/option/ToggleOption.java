@@ -7,9 +7,9 @@ import java.util.function.BooleanSupplier;
 
 /**
  * A boolean option that can be toggled on or off
- * <p></p>
+ * <br>
  * ToggleOption provides a simple way to store and modify boolean values
- * <p></p>
+ * <br>
  * The value can only be true or false
  */
 public class ToggleOption extends Option<Boolean> {

@@ -9,10 +9,10 @@ import java.util.List;
 
 /**
  * ClientModuleExtension
- * <p></p>
+ * <br>
  * Allows extending client modules with additional functionality, settings, and listeners
  * without modifying the core module code.
- * <p></p>
+ * <br>
  * Extensions can define settings using Option fields, and override onEnable/onDisable
  * to add custom behavior. The extension will automatically subscribe/unsubscribe
  * to the event bus when enabled/disabled.
@@ -35,10 +35,10 @@ public abstract class ClientModuleExtension implements Serializable<ClientModule
 
     /**
      * Called when the extension is enabled
-     * <p></p>
+     * <br>
      * This does NOT override the module's onEnable method, but allows you
      * to add additional behavior on top of the module's enable logic.
-     * <p></p>
+     * <br>
      * The extension is automatically subscribed to the event bus before this is called.
      */
     public void onEnable() {
@@ -47,10 +47,10 @@ public abstract class ClientModuleExtension implements Serializable<ClientModule
 
     /**
      * Called when the extension is disabled
-     * <p></p>
+     * <br>
      * This does NOT override the module's onDisable method, but allows you
      * to add additional behavior on top of the module's disable logic.
-     * <p></p>
+     * <br>
      * The extension is automatically unsubscribed from the event bus after this is called.
      */
     public void onDisable() {
@@ -59,7 +59,7 @@ public abstract class ClientModuleExtension implements Serializable<ClientModule
 
     /**
      * Called internally when the extension should be enabled
-     * <p></p>
+     * <br>
      * Subscribes to event bus and calls onEnable()
      */
     public final void enable() {
@@ -69,7 +69,7 @@ public abstract class ClientModuleExtension implements Serializable<ClientModule
 
     /**
      * Called internally when the extension should be disabled
-     * <p></p>
+     * <br>
      * Calls onDisable() and unsubscribes from event bus
      */
     public final void disable() {

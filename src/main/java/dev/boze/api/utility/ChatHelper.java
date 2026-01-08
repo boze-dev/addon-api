@@ -4,7 +4,7 @@ import dev.boze.api.internal.Instances;
 
 /**
  * A helper for sending messages to the client chat
- * <p></p>
+ * <br>
  * This only sends messages client-side, it does not send messages to the server!
  */
 public final class ChatHelper {
@@ -20,7 +20,7 @@ public final class ChatHelper {
 
     /**
      * Sends a message to the chat with a title
-     * <p></p>
+     * <br>
      * It's recommended to use this method when sending messages from a command/module
      *
      * @param title The title of the message/the command/module name
@@ -41,7 +41,7 @@ public final class ChatHelper {
 
     /**
      * Sends a warning to the chat with a title
-     * <p></p>
+     * <br>
      * It's recommended to use this method when sending warnings from a command/module
      *
      * @param title The title of the warning/the command/module name
@@ -62,7 +62,7 @@ public final class ChatHelper {
 
     /**
      * Sends an error to the chat with a title
-     * <p></p>
+     * <br>
      * It's recommended to use this method when sending errors from a command/module
      *
      * @param title The title of the error/the command/module name

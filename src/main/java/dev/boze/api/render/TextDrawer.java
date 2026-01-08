@@ -6,16 +6,16 @@ import net.minecraft.client.gui.DrawContext;
 
 /**
  * Text rendering API for drawing text in different contexts
- * <p></p>
+ * <br>
  * Provides methods for rendering text in GUI, HUD, and world contexts
- * <p></p>
+ * <br>
  * All rendering operations must be wrapped between {@link #start(TextType, double)} and {@link #draw(DrawContext)} calls
  */
 public class TextDrawer {
 
     /**
      * Starts a new text rendering session
-     * <p></p>
+     * <br>
      * Must be called before any text operations. Throws RuntimeException if already started
      *
      * @param type The text type (GUI/HUD/WORLD)
@@ -27,7 +27,7 @@ public class TextDrawer {
 
     /**
      * Starts a new text rendering session with measure mode option
-     * <p></p>
+     * <br>
      * Measure mode disables buffer building for width/height calculations only
      * Must be called before any text operations. Throws RuntimeException if already started
      *
@@ -41,7 +41,7 @@ public class TextDrawer {
 
     /**
      * Renders the current text session to the specified draw context
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param context The draw context to render to
@@ -52,7 +52,7 @@ public class TextDrawer {
 
     /**
      * Renders the current text session to the default draw context
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      */
     public static void draw() {
@@ -61,7 +61,7 @@ public class TextDrawer {
 
     /**
      * Renders text at the specified position
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param text The text to render
@@ -78,7 +78,7 @@ public class TextDrawer {
 
     /**
      * Renders text at the specified position without shadow
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param text The text to render
@@ -94,7 +94,7 @@ public class TextDrawer {
 
     /**
      * Renders text at the specified position using ColorOption.Value
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param text The text to render
@@ -110,7 +110,7 @@ public class TextDrawer {
 
     /**
      * Renders text at the specified position using ColorOption.Value without shadow
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param text The text to render
@@ -125,7 +125,7 @@ public class TextDrawer {
 
     /**
      * Gets the width of text with shadow option
-     * <p></p>
+     * <br>
      * Can be called anytime, does not require start()
      *
      * @param text The text to measure
@@ -138,7 +138,7 @@ public class TextDrawer {
 
     /**
      * Gets the width of text without shadow
-     * <p></p>
+     * <br>
      * Can be called anytime, does not require start()
      *
      * @param text The text to measure
@@ -150,7 +150,7 @@ public class TextDrawer {
 
     /**
      * Gets the height of text with shadow option
-     * <p></p>
+     * <br>
      * Can be called anytime, does not require start()
      *
      * @param shadow Whether shadow is enabled
@@ -162,7 +162,7 @@ public class TextDrawer {
 
     /**
      * Gets the height of text without shadow
-     * <p></p>
+     * <br>
      * Can be called anytime, does not require start()
      *
      * @return The height of the text

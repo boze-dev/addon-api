@@ -9,15 +9,15 @@ import net.minecraft.util.math.Box;
 
 /**
  * World rendering API for drawing 3D boxes in the world
- * <p></p>
+ * <br>
  * Provides methods for rendering boxes in 3D world space
- * <p></p>
+ * <br>
  * All drawing operations must be wrapped between {@link #start()} and {@link #draw(MatrixStack, Framebuffer)} calls
- * <p></p>
+ * <br>
  * You can, of course, draw more than one box per start/draw call
- * <p></p>
+ * <br>
  * See {@link dev.boze.api.event.EventShader} before using shader renders
- * <p></p>
+ * <br>
  * Shader renders have their own fill/outline opacity, defined in Shader module.
  * Outline opacity is used as a scale factor for the shader fill/outline opacity.
  * This lets you change the opacity of individual shader renders
@@ -26,7 +26,7 @@ public class WorldDrawer {
     
     /**
      * Starts a new world rendering session
-     * <p></p>
+     * <br>
      * Must be called before any non-shader drawing operations.
      * Shader methods (shaderBoxSides, shaderSide, and dynamic methods when useShader=true) do not require start/draw.
      * Throws RuntimeException if already started
@@ -37,7 +37,7 @@ public class WorldDrawer {
 
     /**
      * Renders the current drawing session to the main vanilla framebuffer
-     * <p></p>
+     * <br>
      * Must be called after non-shader drawing operations.
      * Shader methods (shaderBoxSides, shaderSide, and dynamic methods when useShader=true) do not require start/draw.
      * Throws RuntimeException if start() was not called first
@@ -50,7 +50,7 @@ public class WorldDrawer {
 
     /**
      * Renders the current drawing session to the specified framebuffer
-     * <p></p>
+     * <br>
      * Must be called after non-shader drawing operations.
      * Shader methods (shaderBoxSides, shaderSide, and dynamic methods when useShader=true) do not require start/draw.
      * Throws RuntimeException if start() was not called first
@@ -64,7 +64,7 @@ public class WorldDrawer {
 
     /**
      * Renders a full box with both sides and outline
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use
@@ -84,7 +84,7 @@ public class WorldDrawer {
 
     /**
      * Renders a full box with both sides and outline
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use
@@ -105,7 +105,7 @@ public class WorldDrawer {
 
     /**
      * Renders a full box with both sides and outline
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use
@@ -119,7 +119,7 @@ public class WorldDrawer {
 
     /**
      * Renders a full box with both sides and outline
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use
@@ -134,7 +134,7 @@ public class WorldDrawer {
 
     /**
      * Renders box outline lines
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use
@@ -152,7 +152,7 @@ public class WorldDrawer {
 
     /**
      * Renders box outline lines
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use
@@ -171,7 +171,7 @@ public class WorldDrawer {
 
     /**
      * Renders box outline lines
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use
@@ -184,7 +184,7 @@ public class WorldDrawer {
 
     /**
      * Renders box outline lines
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use
@@ -198,7 +198,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides/faces
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use
@@ -216,7 +216,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides/faces
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use
@@ -235,7 +235,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides/faces
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use
@@ -248,7 +248,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides/faces
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use
@@ -262,7 +262,7 @@ public class WorldDrawer {
 
     /**
      * Renders a single box side/face
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param color The color to use
@@ -281,7 +281,7 @@ public class WorldDrawer {
 
     /**
      * Renders a full box with both sides and outline using ColorOption.Value
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
@@ -302,7 +302,7 @@ public class WorldDrawer {
 
     /**
      * Renders a full box with both sides and outline using ColorOption.Value
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
@@ -324,7 +324,7 @@ public class WorldDrawer {
 
     /**
      * Renders a full box with both sides and outline using ColorOption.Value
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
@@ -340,7 +340,7 @@ public class WorldDrawer {
 
     /**
      * Renders a full box with both sides and outline using ColorOption.Value
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
@@ -357,7 +357,7 @@ public class WorldDrawer {
 
     /**
      * Renders box outline lines using ColorOption.Value
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
@@ -375,7 +375,7 @@ public class WorldDrawer {
 
     /**
      * Renders box outline lines using ColorOption.Value
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
@@ -394,7 +394,7 @@ public class WorldDrawer {
 
     /**
      * Renders box outline lines using ColorOption.Value
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
@@ -407,7 +407,7 @@ public class WorldDrawer {
 
     /**
      * Renders box outline lines using ColorOption.Value
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
@@ -421,7 +421,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides/faces using ColorOption.Value
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
@@ -438,7 +438,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides/faces using ColorOption.Value
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
@@ -456,7 +456,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides/faces using ColorOption.Value
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
@@ -468,7 +468,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides/faces using ColorOption.Value
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
@@ -481,7 +481,7 @@ public class WorldDrawer {
 
     /**
      * Renders a single box side/face using ColorOption.Value
-     * <p></p>
+     * <br>
      * Throws RuntimeException if start() was not called first
      *
      * @param colorOption The color option value containing color and opacity settings
@@ -499,7 +499,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides/faces using shader
-     * <p></p>
+     * <br>
      * Does not require start/draw calls
      *
      * @param color The color to use
@@ -516,7 +516,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides/faces using shader
-     * <p></p>
+     * <br>
      * Does not require start/draw calls
      *
      * @param color The color to use
@@ -534,7 +534,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides/faces using shader
-     * <p></p>
+     * <br>
      * Does not require start/draw calls
      *
      * @param color The color to use
@@ -546,7 +546,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides/faces using shader
-     * <p></p>
+     * <br>
      * Does not require start/draw calls
      *
      * @param color The color to use
@@ -559,7 +559,7 @@ public class WorldDrawer {
 
     /**
      * Renders a single box side/face using shader
-     * <p></p>
+     * <br>
      * Does not require start/draw calls
      *
      * @param color The color to use
@@ -577,7 +577,7 @@ public class WorldDrawer {
 
     /**
      * Renders a single box side/face using shader
-     * <p></p>
+     * <br>
      * Does not require start/draw calls
      *
      * @param color The color to use
@@ -596,7 +596,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides/faces using shader with ColorOption.Value
-     * <p></p>
+     * <br>
      * Does not require start/draw calls. Uses outline opacity for shader rendering
      *
      * @param colorOption The color option value containing color settings
@@ -613,7 +613,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides/faces using shader with ColorOption.Value
-     * <p></p>
+     * <br>
      * Does not require start/draw calls. Uses outline opacity for shader rendering
      *
      * @param colorOption The color option value containing color settings
@@ -631,7 +631,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides/faces using shader with ColorOption.Value
-     * <p></p>
+     * <br>
      * Does not require start/draw calls. Uses outline opacity for shader rendering
      *
      * @param colorOption The color option value containing color settings
@@ -643,7 +643,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides/faces using shader with ColorOption.Value
-     * <p></p>
+     * <br>
      * Does not require start/draw calls. Uses outline opacity for shader rendering
      *
      * @param colorOption The color option value containing color settings
@@ -656,7 +656,7 @@ public class WorldDrawer {
 
     /**
      * Renders a single box side/face using shader with ColorOption.Value
-     * <p></p>
+     * <br>
      * Does not require start/draw calls. Uses outline opacity for shader rendering
      *
      * @param colorOption The color option value containing color settings
@@ -674,7 +674,7 @@ public class WorldDrawer {
 
     /**
      * Renders a single box side/face using shader with ColorOption.Value
-     * <p></p>
+     * <br>
      * Does not require start/draw calls. Uses outline opacity for shader rendering
      *
      * @param colorOption The color option value containing color settings
@@ -693,7 +693,7 @@ public class WorldDrawer {
 
     /**
      * Renders a full box dynamically based on shader setting
-     * <p></p>
+     * <br>
      * If useShader is true, renders only sides using shader (no lines).
      * If useShader is false, renders full box with sides and lines.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -719,7 +719,7 @@ public class WorldDrawer {
 
     /**
      * Renders a full box dynamically based on shader setting
-     * <p></p>
+     * <br>
      * If useShader is true, renders only sides using shader (no lines).
      * If useShader is false, renders full box with sides and lines.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -746,7 +746,7 @@ public class WorldDrawer {
 
     /**
      * Renders a full box dynamically based on shader setting
-     * <p></p>
+     * <br>
      * If useShader is true, renders only sides using shader (no lines).
      * If useShader is false, renders full box with sides and lines.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -767,7 +767,7 @@ public class WorldDrawer {
 
     /**
      * Renders a full box dynamically based on shader setting
-     * <p></p>
+     * <br>
      * If useShader is true, renders only sides using shader (no lines).
      * If useShader is false, renders full box with sides and lines.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -789,7 +789,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides dynamically based on shader setting
-     * <p></p>
+     * <br>
      * If useShader is true, uses shader rendering.
      * If useShader is false, uses regular rendering.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -814,7 +814,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides dynamically based on shader setting
-     * <p></p>
+     * <br>
      * If useShader is true, uses shader rendering.
      * If useShader is false, uses regular rendering.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -840,7 +840,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides dynamically based on shader setting
-     * <p></p>
+     * <br>
      * If useShader is true, uses shader rendering.
      * If useShader is false, uses regular rendering.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -860,7 +860,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides dynamically based on shader setting
-     * <p></p>
+     * <br>
      * If useShader is true, uses shader rendering.
      * If useShader is false, uses regular rendering.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -881,7 +881,7 @@ public class WorldDrawer {
 
     /**
      * Renders a full box dynamically based on shader setting using ColorOption.Value
-     * <p></p>
+     * <br>
      * If useShader is true, renders only sides using shader (no lines).
      * If useShader is false, renders full box with sides and lines.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -905,7 +905,7 @@ public class WorldDrawer {
 
     /**
      * Renders a full box dynamically based on shader setting using ColorOption.Value
-     * <p></p>
+     * <br>
      * If useShader is true, renders only sides using shader (no lines).
      * If useShader is false, renders full box with sides and lines.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -930,7 +930,7 @@ public class WorldDrawer {
 
     /**
      * Renders a full box dynamically based on shader setting using ColorOption.Value
-     * <p></p>
+     * <br>
      * If useShader is true, renders only sides using shader (no lines).
      * If useShader is false, renders full box with sides and lines.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -949,7 +949,7 @@ public class WorldDrawer {
 
     /**
      * Renders a full box dynamically based on shader setting using ColorOption.Value
-     * <p></p>
+     * <br>
      * If useShader is true, renders only sides using shader (no lines).
      * If useShader is false, renders full box with sides and lines.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -969,7 +969,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides dynamically based on shader setting using ColorOption.Value
-     * <p></p>
+     * <br>
      * If useShader is true, uses shader rendering.
      * If useShader is false, uses regular rendering.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -993,7 +993,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides dynamically based on shader setting using ColorOption.Value
-     * <p></p>
+     * <br>
      * If useShader is true, uses shader rendering.
      * If useShader is false, uses regular rendering.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -1018,7 +1018,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides dynamically based on shader setting using ColorOption.Value
-     * <p></p>
+     * <br>
      * If useShader is true, uses shader rendering.
      * If useShader is false, uses regular rendering.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -1037,7 +1037,7 @@ public class WorldDrawer {
 
     /**
      * Renders box sides dynamically based on shader setting using ColorOption.Value
-     * <p></p>
+     * <br>
      * If useShader is true, uses shader rendering.
      * If useShader is false, uses regular rendering.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -1057,7 +1057,7 @@ public class WorldDrawer {
 
     /**
      * Renders a single box side/face dynamically based on shader setting
-     * <p></p>
+     * <br>
      * If useShader is true, uses shader rendering.
      * If useShader is false, uses regular rendering.
      * Throws RuntimeException if start() was not called first and useShader is false
@@ -1083,7 +1083,7 @@ public class WorldDrawer {
 
     /**
      * Renders a single box side/face dynamically based on shader setting using ColorOption.Value
-     * <p></p>
+     * <br>
      * If useShader is true, uses shader rendering.
      * If useShader is false, uses regular rendering.
      * Throws RuntimeException if start() was not called first and useShader is false

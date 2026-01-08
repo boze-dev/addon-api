@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 
 /**
  * An option for selecting from a predefined set of modes
- * <p></p>
+ * <br>
  * ModeOption provides a way to store and modify enum values
- * <p></p>
+ * <br>
  * The available modes are defined by the enum type parameter
  *
  * @param <T> The enum type defining the available modes

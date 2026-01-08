@@ -7,9 +7,9 @@ import java.util.function.BooleanSupplier;
 
 /**
  * An option that serves as a parent container for other options
- * <p></p>
+ * <br>
  * ParentOption provides a way to group related options together
- * <p></p>
+ * <br>
  * It doesn't store a meaningful value itself, but serves as a container for child options
  */
 public class ParentOption extends Option<Boolean> {

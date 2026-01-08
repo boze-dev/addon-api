@@ -2,14 +2,14 @@ package dev.boze.api.render;
 
 /**
  * Represents a color provided by the client.
- * <p></p>
+ * <br>
  * Concrete instances wrap client-side color implementations.
  */
 public abstract class ClientColor {
 
     /**
      * @return Identifier for this color.
-     * <p></p>
+     * <br>
      * Registered colors return their entry name. Defaults use {@code _default} for static/changing
      * selections and {@code _default_<gradient id>} for gradients.
      */

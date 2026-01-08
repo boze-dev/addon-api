@@ -9,11 +9,11 @@ import java.util.function.BooleanSupplier;
 
 /**
  * Base class for all module options
- * <p></p>
+ * <br>
  * Options are used to store configurable values for modules
- * <p></p>
+ * <br>
  * All options must implement getValue(), setValue(), and reset() methods
- * <p></p>
+ * <br>
  * Options also implement Serializable to allow for saving/loading from config files
  *
  * @param <T> The type of value stored by this option
@@ -37,7 +37,7 @@ public abstract class Option<T> implements Serializable<T> {
 
     /**
      * The visibility supplier for this option
-     * <p></p>
+     * <br>
      * Determines whether this option should be visible in the GUI
      */
     private BooleanSupplier visibility = () -> true;
@@ -186,7 +186,7 @@ public abstract class Option<T> implements Serializable<T> {
 
     /**
      * Checks if this option is visible
-     * <p></p>
+     * <br>
      * An option is visible if its visibility supplier returns true
      *
      * @return true if this option should be visible, false otherwise
