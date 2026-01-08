@@ -5,6 +5,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientCommandSource;
 import net.minecraft.command.CommandSource;
+import net.minecraft.command.permission.PermissionPredicate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +51,7 @@ public class AddonDispatcher {
      * @throws CommandSyntaxException If the command has a syntax error
      */
     public void dispatch(String command) throws CommandSyntaxException {
-        dispatch(command, new ClientCommandSource(null, MinecraftClient.getInstance(), true));
+        dispatch(command, new ClientCommandSource(null, MinecraftClient.getInstance(), PermissionPredicate.ALL));
     }
 
     /**
