@@ -19,7 +19,7 @@ To begin using the Boze API, follow these steps:
 
 2. **Setup your development environment**: Use the [example addon](https://github.com/boze-dev/example-addon) as a template, to get started, open it in IntellJ or the editor of your choice.
 
-3. **Make your first build and test it ingame**: Run the gradle build task, and put the jar into your Minecraft mods folder. Launch Boze (make sure it's the right Minecraft version) and see if your addon gets loaded.
+3. **Test it ingame**: Run the `runBoze` gradle task (`./gradlew runBoze`). It launches the Boze client through the real loader with your addon already loaded, so you can verify it in-game without copying jars around. When you're ready to ship, run the `build` task and grab the jar from `build/libs/`.
 
 ## Issues and Support
 If you encounter any issues, have questions, or need assistance, please visit our [discord server](https://discord.gg/unyhSbS5G6
