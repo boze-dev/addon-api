@@ -1,25 +1,25 @@
 package dev.boze.api.internal.interfaces;
 
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 
 public interface IMath {
-    float[] calculateRotation(Vec3d eyes, Vec3d target);
+    float[] calculateRotation(Vec3 eyes, Vec3 target);
 
-    Vec3d getRotationVector(float yaw, float pitch);
+    Vec3 getRotationVector(float yaw, float pitch);
 
     float normalizeAngle(float angle);
 
-    Vec3d yawToVector(float yaw, double speed);
+    Vec3 yawToVector(float yaw, double speed);
 
-    Vec3d getDirectionalSpeed(double speed);
+    Vec3 getDirectionalSpeed(double speed);
 
     // Interpolation
     double lerp(double delta, double start, double end);
 
     float lerp(float delta, float start, float end);
 
-    Vec3d lerp(double delta, Vec3d start, Vec3d end);
+    Vec3 lerp(double delta, Vec3 start, Vec3 end);
 
     double bringCloser(double value, double goal, double increment);
 
@@ -27,17 +27,17 @@ public interface IMath {
 
     int clamp(int value, int min, int max);
 
-    Vec3d clampToBox(Vec3d point, Box box);
+    Vec3 clampToBox(Vec3 point, AABB box);
 
-    Vec3d closestPointToBox(Vec3d point, Box box);
+    Vec3 closestPointToBox(Vec3 point, AABB box);
 
-    Vec3d normalize(Vec3d vector);
+    Vec3 normalize(Vec3 vector);
 
-    double dotProduct(Vec3d a, Vec3d b);
+    double dotProduct(Vec3 a, Vec3 b);
 
-    Vec3d crossProduct(Vec3d a, Vec3d b);
+    Vec3 crossProduct(Vec3 a, Vec3 b);
 
-    double distance(Vec3d a, Vec3d b);
+    double distance(Vec3 a, Vec3 b);
 
     double degreesToRadians(double degrees);
 
@@ -45,11 +45,11 @@ public interface IMath {
 
     double angleDifference(double angle1, double angle2);
 
-    Vec3d findClosestPointOnBox(Box box, Vec3d point);
+    Vec3 findClosestPointOnBox(AABB box, Vec3 point);
 
-    Vec3d getBestAimPoint(Box box);
+    Vec3 getBestAimPoint(AABB box);
 
-    boolean isPointInBox(Vec3d point, Box box);
+    boolean isPointInBox(Vec3 point, AABB box);
 
     double fastSin(double radians);
 

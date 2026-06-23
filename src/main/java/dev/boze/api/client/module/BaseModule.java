@@ -10,13 +10,12 @@ import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import dev.boze.api.client.ModuleManager;
 import dev.boze.api.utility.input.Bind;
 import dev.boze.api.option.Option;
-import net.minecraft.command.CommandSource;
-import net.minecraft.text.Text;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
+import net.minecraft.commands.SharedSuggestionProvider;
+import net.minecraft.network.chat.Component;
 
 /**
  * Base interface for all modules
@@ -186,7 +185,7 @@ public interface BaseModule {
                 .map(BaseModule::getTitle)
                 .collect(Collectors.toList());
 
-        private static final DynamicCommandExceptionType NO_SUCH_MODULE = new DynamicCommandExceptionType(o -> Text.literal("Module with name " + o + " doesn't exist."));
+        private static final DynamicCommandExceptionType NO_SUCH_MODULE = new DynamicCommandExceptionType(o -> Component.literal("Module with name " + o + " doesn't exist."));
 
         /**
          * Creates a new BaseModuleArgument for parsing module names
@@ -227,7 +226,7 @@ public interface BaseModule {
 
         @Override
         public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
-            return CommandSource.suggestMatching(
+            return SharedSuggestionProvider.suggest(
                 ModuleManager.getModules().stream()
                     .map(BaseModule::getTitle)
                     .collect(Collectors.toList()),

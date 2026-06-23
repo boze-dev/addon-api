@@ -1,10 +1,10 @@
 package dev.boze.api.internal.interfaces;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 
 public interface IWorld {
 
@@ -64,5 +64,5 @@ public interface IWorld {
 
     Iterable<BlockEntity> getBlockEntities();
 
-    Vec3d findVisiblePointOnBlock(BlockPos pos, Vec3d eyePos);
+    Vec3 findVisiblePointOnBlock(BlockPos pos, Vec3 eyePos);
 }

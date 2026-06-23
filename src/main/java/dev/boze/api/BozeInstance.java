@@ -4,8 +4,7 @@ import dev.boze.api.addon.Addon;
 import dev.boze.api.addon.AddonModule;
 import meteordevelopment.orbit.EventBus;
 import meteordevelopment.orbit.IEventBus;
-import net.minecraft.client.MinecraftClient;
-
+import net.minecraft.client.Minecraft;
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +37,7 @@ public final class BozeInstance {
      * @param addon The addon to register
      */
     public void registerAddon(Addon addon) {
-        assert MinecraftClient.getInstance().isOnThread();
+        assert Minecraft.getInstance().isSameThread();
 
         addons.add(addon);
     }

@@ -2,13 +2,12 @@ package dev.boze.api.addon;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientCommandSource;
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.permission.PermissionPredicate;
-
 import java.util.ArrayList;
 import java.util.List;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientSuggestionProvider;
+import net.minecraft.commands.SharedSuggestionProvider;
+import net.minecraft.server.permissions.PermissionSet;
 
 /**
  * Container class for addon command dispatching
@@ -24,7 +23,7 @@ public class AddonDispatcher {
     /**
      * The underlying command dispatcher
      */
-    public static final CommandDispatcher<CommandSource> dispatcher = new CommandDispatcher<>();
+    public static final CommandDispatcher<SharedSuggestionProvider> dispatcher = new CommandDispatcher<>();
 
     /**
      * List of registered commands
@@ -38,7 +37,7 @@ public class AddonDispatcher {
      *
      * @return The command dispatcher
      */
-    public CommandDispatcher<CommandSource> getDispatcher() {
+    public CommandDispatcher<SharedSuggestionProvider> getDispatcher() {
         return dispatcher;
     }
 
@@ -51,7 +50,7 @@ public class AddonDispatcher {
      * @throws CommandSyntaxException If the command has a syntax error
      */
     public void dispatch(String command) throws CommandSyntaxException {
-        dispatch(command, new ClientCommandSource(null, MinecraftClient.getInstance(), PermissionPredicate.ALL));
+        dispatch(command, new ClientSuggestionProvider(null, Minecraft.getInstance(), PermissionSet.ALL_PERMISSIONS));
     }
 
     /**
@@ -63,7 +62,7 @@ public class AddonDispatcher {
      * @param source The command source to use
      * @throws CommandSyntaxException If the command has a syntax error
      */
-    public void dispatch(String command, CommandSource source) throws CommandSyntaxException {
+    public void dispatch(String command, SharedSuggestionProvider source) throws CommandSyntaxException {
         getDispatcher().execute(command, source);
     }
 

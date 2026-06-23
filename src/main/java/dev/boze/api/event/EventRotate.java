@@ -2,8 +2,8 @@ package dev.boze.api.event;
 
 import dev.boze.api.utility.MathHelper;
 import dev.boze.api.utility.interaction.InteractionMode;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.phys.Vec3;
 
 /**
  * EventRotate
@@ -81,7 +81,7 @@ public class EventRotate extends CancellableEvent {
      * @param eyes The eye position to calculate from
      * @param target The target position to rotate towards
      */
-    public void rotate(Vec3d eyes, Vec3d target) {
+    public void rotate(Vec3 eyes, Vec3 target) {
         float[] rotation = MathHelper.calculateRotation(eyes, target);
         yaw = rotation[0];
         pitch = rotation[1];
@@ -93,9 +93,9 @@ public class EventRotate extends CancellableEvent {
      *
      * @param target The target position to rotate towards
      */
-    public void rotate(Vec3d target) {
-        MinecraftClient mc = MinecraftClient.getInstance();
-        Vec3d eyes = mc.player.getEyePos();
+    public void rotate(Vec3 target) {
+        Minecraft mc = Minecraft.getInstance();
+        Vec3 eyes = mc.player.getEyePosition();
         rotate(eyes, target);
     }
 }

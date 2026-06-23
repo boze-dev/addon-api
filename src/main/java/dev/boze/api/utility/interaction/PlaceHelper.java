@@ -1,9 +1,9 @@
 package dev.boze.api.utility.interaction;
 
 import dev.boze.api.internal.Instances;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.phys.BlockHitResult;
 
 /**
  * PlaceHelper provides utilities for casting block placement interactions
@@ -130,7 +130,7 @@ public class PlaceHelper {
      * @param hand The hand to use for placement
      * @return true if placement was successful
      */
-    public static boolean place(InteractionMode mode, BlockHitResult hitResult, Hand hand) {
+    public static boolean place(InteractionMode mode, BlockHitResult hitResult, InteractionHand hand) {
         return Instances.getInteraction().place(mode, hitResult, hand);
     }
 

@@ -1,9 +1,8 @@
 package dev.boze.api.internal.interfaces;
 
 import dev.boze.api.utility.interaction.SwapType;
-import net.minecraft.item.ItemStack;
-
 import java.util.function.Predicate;
+import net.minecraft.world.item.ItemStack;
 
 public interface IInventory {
     int find(Predicate<ItemStack> test);

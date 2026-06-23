@@ -5,10 +5,9 @@ import dev.boze.api.event.EventShader;
 import dev.boze.api.event.EventWorldRender;
 import dev.boze.api.internal.Instances;
 import meteordevelopment.orbit.EventHandler;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -163,7 +162,7 @@ public class PlaceRenderer {
         if (isAir) {
             return result.getBlockPos();
         } else {
-            return result.getBlockPos().offset(result.getSide());
+            return result.getBlockPos().relative(result.getDirection());
         }
     }
 
@@ -212,19 +211,19 @@ public class PlaceRenderer {
         double y2 = y1 + 1;
         double z2 = z1 + 1;
 
-        Box box = new Box(x1, y1, z1, x2, y2, z2);
+        AABB box = new AABB(x1, y1, z1, x2, y2, z2);
 
         // Apply grow animation
         if (record.animGrow > 0) {
             double growProgress = Math.max(0.0, Math.min(1.0, progress / record.animGrow));
-            box = box.expand((1.0 - growProgress) * -0.5);
+            box = box.inflate((1.0 - growProgress) * -0.5);
         }
 
         // Apply shrink animation
         if (record.animShrink > 0) {
             double shrinkProgress = Math.max(0.0, Math.min(1.0, (progress - (1.0 - record.animShrink)) / record.animShrink));
             if (shrinkProgress > 0) {
-                box = box.expand(shrinkProgress * -0.5);
+                box = box.inflate(shrinkProgress * -0.5);
             }
         }
 

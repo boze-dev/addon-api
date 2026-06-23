@@ -1,12 +1,12 @@
 package dev.boze.api.utility;
 
 import dev.boze.api.internal.Instances;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 
 /**
  * WorldHelper provides world and block-related utilities.
@@ -420,7 +420,7 @@ public class WorldHelper {
      * @param end The ending position
      * @return The block hit result, or null if no block was hit
      */
-    public static BlockHitResult raycast(Vec3d start, Vec3d end) {
+    public static BlockHitResult raycast(Vec3 start, Vec3 end) {
         return Instances.getRayCasting().raycast(start, end);
     }
 
@@ -435,7 +435,7 @@ public class WorldHelper {
      * @param eyePos The eye position to check visibility from
      * @return A visible point on the block surface
      */
-    public static Vec3d findVisiblePointOnBlock(BlockPos pos, Vec3d eyePos) {
+    public static Vec3 findVisiblePointOnBlock(BlockPos pos, Vec3 eyePos) {
         return Instances.getWorld().findVisiblePointOnBlock(pos, eyePos);
     }
 }

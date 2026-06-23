@@ -1,12 +1,11 @@
 package dev.boze.api.utility.interaction;
 
 import dev.boze.api.internal.Instances;
-import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
 import java.util.function.Predicate;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 
 /**
  * InvHelper provides utilities for finding items in the player's inventory

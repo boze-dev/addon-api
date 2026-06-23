@@ -1,6 +1,6 @@
 package dev.boze.api.event;
 
-import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 /**
  * Event called when the HUD is being rendered
@@ -13,7 +13,7 @@ public class EventHudRender {
     /**
      * The current draw context
      */
-    public DrawContext context;
+    public GuiGraphicsExtractor context;
 
     /**
      * The current tick delta
@@ -27,7 +27,7 @@ public class EventHudRender {
      * @param tickDelta The current tick delta
      * @return The event instance
      */
-    public static EventHudRender get(DrawContext context, float tickDelta) {
+    public static EventHudRender get(GuiGraphicsExtractor context, float tickDelta) {
         INSTANCE.context = context;
         INSTANCE.tickDelta = tickDelta;
         return INSTANCE;

@@ -1,8 +1,8 @@
 package dev.boze.api.client.module.helper;
 
 import dev.boze.api.internal.Instances;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
 
 public class AutoMineHelper {
 
@@ -14,7 +14,7 @@ public class AutoMineHelper {
      * @return true if the task was successfully added
      */
     public static boolean addTask(BlockPos pos) {
-        return Instances.getAutoMine().addTask(pos, false, MinecraftClient.getInstance().player.getBlockInteractionRange());
+        return Instances.getAutoMine().addTask(pos, false, Minecraft.getInstance().player.blockInteractionRange());
     }
 
     /**
@@ -26,7 +26,7 @@ public class AutoMineHelper {
      * @return true if the task was successfully added
      */
     public static boolean addTask(BlockPos pos, boolean rayCast) {
-        return Instances.getAutoMine().addTask(pos, rayCast, MinecraftClient.getInstance().player.getBlockInteractionRange());
+        return Instances.getAutoMine().addTask(pos, rayCast, Minecraft.getInstance().player.blockInteractionRange());
     }
 
     /**

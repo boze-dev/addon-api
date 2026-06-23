@@ -1,20 +1,20 @@
 package dev.boze.api.internal.interfaces;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.GameMode;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.GameType;
+import net.minecraft.world.phys.Vec3;
 
 public interface IEntities {
     boolean isWithinRange(Entity entity, double range);
 
     double getDistance(Entity from, Entity to);
 
-    Vec3d getEyePos(Entity entity);
+    Vec3 getEyePos(Entity entity);
 
     boolean canSee(Entity from, Entity to);
 
-    Vec3d getInterpolatedPos(Entity entity, float delta);
+    Vec3 getInterpolatedPos(Entity entity, float delta);
 
     float getHealth(Entity entity);
 
@@ -24,7 +24,7 @@ public interface IEntities {
 
     boolean hasTotem(Entity entity);
 
-    int getPing(PlayerEntity player);
+    int getPing(Player player);
 
     boolean isHostile(Entity entity);
 
@@ -44,5 +44,5 @@ public interface IEntities {
 
     boolean isMoving(Entity entity);
 
-    GameMode getGameMode(PlayerEntity player);
+    GameType getGameMode(Player player);
 }

@@ -2,14 +2,14 @@ package dev.boze.api.render;
 
 import dev.boze.api.internal.Instances;
 import dev.boze.api.option.ColorOption;
-import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 /**
  * Text rendering API for drawing text in different contexts
  * <br>
  * Provides methods for rendering text in GUI, HUD, and world contexts
  * <br>
- * All rendering operations must be wrapped between {@link #start(TextType, double)} and {@link #draw(DrawContext)} calls
+ * All rendering operations must be wrapped between {@link #start(TextType, double)} and {@link #draw(GuiGraphicsExtractor)} calls
  */
 public class TextDrawer {
 
@@ -46,7 +46,7 @@ public class TextDrawer {
      *
      * @param context The draw context to render to
      */
-    public static void draw(DrawContext context) {
+    public static void draw(GuiGraphicsExtractor context) {
         Instances.getTextRender().draw(context);
     }
 

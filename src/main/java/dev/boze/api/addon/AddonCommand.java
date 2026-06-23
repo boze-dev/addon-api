@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
-import net.minecraft.command.CommandSource;
+import net.minecraft.commands.SharedSuggestionProvider;
 
 /**
  * Base class for addon commands.
@@ -33,7 +33,7 @@ public abstract class AddonCommand {
      * @param type The type of the argument
      * @return A new argument builder
      */
-    protected static <T> RequiredArgumentBuilder<CommandSource, T> argument(final String name, final ArgumentType<T> type) {
+    protected static <T> RequiredArgumentBuilder<SharedSuggestionProvider, T> argument(final String name, final ArgumentType<T> type) {
         return RequiredArgumentBuilder.argument(name, type);
     }
 
@@ -43,7 +43,7 @@ public abstract class AddonCommand {
      * @param name The name of the literal
      * @return A new literal builder
      */
-    protected static LiteralArgumentBuilder<CommandSource> literal(final String name) {
+    protected static LiteralArgumentBuilder<SharedSuggestionProvider> literal(final String name) {
         return LiteralArgumentBuilder.literal(name);
     }
 
@@ -52,8 +52,8 @@ public abstract class AddonCommand {
      *
      * @param dispatcher The dispatcher to register to
      */
-    public void register(CommandDispatcher<CommandSource> dispatcher) {
-        LiteralArgumentBuilder<CommandSource> builder = LiteralArgumentBuilder.literal(name);
+    public void register(CommandDispatcher<SharedSuggestionProvider> dispatcher) {
+        LiteralArgumentBuilder<SharedSuggestionProvider> builder = LiteralArgumentBuilder.literal(name);
         build(builder);
         dispatcher.register(builder);
     }
@@ -63,7 +63,7 @@ public abstract class AddonCommand {
      *
      * @param builder The command builder
      */
-    public abstract void build(LiteralArgumentBuilder<CommandSource> builder);
+    public abstract void build(LiteralArgumentBuilder<SharedSuggestionProvider> builder);
 
     /**
      * Gets the command name.

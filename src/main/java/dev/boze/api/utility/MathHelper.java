@@ -1,9 +1,9 @@
 package dev.boze.api.utility;
 
 import dev.boze.api.internal.Instances;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 
 /**
  * MathHelper provides comprehensive mathematical utilities.
@@ -27,8 +27,8 @@ public class MathHelper {
      * @param target The target position to face
      * @return float array containing [yaw, pitch] in degrees
      */
-    public static float[] calculateRotation(Vec3d target) {
-        return Instances.getMath().calculateRotation(MinecraftClient.getInstance().player.getEyePos(), target);
+    public static float[] calculateRotation(Vec3 target) {
+        return Instances.getMath().calculateRotation(Minecraft.getInstance().player.getEyePosition(), target);
     }
 
     /**
@@ -41,7 +41,7 @@ public class MathHelper {
      * @param target The target position to face
      * @return float array containing [yaw, pitch] in degrees
      */
-    public static float[] calculateRotation(Vec3d eyes, Vec3d target) {
+    public static float[] calculateRotation(Vec3 eyes, Vec3 target) {
         return Instances.getMath().calculateRotation(eyes, target);
     }
 
@@ -56,8 +56,8 @@ public class MathHelper {
      * @param rotate Whether to calculate rotation or return empty rotation
      * @return float array containing [yaw, pitch] in degrees, or EMPTY_ROTATION
      */
-    public static float[] calculateRotation(Vec3d target, boolean rotate) {
-        return rotate ? Instances.getMath().calculateRotation(MinecraftClient.getInstance().player.getEyePos(), target) : EMPTY_ROTATION;
+    public static float[] calculateRotation(Vec3 target, boolean rotate) {
+        return rotate ? Instances.getMath().calculateRotation(Minecraft.getInstance().player.getEyePosition(), target) : EMPTY_ROTATION;
     }
 
     /**
@@ -72,7 +72,7 @@ public class MathHelper {
      * @param rotate Whether to calculate rotation or return empty rotation
      * @return float array containing [yaw, pitch] in degrees, or EMPTY_ROTATION
      */
-    public static float[] calculateRotation(Vec3d eyes, Vec3d target, boolean rotate) {
+    public static float[] calculateRotation(Vec3 eyes, Vec3 target, boolean rotate) {
         return rotate ? Instances.getMath().calculateRotation(eyes, target) : EMPTY_ROTATION;
     }
 
@@ -85,7 +85,7 @@ public class MathHelper {
      * @param pitch Pitch angle in degrees
      * @return Normalized direction vector
      */
-    public static Vec3d getRotationVector(float yaw, float pitch) {
+    public static Vec3 getRotationVector(float yaw, float pitch) {
         return Instances.getMath().getRotationVector(yaw, pitch);
     }
 
@@ -111,7 +111,7 @@ public class MathHelper {
      * @param speed Movement speed
      * @return Vec3d with X and Z movement components (Y is always 0)
      */
-    public static Vec3d yawToVector(float yaw, double speed) {
+    public static Vec3 yawToVector(float yaw, double speed) {
         return Instances.getMath().yawToVector(yaw, speed);
     }
 
@@ -124,7 +124,7 @@ public class MathHelper {
      * @param speed Base movement speed
      * @return Movement vector based on player input and facing direction
      */
-    public static Vec3d getDirectionalSpeed(double speed) {
+    public static Vec3 getDirectionalSpeed(double speed) {
         return Instances.getMath().getDirectionalSpeed(speed);
     }
 
@@ -162,7 +162,7 @@ public class MathHelper {
      * @param end Ending vector
      * @return Interpolated vector
      */
-    public static Vec3d lerp(double delta, Vec3d start, Vec3d end) {
+    public static Vec3 lerp(double delta, Vec3 start, Vec3 end) {
         return Instances.getMath().lerp(delta, start, end);
     }
 
@@ -214,7 +214,7 @@ public class MathHelper {
      * @param box Bounding box
      * @return Point clamped to box boundaries
      */
-    public static Vec3d clampToBox(Vec3d point, Box box) {
+    public static Vec3 clampToBox(Vec3 point, AABB box) {
         return Instances.getMath().clampToBox(point, box);
     }
 
@@ -225,7 +225,7 @@ public class MathHelper {
      * @param box Target box
      * @return Closest point on the box surface
      */
-    public static Vec3d closestPointToBox(Vec3d point, Box box) {
+    public static Vec3 closestPointToBox(Vec3 point, AABB box) {
         return Instances.getMath().closestPointToBox(point, box);
     }
 
@@ -237,7 +237,7 @@ public class MathHelper {
      * @param vector Vector to normalize
      * @return Normalized vector, or zero vector if input is zero-length
      */
-    public static Vec3d normalize(Vec3d vector) {
+    public static Vec3 normalize(Vec3 vector) {
         return Instances.getMath().normalize(vector);
     }
 
@@ -248,7 +248,7 @@ public class MathHelper {
      * @param b Second vector
      * @return Dot product result
      */
-    public static double dotProduct(Vec3d a, Vec3d b) {
+    public static double dotProduct(Vec3 a, Vec3 b) {
         return Instances.getMath().dotProduct(a, b);
     }
 
@@ -259,7 +259,7 @@ public class MathHelper {
      * @param b Second vector
      * @return Cross product result vector
      */
-    public static Vec3d crossProduct(Vec3d a, Vec3d b) {
+    public static Vec3 crossProduct(Vec3 a, Vec3 b) {
         return Instances.getMath().crossProduct(a, b);
     }
 
@@ -270,7 +270,7 @@ public class MathHelper {
      * @param b Second point
      * @return Euclidean distance
      */
-    public static double distance(Vec3d a, Vec3d b) {
+    public static double distance(Vec3 a, Vec3 b) {
         return Instances.getMath().distance(a, b);
     }
 
@@ -319,7 +319,7 @@ public class MathHelper {
      * @param point Reference point
      * @return Closest point on the box surface
      */
-    public static Vec3d findClosestPointOnBox(Box box, Vec3d point) {
+    public static Vec3 findClosestPointOnBox(AABB box, Vec3 point) {
         return Instances.getMath().findClosestPointOnBox(box, point);
     }
 
@@ -332,7 +332,7 @@ public class MathHelper {
      * @param box Target box
      * @return Optimal aim point on the box
      */
-    public static Vec3d getBestAimPoint(Box box) {
+    public static Vec3 getBestAimPoint(AABB box) {
         return Instances.getMath().getBestAimPoint(box);
     }
 
@@ -343,7 +343,7 @@ public class MathHelper {
      * @param box Box to test against
      * @return true if point is inside the box
      */
-    public static boolean isPointInBox(Vec3d point, Box box) {
+    public static boolean isPointInBox(Vec3 point, AABB box) {
         return Instances.getMath().isPointInBox(point, box);
     }
 

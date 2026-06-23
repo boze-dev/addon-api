@@ -1,8 +1,8 @@
 package dev.boze.api.render;
 
 import dev.boze.api.internal.Instances;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.world.phys.Vec3;
 
 /**
  * Billboard rendering API for displaying 2D HUD elements at 3D world positions
@@ -30,7 +30,7 @@ public class Billboard {
      * @param maxScale Maximum allowed scale value
      * @return true if position is visible and rendering started, false otherwise
      */
-    public static boolean start(Vec3d worldPosition, DrawContext drawContext, double factor, double minScale, double maxScale) {
+    public static boolean start(Vec3 worldPosition, GuiGraphicsExtractor drawContext, double factor, double minScale, double maxScale) {
         return Instances.getBillboard().start(worldPosition, drawContext, factor, minScale, maxScale);
     }
 
@@ -50,7 +50,7 @@ public class Billboard {
      * @param scale Constant scale factor
      * @return true if position is visible and rendering started, false otherwise
      */
-    public static boolean start(Vec3d worldPosition, DrawContext drawContext, double scale) {
+    public static boolean start(Vec3 worldPosition, GuiGraphicsExtractor drawContext, double scale) {
         return Instances.getBillboard().start(worldPosition, drawContext, scale);
     }
 
@@ -61,7 +61,7 @@ public class Billboard {
      *
      * @param drawContext The draw context to restore matrix state for
      */
-    public static void stop(DrawContext drawContext) {
+    public static void stop(GuiGraphicsExtractor drawContext) {
         Instances.getBillboard().stop(drawContext);
     }
 }

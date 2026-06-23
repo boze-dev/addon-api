@@ -1,11 +1,11 @@
 package dev.boze.api.utility.cape;
 
 import com.mojang.authlib.GameProfile;
-import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
 import java.net.URL;
 import java.util.Objects;
+import net.minecraft.resources.Identifier;
 
 public abstract class CapeSource {
 

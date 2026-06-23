@@ -1,8 +1,8 @@
 package dev.boze.api.client.module.helper;
 
 import dev.boze.api.internal.Instances;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.LivingEntity;
 
 public class AutoCrystalHelper {
 

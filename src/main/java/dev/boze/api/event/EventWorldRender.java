@@ -1,8 +1,8 @@
 package dev.boze.api.event;
 
 
-import net.minecraft.client.render.Camera;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.Camera;
 
 /**
  * EventWorldRender
@@ -12,7 +12,7 @@ import net.minecraft.client.util.math.MatrixStack;
 public class EventWorldRender {
     private static final EventWorldRender INSTANCE = new EventWorldRender();
 
-    public MatrixStack matrices;
+    public PoseStack matrices;
     public Camera camera;
     public float tickDelta;
 
@@ -24,7 +24,7 @@ public class EventWorldRender {
      * @param tickDelta Tick delta
      * @return The event instance
      */
-    public static EventWorldRender get(MatrixStack matrices, Camera camera, float tickDelta) {
+    public static EventWorldRender get(PoseStack matrices, Camera camera, float tickDelta) {
         INSTANCE.matrices = matrices;
         INSTANCE.camera = camera;
         INSTANCE.tickDelta = tickDelta;

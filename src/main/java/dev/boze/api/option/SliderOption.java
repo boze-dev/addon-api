@@ -2,9 +2,8 @@ package dev.boze.api.option;
 
 import com.google.gson.JsonObject;
 import dev.boze.api.client.module.BaseModule;
-import net.minecraft.util.math.MathHelper;
-
 import java.util.function.BooleanSupplier;
+import net.minecraft.util.Mth;
 
 /**
  * A numeric option that can be adjusted using a slider
@@ -122,7 +121,7 @@ public class SliderOption extends Option<Double> {
 
     @Override
     public Double setValue(Double newValue) {
-        this.value = MathHelper.clamp(newValue, min, max);
+        this.value = Mth.clamp(newValue, min, max);
         return value;
     }
 

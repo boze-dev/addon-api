@@ -1,10 +1,10 @@
 package dev.boze.api.utility;
 
 import dev.boze.api.internal.Instances;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.GameMode;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.GameType;
+import net.minecraft.world.phys.Vec3;
 
 /**
  * EntityHelper provides entity utility methods.
@@ -70,7 +70,7 @@ public class EntityHelper {
      * @param entity The entity to get eye position for
      * @return The eye position as a Vec3d, or Vec3d.ZERO if entity is null
      */
-    public static Vec3d getEyePos(Entity entity) {
+    public static Vec3 getEyePos(Entity entity) {
         return Instances.getEntities().getEyePos(entity);
     }
 
@@ -102,7 +102,7 @@ public class EntityHelper {
      * @param delta The interpolation factor between 0.0F and 1.0F
      * @return The interpolated position as a Vec3d, or Vec3d.ZERO if entity is null
      */
-    public static Vec3d getInterpolatedPos(Entity entity, float delta) {
+    public static Vec3 getInterpolatedPos(Entity entity, float delta) {
         return Instances.getEntities().getInterpolatedPos(entity, delta);
     }
 
@@ -171,7 +171,7 @@ public class EntityHelper {
      * @param player The player to get ping for
      * @return The ping in milliseconds, or 0 if player is not in tab list
      */
-    public static int getPing(PlayerEntity player) {
+    public static int getPing(Player player) {
         return Instances.getEntities().getPing(player);
     }
 
@@ -310,7 +310,7 @@ public class EntityHelper {
      * @param player The player to get game mode for
      * @return The player's game mode, or null if not available
      */
-    public static GameMode getGameMode(PlayerEntity player) {
+    public static GameType getGameMode(Player player) {
         return Instances.getEntities().getGameMode(player);
     }
 }

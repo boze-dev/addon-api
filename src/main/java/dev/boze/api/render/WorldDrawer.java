@@ -1,18 +1,18 @@
 package dev.boze.api.render;
 
+import com.mojang.blaze3d.pipeline.RenderTarget;
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boze.api.internal.Instances;
 import dev.boze.api.option.ColorOption;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gl.Framebuffer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.math.Box;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.phys.AABB;
 
 /**
  * World rendering API for drawing 3D boxes in the world
  * <br>
  * Provides methods for rendering boxes in 3D world space
  * <br>
- * All drawing operations must be wrapped between {@link #start()} and {@link #draw(MatrixStack, Framebuffer)} calls
+ * All drawing operations must be wrapped between {@link #start()} and {@link #draw(PoseStack, RenderTarget)} calls
  * <br>
  * You can, of course, draw more than one box per start/draw call
  * <br>
@@ -44,8 +44,8 @@ public class WorldDrawer {
      *
      * @param matrices The matrix stack for rendering
      */
-    public static void draw(MatrixStack matrices) {
-        Instances.getWorldRender().draw(matrices, MinecraftClient.getInstance().getFramebuffer());
+    public static void draw(PoseStack matrices) {
+        Instances.getWorldRender().draw(matrices, Minecraft.getInstance().getMainRenderTarget());
     }
 
     /**
@@ -58,7 +58,7 @@ public class WorldDrawer {
      * @param matrices The matrix stack for rendering
      * @param framebuffer The framebuffer to render to
      */
-    public static void draw(MatrixStack matrices, Framebuffer framebuffer) {
+    public static void draw(PoseStack matrices, RenderTarget framebuffer) {
         Instances.getWorldRender().draw(matrices, framebuffer);
     }
 
@@ -113,7 +113,7 @@ public class WorldDrawer {
      * @param outlineOpacity The opacity for outline lines
      * @param box The box to render
      */
-    public static void box(ClientColor color, float fillOpacity, float outlineOpacity, Box box) {
+    public static void box(ClientColor color, float fillOpacity, float outlineOpacity, AABB box) {
         box(color, fillOpacity, outlineOpacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ);
     }
 
@@ -128,7 +128,7 @@ public class WorldDrawer {
      * @param box The box to render
      * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
      */
-    public static void box(ClientColor color, float fillOpacity, float outlineOpacity, Box box, float fade) {
+    public static void box(ClientColor color, float fillOpacity, float outlineOpacity, AABB box, float fade) {
         box(color, fillOpacity, outlineOpacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, fade);
     }
 
@@ -178,7 +178,7 @@ public class WorldDrawer {
      * @param opacity The opacity value
      * @param box The box to render lines for
      */
-    public static void boxLines(ClientColor color, float opacity, Box box) {
+    public static void boxLines(ClientColor color, float opacity, AABB box) {
         Instances.getWorldRender().boxLines(color, opacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, 0);
     }
 
@@ -192,7 +192,7 @@ public class WorldDrawer {
      * @param box The box to render lines for
      * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
      */
-    public static void boxLines(ClientColor color, float opacity, Box box, float fade) {
+    public static void boxLines(ClientColor color, float opacity, AABB box, float fade) {
         Instances.getWorldRender().boxLines(color, opacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, fade);
     }
 
@@ -242,7 +242,7 @@ public class WorldDrawer {
      * @param opacity The opacity value
      * @param box The box to render sides for
      */
-    public static void boxSides(ClientColor color, float opacity, Box box) {
+    public static void boxSides(ClientColor color, float opacity, AABB box) {
         Instances.getWorldRender().boxSides(color, opacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, 0);
     }
 
@@ -256,7 +256,7 @@ public class WorldDrawer {
      * @param box The box to render sides for
      * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
      */
-    public static void boxSides(ClientColor color, float opacity, Box box, float fade) {
+    public static void boxSides(ClientColor color, float opacity, AABB box, float fade) {
         Instances.getWorldRender().boxSides(color, opacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, fade);
     }
 
@@ -330,7 +330,7 @@ public class WorldDrawer {
      * @param colorOption The color option value containing color and opacity settings
      * @param box The box to render
      */
-    public static void box(ColorOption.Value colorOption, Box box) {
+    public static void box(ColorOption.Value colorOption, AABB box) {
         if (colorOption.singleOpacity) {
             box(colorOption.color, colorOption.fillOpacity, colorOption.fillOpacity, box);
         } else {
@@ -347,7 +347,7 @@ public class WorldDrawer {
      * @param box The box to render
      * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
      */
-    public static void box(ColorOption.Value colorOption, Box box, float fade) {
+    public static void box(ColorOption.Value colorOption, AABB box, float fade) {
         if (colorOption.singleOpacity) {
             box(colorOption.color, colorOption.fillOpacity, colorOption.fillOpacity, box, fade);
         } else {
@@ -400,7 +400,7 @@ public class WorldDrawer {
      * @param colorOption The color option value containing color and opacity settings
      * @param box The box to render lines for
      */
-    public static void boxLines(ColorOption.Value colorOption, Box box) {
+    public static void boxLines(ColorOption.Value colorOption, AABB box) {
         float opacity = colorOption.singleOpacity ? colorOption.fillOpacity : colorOption.outlineOpacity;
         boxLines(colorOption.color, opacity, box);
     }
@@ -414,7 +414,7 @@ public class WorldDrawer {
      * @param box The box to render lines for
      * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
      */
-    public static void boxLines(ColorOption.Value colorOption, Box box, float fade) {
+    public static void boxLines(ColorOption.Value colorOption, AABB box, float fade) {
         float opacity = colorOption.singleOpacity ? colorOption.fillOpacity : colorOption.outlineOpacity;
         boxLines(colorOption.color, opacity, box, fade);
     }
@@ -462,7 +462,7 @@ public class WorldDrawer {
      * @param colorOption The color option value containing color and opacity settings
      * @param box The box to render sides for
      */
-    public static void boxSides(ColorOption.Value colorOption, Box box) {
+    public static void boxSides(ColorOption.Value colorOption, AABB box) {
         boxSides(colorOption.color, colorOption.fillOpacity, box);
     }
 
@@ -475,7 +475,7 @@ public class WorldDrawer {
      * @param box The box to render sides for
      * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
      */
-    public static void boxSides(ColorOption.Value colorOption, Box box, float fade) {
+    public static void boxSides(ColorOption.Value colorOption, AABB box, float fade) {
         boxSides(colorOption.color, colorOption.fillOpacity, box, fade);
     }
 
@@ -540,7 +540,7 @@ public class WorldDrawer {
      * @param color The color to use
      * @param box The box to render sides for
      */
-    public static void shaderBoxSides(ClientColor color, float opacity, Box box) {
+    public static void shaderBoxSides(ClientColor color, float opacity, AABB box) {
         Instances.getWorldRender().shaderBoxSides(color, opacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, 0);
     }
 
@@ -553,7 +553,7 @@ public class WorldDrawer {
      * @param box The box to render sides for
      * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
      */
-    public static void shaderBoxSides(ClientColor color, float opacity, Box box, float fade) {
+    public static void shaderBoxSides(ClientColor color, float opacity, AABB box, float fade) {
         Instances.getWorldRender().shaderBoxSides(color, opacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, fade);
     }
 
@@ -637,7 +637,7 @@ public class WorldDrawer {
      * @param colorOption The color option value containing color settings
      * @param box The box to render sides for
      */
-    public static void shaderBoxSides(ColorOption.Value colorOption, Box box) {
+    public static void shaderBoxSides(ColorOption.Value colorOption, AABB box) {
         Instances.getWorldRender().shaderBoxSides(colorOption.color, colorOption.outlineOpacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, 0);
     }
 
@@ -650,7 +650,7 @@ public class WorldDrawer {
      * @param box The box to render sides for
      * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
      */
-    public static void shaderBoxSides(ColorOption.Value colorOption, Box box, float fade) {
+    public static void shaderBoxSides(ColorOption.Value colorOption, AABB box, float fade) {
         Instances.getWorldRender().shaderBoxSides(colorOption.color, colorOption.outlineOpacity, box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, fade);
     }
 
@@ -757,7 +757,7 @@ public class WorldDrawer {
      * @param useShader Whether to use shader rendering
      * @param box The box to render
      */
-    public static void dynamicBox(ClientColor color, float fillOpacity, float outlineOpacity, boolean useShader, Box box) {
+    public static void dynamicBox(ClientColor color, float fillOpacity, float outlineOpacity, boolean useShader, AABB box) {
         if (useShader) {
             shaderBoxSides(color, outlineOpacity, box, 0);
         } else {
@@ -779,7 +779,7 @@ public class WorldDrawer {
      * @param box The box to render
      * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
      */
-    public static void dynamicBox(ClientColor color, float fillOpacity, float outlineOpacity, boolean useShader, Box box, float fade) {
+    public static void dynamicBox(ClientColor color, float fillOpacity, float outlineOpacity, boolean useShader, AABB box, float fade) {
         if (useShader) {
             shaderBoxSides(color, outlineOpacity, box, fade);
         } else {
@@ -850,7 +850,7 @@ public class WorldDrawer {
      * @param useShader Whether to use shader rendering
      * @param box The box to render sides for
      */
-    public static void dynamicBoxSides(ClientColor color, float opacity, boolean useShader, Box box) {
+    public static void dynamicBoxSides(ClientColor color, float opacity, boolean useShader, AABB box) {
         if (useShader) {
             shaderBoxSides(color, opacity, box, 0);
         } else {
@@ -871,7 +871,7 @@ public class WorldDrawer {
      * @param box The box to render sides for
      * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
      */
-    public static void dynamicBoxSides(ClientColor color, float opacity, boolean useShader, Box box, float fade) {
+    public static void dynamicBoxSides(ClientColor color, float opacity, boolean useShader, AABB box, float fade) {
         if (useShader) {
             shaderBoxSides(color, opacity, box, fade);
         } else {
@@ -939,7 +939,7 @@ public class WorldDrawer {
      * @param useShader Whether to use shader rendering
      * @param box The box to render
      */
-    public static void dynamicBox(ColorOption.Value colorOption, boolean useShader, Box box) {
+    public static void dynamicBox(ColorOption.Value colorOption, boolean useShader, AABB box) {
         if (useShader) {
             shaderBoxSides(colorOption, box, 0);
         } else {
@@ -959,7 +959,7 @@ public class WorldDrawer {
      * @param box The box to render
      * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
      */
-    public static void dynamicBox(ColorOption.Value colorOption, boolean useShader, Box box, float fade) {
+    public static void dynamicBox(ColorOption.Value colorOption, boolean useShader, AABB box, float fade) {
         if (useShader) {
             shaderBoxSides(colorOption, box, fade);
         } else {
@@ -1027,7 +1027,7 @@ public class WorldDrawer {
      * @param useShader Whether to use shader rendering
      * @param box The box to render sides for
      */
-    public static void dynamicBoxSides(ColorOption.Value colorOption, boolean useShader, Box box) {
+    public static void dynamicBoxSides(ColorOption.Value colorOption, boolean useShader, AABB box) {
         if (useShader) {
             shaderBoxSides(colorOption, box, 0);
         } else {
@@ -1047,7 +1047,7 @@ public class WorldDrawer {
      * @param box The box to render sides for
      * @param fade The fade value, 1F = full upwards fade, -1F = full downwards fade, 0F = no fade
      */
-    public static void dynamicBoxSides(ColorOption.Value colorOption, boolean useShader, Box box, float fade) {
+    public static void dynamicBoxSides(ColorOption.Value colorOption, boolean useShader, AABB box, float fade) {
         if (useShader) {
             shaderBoxSides(colorOption, box, fade);
         } else {
