@@ -6,6 +6,7 @@ import dev.boze.api.internal.Instances;
 import dev.boze.api.option.ColorOption;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 
 /**
  * World rendering API for drawing 3D boxes in the world
@@ -1104,5 +1105,104 @@ public class WorldDrawer {
         } else {
             side(colorOption, direction, x1, y1, z1, x2, y2, z2);
         }
+    }
+
+    /**
+     * Draws a single 3D line between two points.
+     *
+     * @param color   The line color
+     * @param opacity The line opacity (0-1)
+     */
+    public static void line(ClientColor color, float opacity, double x1, double y1, double z1, double x2, double y2, double z2) {
+        Instances.getWorldRender().line(color, opacity, x1, y1, z1, x2, y2, z2);
+    }
+
+    /**
+     * Draws a single 3D line between two points.
+     *
+     * @param color   The line color
+     * @param opacity The line opacity (0-1)
+     * @param from    Start point
+     * @param to      End point
+     */
+    public static void line(ClientColor color, float opacity, Vec3 from, Vec3 to) {
+        Instances.getWorldRender().line(color, opacity, from.x, from.y, from.z, to.x, to.y, to.z);
+    }
+
+    /**
+     * Draws a single filled 3D triangle from three points.
+     *
+     * @param color   The fill color
+     * @param opacity The fill opacity (0-1)
+     */
+    public static void triangle(ClientColor color, float opacity,
+                                double x1, double y1, double z1,
+                                double x2, double y2, double z2,
+                                double x3, double y3, double z3) {
+        Instances.getWorldRender().triangle(color, opacity, x1, y1, z1, x2, y2, z2, x3, y3, z3);
+    }
+
+    /**
+     * Draws a single filled 3D triangle from three points.
+     *
+     * @param color   The fill color
+     * @param opacity The fill opacity (0-1)
+     */
+    public static void triangle(ClientColor color, float opacity, Vec3 a, Vec3 b, Vec3 c) {
+        Instances.getWorldRender().triangle(color, opacity, a.x, a.y, a.z, b.x, b.y, b.z, c.x, c.y, c.z);
+    }
+
+    /**
+     * Draws a filled convex polygon from a list of points, as a fan of triangles around the first
+     * point. Points must be given in order around the polygon. Needs at least three points.
+     *
+     * @param color   The fill color
+     * @param opacity The fill opacity (0-1)
+     * @param points  The polygon vertices, in order
+     */
+    public static void polygon(ClientColor color, float opacity, Vec3... points) {
+        if (points.length < 3) return;
+        for (int i = 1; i < points.length - 1; i++) {
+            triangle(color, opacity, points[0], points[i], points[i + 1]);
+        }
+    }
+
+    /**
+     * Draws a 3D line using a {@link ColorOption.Value} (uses its outline opacity).
+     */
+    public static void line(ColorOption.Value colorOption, double x1, double y1, double z1, double x2, double y2, double z2) {
+        float opacity = colorOption.singleOpacity ? colorOption.fillOpacity : colorOption.outlineOpacity;
+        line(colorOption.color, opacity, x1, y1, z1, x2, y2, z2);
+    }
+
+    /**
+     * Draws a 3D line using a {@link ColorOption.Value} (uses its outline opacity).
+     */
+    public static void line(ColorOption.Value colorOption, Vec3 from, Vec3 to) {
+        line(colorOption, from.x, from.y, from.z, to.x, to.y, to.z);
+    }
+
+    /**
+     * Draws a filled triangle using a {@link ColorOption.Value} (uses its fill opacity).
+     */
+    public static void triangle(ColorOption.Value colorOption,
+                                double x1, double y1, double z1,
+                                double x2, double y2, double z2,
+                                double x3, double y3, double z3) {
+        triangle(colorOption.color, colorOption.fillOpacity, x1, y1, z1, x2, y2, z2, x3, y3, z3);
+    }
+
+    /**
+     * Draws a filled triangle using a {@link ColorOption.Value} (uses its fill opacity).
+     */
+    public static void triangle(ColorOption.Value colorOption, Vec3 a, Vec3 b, Vec3 c) {
+        triangle(colorOption, a.x, a.y, a.z, b.x, b.y, b.z, c.x, c.y, c.z);
+    }
+
+    /**
+     * Draws a filled convex polygon using a {@link ColorOption.Value} (uses its fill opacity).
+     */
+    public static void polygon(ColorOption.Value colorOption, Vec3... points) {
+        polygon(colorOption.color, colorOption.fillOpacity, points);
     }
 }

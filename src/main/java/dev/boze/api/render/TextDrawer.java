@@ -40,6 +40,39 @@ public class TextDrawer {
     }
 
     /**
+     * Opens a bloom region. Every piece of text rendered between this call and {@link #bloomStop()} -
+     * across any number of independent {@link #start(TextType, double)}/{@link #draw(GuiGraphicsExtractor)}
+     * sessions - is captured and gets the bloom applied in a single batched pass at {@link #bloomStop()}.
+     * This is independent of the text sessions and of the Hud module's bloom setting.
+     *
+     * @param bloomPasses Blur passes for the bloom (higher = softer/larger, ~1-6; 0 disables)
+     * @param bloomOpacity Bloom intensity/opacity (e.g. 0-2, 1.0 = normal)
+     */
+    public static void bloomStart(int bloomPasses, float bloomOpacity) {
+        Instances.getTextRender().bloomStart(bloomPasses, bloomOpacity, BloomMode.Keep);
+    }
+
+    /**
+     * Opens a bloom region with a specific {@link BloomMode} for how the original text is shown.
+     * See {@link #bloomStart(int, float)}.
+     *
+     * @param bloomPasses Blur passes for the bloom (higher = softer/larger, ~1-6; 0 disables)
+     * @param bloomOpacity Bloom intensity/opacity (e.g. 0-2, 1.0 = normal)
+     * @param original How to show the original text under the bloom (Off/Keep/Add)
+     */
+    public static void bloomStart(int bloomPasses, float bloomOpacity, BloomMode original) {
+        Instances.getTextRender().bloomStart(bloomPasses, bloomOpacity, original);
+    }
+
+    /**
+     * Closes the bloom region opened by {@link #bloomStart}, blurring and compositing all captured text
+     * in one pass.
+     */
+    public static void bloomStop() {
+        Instances.getTextRender().bloomStop();
+    }
+
+    /**
      * Renders the current text session to the specified draw context
      * <br>
      * Throws RuntimeException if start() was not called first

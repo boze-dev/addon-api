@@ -9,4 +9,10 @@ public interface IInteraction {
     boolean place(InteractionMode mode, BlockHitResult hitResult, InteractionHand hand);
 
     boolean isEmpty(BlockPos pos);
+
+    boolean canBreak(BlockPos pos);
+
+    BlockHitResult breakCast(BlockPos pos, double range, boolean throughWalls);
+
+    boolean breakBlock(BlockPos pos, double range, boolean throughWalls);
 }

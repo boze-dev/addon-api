@@ -1,6 +1,7 @@
 package dev.boze.api.internal.interfaces;
 
 import dev.boze.api.render.ClientColor;
+import dev.boze.api.render.BloomMode;
 import dev.boze.api.render.TextType;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 
@@ -17,4 +18,8 @@ public interface ITextRender {
     double getWidth(String text, boolean shadow);
 
     double getHeight(boolean shadow);
+
+    void bloomStart(int bloomPasses, float bloomOpacity, BloomMode original);
+
+    void bloomStop();
 }

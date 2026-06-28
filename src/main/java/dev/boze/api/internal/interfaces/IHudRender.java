@@ -50,4 +50,6 @@ public interface IHudRender {
      * @param height Height of the quad
      */
     void quad(ClientColor color, float opacity, double x, double y, double width, double height);
+
+    double getScale();
 }

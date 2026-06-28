@@ -22,6 +22,15 @@ public class HudDrawer {
     }
 
     /**
+     * Gets the current global HUD scale (the Hud module's Scale setting).
+     *
+     * @return The HUD scale, defaulting to 1.0
+     */
+    public static float getScale() {
+        return (float) Instances.getHudRender().getScale();
+    }
+
+    /**
      * Renders the current drawing session to the screen
      * <br>
      * Throws RuntimeException if start() was not called first

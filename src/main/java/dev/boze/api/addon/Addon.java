@@ -56,6 +56,12 @@ public abstract class Addon implements Serializable<Addon> {
     public final AddonDispatcher dispatcher;
 
     /**
+     * Optional custom category name for this addon's modules. When set, this addon's modules
+     * are grouped under their own category in the GUI instead of the shared "Addons" category.
+     */
+    private String category = null;
+
+    /**
      * Creates a new addon with a default dispatcher
      *
      * @param id Unique identifier for this addon
@@ -82,6 +88,30 @@ public abstract class Addon implements Serializable<Addon> {
         this.description = description;
         this.version = version;
         this.dispatcher = dispatcher;
+    }
+
+    /**
+     * Creates a custom GUI category for this addon's modules.
+     * <br>
+     * An addon may create at most one category; the first call wins and later calls are ignored.
+     * When set, all of this addon's modules appear under this category in the GUI as their own
+     * element instead of the shared "Addons" category. Call this from {@link #initialize()}.
+     *
+     * @param name Display name of the category
+     */
+    protected void createCategory(String name) {
+        if (this.category == null) {
+            this.category = name;
+        }
+    }
+
+    /**
+     * Gets this addon's custom category name.
+     *
+     * @return The category name, or null if this addon uses the shared "Addons" category
+     */
+    public String getCategory() {
+        return category;
     }
 
     /**

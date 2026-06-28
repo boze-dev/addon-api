@@ -16,6 +16,10 @@ public interface IWorldRender {
 
     void side(ClientColor color, float opacity, byte direction, double x1, double y1, double z1, double x2, double y2, double z2);
 
+    void line(ClientColor color, float opacity, double x1, double y1, double z1, double x2, double y2, double z2);
+
+    void triangle(ClientColor color, float opacity, double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3);
+
     void shaderBoxSides(ClientColor color, float opacity, double x1, double y1, double z1, double x2, double y2, double z2, float fade);
 
     void shaderSide(ClientColor color, float opacity, byte direction, double x1, double y1, double z1, double x2, double y2, double z2, float fade);
