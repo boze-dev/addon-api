@@ -46,7 +46,7 @@ public class WorldDrawer {
      * @param matrices The matrix stack for rendering
      */
     public static void draw(PoseStack matrices) {
-        Instances.getWorldRender().draw(matrices, Minecraft.getInstance().getMainRenderTarget());
+        Instances.getWorldRender().draw(matrices, Minecraft.getInstance().gameRenderer.mainRenderTarget());
     }
 
     /**
