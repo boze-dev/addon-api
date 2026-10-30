@@ -185,6 +185,13 @@ public abstract class Option<T> implements Serializable<T> {
     }
 
     /**
+     * @return The visibility supplier for this option
+     */
+    public BooleanSupplier getVisibility() {
+        return visibility;
+    }
+
+    /**
      * Checks if this option is visible
      * <br>
      * An option is visible if its visibility supplier returns true

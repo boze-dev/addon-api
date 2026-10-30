@@ -24,6 +24,8 @@ public class Instances {
     private static IAutoCrystal autoCrystal;
     private static IProfiles profiles;
     private static IColors colors;
+    private static IGui gui;
+    private static INewChunks newChunks;
 
     public static ICapes getCapes() {
         return capes;
@@ -103,5 +105,13 @@ public class Instances {
 
     public static IColors getColors() {
         return colors;
+    }
+
+    public static IGui getGui() {
+        return gui;
+    }
+
+    public static INewChunks getNewChunks() {
+        return newChunks;
     }
 }
