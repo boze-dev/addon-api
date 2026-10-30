@@ -3,7 +3,7 @@ package dev.boze.api.utility.input;
 /**
  * Represents a keyboard or mouse button binding
  * <br>
- * A bind can be either a keyboard key or a mouse button, identified by its GLFW code
+ * A bind can be either a keyboard key or a mouse button, identified by its InputConstants code
  * <br>
  * This class is used throughout Boze to handle input bindings for modules and other features
  */
@@ -14,11 +14,11 @@ public class Bind {
     private boolean isButton;
 
     /**
-     * The GLFW code for this bind
+     * The InputConstants code for this bind
      * <br>
-     * For keyboard keys, this is a GLFW_KEY_* constant
+     * For keyboard keys, this is an InputConstants.KEY_* constant
      * <br>
-     * For mouse buttons, this is a GLFW_MOUSE_BUTTON_* constant
+     * For mouse buttons, this is an InputConstants.MOUSE_BUTTON_* constant
      */
     private int bind;
 
@@ -26,7 +26,7 @@ public class Bind {
      * Creates a new bind
      *
      * @param isButton Whether this bind is a mouse button (true) or keyboard key (false)
-     * @param bind The GLFW code for the key or button
+     * @param bind The InputConstants code for the key or button
      */
     public Bind(boolean isButton, int bind) {
         this.isButton = isButton;
@@ -34,13 +34,13 @@ public class Bind {
     }
 
     /**
-     * Gets the GLFW code for this bind
+     * Gets the InputConstants code for this bind
      * <br>
-     * For keyboard keys, this returns a GLFW_KEY_* constant
+     * For keyboard keys, this returns an InputConstants.KEY_* constant
      * <br>
-     * For mouse buttons, this returns a GLFW_MOUSE_BUTTON_* constant
+     * For mouse buttons, this returns an InputConstants.MOUSE_BUTTON_* constant
      *
-     * @return The GLFW code for this bind
+     * @return The InputConstants code for this bind
      */
     public int getBind() {
         return bind;

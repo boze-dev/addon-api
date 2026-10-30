@@ -11,16 +11,16 @@ public class EventBind extends CancellableEvent {
     private static final EventBind INSTANCE = new EventBind();
 
     /**
-     * The key code or mouse button that was pressed/released
+     * The InputConstants key code or mouse button that was pressed/released
      */
     public int bind;
 
     /**
      * The action that occurred
      * <br>
-     * GLFW_RELEASE = 0 (The key or button was released)<br>
-     * GLFW_PRESS = 1 (The key or button was pressed)<br>
-     * GLFW_REPEAT = 2 (The key was held down until it repeated)
+     * InputConstants.RELEASE = 0 (The key or button was released)<br>
+     * InputConstants.PRESS = 1 (The key or button was pressed)<br>
+     * InputConstants.REPEAT = -1 (The key was held down until it repeated)
      */
     public int action;
 
@@ -30,7 +30,7 @@ public class EventBind extends CancellableEvent {
     public boolean isButton;
 
     /**
-     * Modifier keys that were held during the action (only applicable for keyboard keys)
+     * InputConstants.MOD_* bits of the modifier keys held during the action (only applicable for keyboard keys)
      */
     public int modifiers;
 
@@ -38,7 +38,7 @@ public class EventBind extends CancellableEvent {
      * Creates a new EventBind instance
      *
      * @param bind The key code or mouse button
-     * @param action The action that occurred (GLFW_PRESS, GLFW_RELEASE, GLFW_REPEAT)
+     * @param action The action that occurred (InputConstants.PRESS, RELEASE or REPEAT)
      * @param isButton Whether this is a mouse button binding
      * @param modifiers Modifier keys held (0 for mouse buttons)
      * @return The EventBind instance

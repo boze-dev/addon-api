@@ -3,6 +3,7 @@ package dev.boze.api.option;
 import com.google.gson.JsonObject;
 import dev.boze.api.utility.input.Bind;
 import dev.boze.api.client.module.BaseModule;
+import dev.boze.api.internal.Instances;
 
 import java.util.function.BooleanSupplier;
 
@@ -148,15 +149,17 @@ public class BindOption extends Option<Bind> {
     @Override
     public JsonObject toJson() {
         JsonObject object = new JsonObject();
-        object.addProperty("bind", bindInstance.getBind());
+        object.addProperty("bind", Instances.getInput().toLegacy(bindInstance.isButton(), bindInstance.getBind()));
+        object.addProperty("sdlBind", bindInstance.getBind());
         object.addProperty("isButton", bindInstance.isButton());
         return object;
     }
 
     @Override
     public Bind fromJson(JsonObject object) {
-        int bind = object.get("bind").getAsInt();
         boolean isButton = object.get("isButton").getAsBoolean();
+        int bind = object.has("sdlBind") ? object.get("sdlBind").getAsInt()
+                : Instances.getInput().fromProfile(isButton, object.get("bind").getAsInt());
         bindInstance = new Bind(isButton, bind);
         return bindInstance;
     }

@@ -1,7 +1,7 @@
 package dev.boze.api.gui.util;
 
 import dev.boze.api.gui.input.GuiKeyEvent;
-import org.lwjgl.glfw.GLFW;
+import com.mojang.blaze3d.platform.InputConstants;
 
 import java.util.function.IntPredicate;
 import java.util.function.Supplier;
@@ -120,7 +120,7 @@ public final class TextFieldState {
      */
     public boolean keyPressed(GuiKeyEvent event, Supplier<String> clipboard) {
         switch (event.key()) {
-            case GLFW.GLFW_KEY_BACKSPACE -> {
+            case InputConstants.KEY_BACKSPACE -> {
                 if (event.hasActionModifier()) {
                     text = afterCaret();
                     caret = 0;
@@ -129,11 +129,11 @@ public final class TextFieldState {
                 }
                 return true;
             }
-            case GLFW.GLFW_KEY_DELETE -> delete();
-            case GLFW.GLFW_KEY_LEFT -> left();
-            case GLFW.GLFW_KEY_RIGHT -> right();
-            case GLFW.GLFW_KEY_HOME -> home();
-            case GLFW.GLFW_KEY_END -> end();
+            case InputConstants.KEY_DELETE -> delete();
+            case InputConstants.KEY_LEFT -> left();
+            case InputConstants.KEY_RIGHT -> right();
+            case InputConstants.KEY_HOME -> home();
+            case InputConstants.KEY_END -> end();
             default -> {
                 if (!event.isPaste()) return false;
                 String pasted = clipboard == null ? null : clipboard.get();

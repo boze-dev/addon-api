@@ -1,74 +1,76 @@
 package dev.boze.api.gui.input;
 
-import org.lwjgl.glfw.GLFW;
+import com.mojang.blaze3d.platform.InputConstants;
+import org.lwjgl.sdl.SDLKeyboard;
 
 import java.util.Locale;
 
 /**
  * A key press or release.
  *
- * @param key       GLFW key code
- * @param scancode  Platform scancode
- * @param modifiers GLFW modifier bits
+ * @param key       {@link InputConstants} key code, the key's SDL scancode
+ * @param keycode   SDL keycode, the key in the current keyboard layout
+ * @param modifiers {@link InputConstants} modifier bits
  */
-public record GuiKeyEvent(int key, int scancode, int modifiers) {
+public record GuiKeyEvent(int key, int keycode, int modifiers) {
     private static final boolean MAC = System.getProperty("os.name", "").toLowerCase(Locale.ROOT).contains("mac");
 
     public boolean isEscape() {
-        return key == GLFW.GLFW_KEY_ESCAPE;
+        return key == InputConstants.KEY_ESCAPE;
     }
 
     public boolean isEnter() {
-        return key == GLFW.GLFW_KEY_ENTER || key == GLFW.GLFW_KEY_KP_ENTER;
+        return key == InputConstants.KEY_RETURN || key == InputConstants.KEY_NUMPADENTER;
     }
 
     public boolean isBackspace() {
-        return key == GLFW.GLFW_KEY_BACKSPACE;
+        return key == InputConstants.KEY_BACKSPACE;
     }
 
     public boolean isDelete() {
-        return key == GLFW.GLFW_KEY_DELETE;
+        return key == InputConstants.KEY_DELETE;
     }
 
     public boolean isTab() {
-        return key == GLFW.GLFW_KEY_TAB;
+        return key == InputConstants.KEY_TAB;
     }
 
     public boolean hasShift() {
-        return (modifiers & GLFW.GLFW_MOD_SHIFT) != 0;
+        return (modifiers & InputConstants.MOD_SHIFT) != 0;
     }
 
     public boolean hasControl() {
-        return (modifiers & GLFW.GLFW_MOD_CONTROL) != 0;
+        return (modifiers & InputConstants.MOD_CONTROL) != 0;
     }
 
     public boolean hasAlt() {
-        return (modifiers & GLFW.GLFW_MOD_ALT) != 0;
+        return (modifiers & InputConstants.MOD_ALT) != 0;
     }
 
     /**
      * @return Whether Cmd (macOS) or Ctrl (elsewhere) is held
      */
     public boolean hasActionModifier() {
-        return (modifiers & (MAC ? GLFW.GLFW_MOD_SUPER : GLFW.GLFW_MOD_CONTROL)) != 0;
+        return (modifiers & (MAC ? InputConstants.MOD_SUPER : InputConstants.MOD_CONTROL)) != 0;
     }
 
     public boolean isPaste() {
-        return key == GLFW.GLFW_KEY_V && hasActionModifier();
+        return key == InputConstants.KEY_V && hasActionModifier();
     }
 
     public boolean isCopy() {
-        return key == GLFW.GLFW_KEY_C && hasActionModifier();
+        return key == InputConstants.KEY_C && hasActionModifier();
     }
 
     public boolean isSelectAll() {
-        return key == GLFW.GLFW_KEY_A && hasActionModifier();
+        return key == InputConstants.KEY_A && hasActionModifier();
     }
 
     /**
      * @return The printable name of the key in the current keyboard layout, or null
      */
     public String keyName() {
-        return GLFW.glfwGetKeyName(key, scancode);
+        String name = SDLKeyboard.SDL_GetKeyName(keycode);
+        return name != null && name.codePointCount(0, name.length()) == 1 ? name : null;
     }
 }
