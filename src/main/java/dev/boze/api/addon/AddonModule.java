@@ -326,7 +326,9 @@ public abstract class AddonModule implements Serializable<AddonModule>, BaseModu
         onlyWhileHolding = object.get("onlyWhileHolding").getAsBoolean();
 
         for (Option<?> setting : options) {
-            setting.fromJson(object.get(setting.name).getAsJsonObject());
+            if (object.has(setting.name)) {
+                setting.fromJson(object.get(setting.name).getAsJsonObject());
+            }
         }
 
         return this;

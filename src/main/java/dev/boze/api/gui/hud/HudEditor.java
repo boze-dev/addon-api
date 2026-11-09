@@ -6,8 +6,8 @@ import java.util.List;
 
 /**
  * The HUD elements while the HUD editor is open. The HUD draws them beneath the editor's view,
- * and dragged elements follow the mouse on their own. A left click on an element starts dragging
- * it and a right click turns it off.
+ * and dragged elements follow the mouse on their own, snapping to the screen and to other elements.
+ * A left click on an element starts dragging it and a right click turns it off.
  */
 public interface HudEditor {
     /**
@@ -31,4 +31,11 @@ public interface HudEditor {
      * @return Space HUD elements keep from the screen edges, in GUI-scaled pixels
      */
     double margin();
+
+    /**
+     * @return What the element being dragged has snapped to right now
+     */
+    default List<HudGuide> guides() {
+        return List.of();
+    }
 }
