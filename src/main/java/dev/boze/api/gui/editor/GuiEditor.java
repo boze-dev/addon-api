@@ -12,7 +12,7 @@ import dev.boze.api.gui.input.GuiKeyEvent;
  * create editors with {@link GuiEditors}.
  */
 public sealed interface GuiEditor permits ListEditor, DualListEditor, PickerEditor, NumberEditor, StaticColorEditor,
-        ChoiceEditor, FormEditor, MacroEditor, TuneEditor, ConfirmEditor, NoticeEditor, BindCaptureEditor {
+        GradientEditor, ChoiceEditor, FormEditor, MacroEditor, TuneEditor, ConfirmEditor, NoticeEditor, BindCaptureEditor {
     /**
      * @return Stable id naming what is edited, for example {@code boze:block-list} or
      * {@code boze:presets}, so a theme can give one editor its own view
