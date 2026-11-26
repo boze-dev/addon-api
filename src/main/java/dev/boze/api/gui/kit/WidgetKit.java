@@ -17,6 +17,14 @@ public interface WidgetKit {
     GuiPaint textPaint(TextRole role);
 
     /**
+     * @return What a slider's track is filled with past its value. The built-in gradient editor
+     * fills the tags of its stops with it too.
+     */
+    default GuiPaint trackPaint() {
+        return textPaint(TextRole.MUTED);
+    }
+
+    /**
      * Fills a rectangle as the given kind of surface.
      */
     void surface(GuiPainter painter, Surface surface, Rect bounds, WidgetState state);
