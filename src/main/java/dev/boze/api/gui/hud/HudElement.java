@@ -37,8 +37,8 @@ public interface HudElement {
     }
 
     /**
-     * @return The element's attachment to another element, or null if it has none. While dragging,
-     * the attachment dropping it now would make.
+     * @return The element's attachment to another element, or null if it has none. While an element
+     * is dragged, the attachment dropping it now would leave this one with.
      */
     default HudLink link() {
         return null;
